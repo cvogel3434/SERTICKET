@@ -1,0 +1,178 @@
+:root {
+            --main-color: #213982;
+            --accent-color: red;
+            --back-color: white;
+            --contract-color: #213982;
+            --present-back-color: rgb(224, 227, 255);
+            --highlight-color: rgb(255, 129, 129);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-color: var(--present-back-color);
+            margin: 10px;
+            border: 1px solid black;
+        }
+        .twelve-col-grid{
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap:5px;
+            row-gap:5px;
+            padding: 5px;
+            background-color: var(--back-color);
+        }
+
+
+        /* TESTING */
+        #wo-setup-cont{
+        
+        }
+        #wo-presentation-cont{
+           
+        }
+        /* TESTING */
+
+        /* for Mobile Phones */
+        #wo-present-repair-cont {
+            grid-column: 1 / span all;
+            background-color: var(--back-color);
+            border: 1px solid black;
+        }
+
+        #wo-setup-sys{
+            grid-column: 1 / span all;
+            grid-row:1;
+        }
+        #wo-setup-repair{
+            grid-column: 1 / span all;
+            grid-row:2;
+        }
+        #wo-present-contract-cont {
+            grid-column: 1 / span all;
+            margin-bottom:15px;
+            padding-bottom:10px;
+            border: 2px solid var(--contract-color);
+        }
+        .wo-sys {
+            grid-column: 1 / span 2;
+            display: inline-grid;
+            grid-template-columns: 20px repeat(3, 1fr);
+            padding: 5px;
+            margin: 5px;
+            background-color: var(--back-color);
+        }
+        .total-label{
+            grid-column:1 / 11;
+        }
+        .total-prices{
+            grid-column:12;
+            text-align: right;
+        }
+        /* for Desktop */
+        @media only screen and (min-width: 768px) {
+            .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
+            #wo-setup-sys{grid-column: 1 / 8;}
+            #wo-present-contract-cont {grid-column: -1 / 8;}
+            .total-label{grid-column:8 / 11;}
+        }
+
+        /* Setup Side Styling */
+        .client-label{grid-column:1;}
+        .client-input{grid-column:2 / span 3;} 
+        .wo-sys-tagid {
+            grid-column: 2 / span 1;
+        }
+
+        .wo-sys-area {
+            grid-column: 3 / span 1;
+        }
+        .wo-sys-selected {
+            background-color: var(--highlight-color);
+        }
+
+        .wo-sys-repairs {
+            grid-column: 1 / span 4;
+            margin-left: 20px;
+        }
+
+        .wo-sys-repair {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wo-sys-repair>div {
+            margin: 5px;
+        }
+
+        #flatrate-search-table-cont {
+            overflow: auto;
+            max-height: 400px;
+        }
+
+        #wo-flatrate-cont {
+            margin-left: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Presentation Styling */
+        #wo-presentation-cont input {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+        }
+
+        #wo-presentation-header {
+            grid-column: -1 / 4;
+            text-align:right;
+            font-size: x-large;
+            font-weight:bold;
+        }
+        #header-logo{
+            width: 200px;
+        }
+        #present-contract-name {
+            width: 100%;
+            text-align: center;
+            font-size: larger;
+            font-weight: bolder;
+            border: 0px;
+            border-bottom: 1px solid var(--contract-color);
+            color: var(--contract-color);
+        }
+        #monthly-tag{
+            font-weight: bold;
+        }
+        #enhance-tag{
+            padding-left: 15px;
+            padding-top: 10px;
+            border-bottom: 1px solid var(--contract-color);
+            font-style:italic;
+            font-weight: bold;
+            color: var(--contract-color);
+        }
+        .present-contract-opt {
+            display: grid;
+            grid-template-columns: 1fr 35px 35px 25px;
+            column-gap: 5px;
+            align-items: center;
+            text-align: right;
+            padding-top: 5px;
+        }
+        .present-contract-opt>:nth-child(2){
+            text-align:center;
+        }
+          .wo-present-repair {
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .wo-present-repair>div {
+            width: 20%;
+        }
+        #wo-nav{
+            border-top: 1px solid black;
+            padding: 5px;
+        }
