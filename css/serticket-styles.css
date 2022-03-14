@@ -21,7 +21,9 @@
             background-color: var(--back-color);
         }
 
-
+        .this-is-a-test-class{
+            display:none;
+        }
         /* TESTING */
         #wo-setup-cont{
             display:none;
