@@ -29,7 +29,9 @@
             display:none;
             /*NEW COMMENT*/
         }
-
+        .new-test-class{
+            grid-column: 1 / span 5;
+        }
         /* TESTING */
 
         /* for Mobile Phones */
