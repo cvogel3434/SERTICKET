@@ -24,10 +24,10 @@
 
         /* TESTING */
         #wo-setup-cont{
-        
+
         }
         #wo-presentation-cont{
-           
+
         }
         /* TESTING */
 
@@ -80,7 +80,7 @@
             grid-column:1;
             min-width: 84px;
         }
-        .client-input{grid-column:2 / span 3;} 
+        .client-input{grid-column:2 / span 3;}
         .wo-sys-tagid {
             grid-column: 2 / span 1;
         }
@@ -166,7 +166,7 @@
         }
         .wo-present-repair{
             display:grid;
-            grid-template-columns: 15% 40% 15% 15% 1fr;
+            grid-template-columns: 40% 15% 15% 15% 1fr;
             column-gap: 5px;
             margin:5px;
             justify-items: center;
