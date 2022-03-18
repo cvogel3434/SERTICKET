@@ -7,9 +7,7 @@
     background-color:rgba(84, 112, 207, .4);
   }
   .vg-utilcont{
-    display:none;
     position:fixed;
-    width: 100vh;
   }
   .vg-utilcont-info{
     display:none;
