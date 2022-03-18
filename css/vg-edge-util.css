@@ -1,21 +1,19 @@
-
   .vg-utilcont-toggle{
     display:flex;
     justify-content: space-evenly;
     text-align:center;
-    width:100%;
     min-width: 50px;
     height:40px;
+    background-color:rgba(84, 112, 207, .4);
   }
   .vg-utilcont{
     display:none;
     position:fixed;
+    width: 100vh;
   }
   .vg-utilcont-info{
     display:none;
   }
-
-
   #vg-utilcont-top{
     display:inline-grid;
     top:0;
@@ -24,18 +22,12 @@
   .vg-utilcont-top-info{
     height:50%;
   }
-
-
   #vg-utilcont-bottom{
     bottom:0;
     width:100%;
   }
   .vg-utilcont-bottom-info{
     min-height:100%;
-  }
-
-  .vg-utilcont-bottom-button{
-    background-color:rgba(84, 112, 207, .4);
   }
   #vg-utilcont-right{
     display:flex;
