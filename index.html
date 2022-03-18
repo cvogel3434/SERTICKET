@@ -6,12 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Presentation</title>
-    <link rel="stylesheet" href="css/serticket-styles.css">
+    <link rel="stylesheet" href="css/serticket-styles.css" />
+    <link rel="stylesheet" href="css/vg-edge-util.css" />
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/vg-ticket.js"></script>
     <script src="js/vg-util-updownside.js"></script>
     <script src="js/flbook.js"></script>
-
+    <script src="js/sticket-build.js"></script>
     <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 <mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers msdt:dt="string">Brian Kremmel</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers>
@@ -41,49 +44,6 @@
     -->
 
     <style>
-      .vg-utilcont-toggle{
-        display:flex;
-        justify-self:center;
-        text-align:center;
-        width:50px;
-        height:40px;
-        background-color:rgba(84, 112, 207, .4);
-      }
-      .vg-utilcont{
-        display:none;
-        position:fixed;
-      }
-      .vg-utilcont-info{
-        display:none;
-      }
-
-
-      #vg-utilcont-top{
-        display:inline-grid;
-        top:0;
-        width:100%;
-      }
-      .vg-utilcont-top-info{
-        height:50%;
-      }
-
-
-      #vg-utilcont-bottom{
-        bottom:0;
-        width:100%;
-      }
-      .vg-utilcont-bottom-info{
-        min-height:200px;
-      }
-
-      #vg-utilcont-right{
-        display:flex;
-        right:0;
-        height:100%;
-      }
-      .vg-utilcont-right-info{
-        min-width:200px;
-      }
     </style>
     <div id="vg-utilcont-top" class="vg-utilcont" style="display:none">
       <div class="vg-utilcont-top-info vg-utilcont-info">
@@ -337,9 +297,6 @@
         }
     }
 
-
-
-
     var wodom = {
         cont: '',
         info: {
@@ -353,9 +310,16 @@
     var curbook = fltbook.res;//set flat rate book to Residential Book
     var curwo = null; //set the current WO to null
 
+    //WO Number CHANGE
+    document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
+        if (ele.target.value != '') {
+            document.getElementsByTagName('title')[0].innerText = ele.target.value;
+            $(document.getElementById('wo-setup-sys')).show();
+            $(document.getElementById('wo-setup-repair')).show();
+        }
+    });
 
     //  PRESENTATION    ////////////////////////////////////////////////
-
     //Presentation DOM
     var prsdom = {
         cont: 'wo-presentation-cont',
@@ -406,11 +370,7 @@
     var SETpresent = (cwo) => {
         if (cwo.systems != null) {
             let slist = document.getElementById(prsdom.systems)
-            let repcost = 0;
-            let repsave = 0;
-
             slist.innerHTML = '';
-
 
             for (let x = 0; x < cwo.systems.length; x++) {
                 let s = slist.appendChild(document.createElement('div'));
@@ -420,7 +380,6 @@
                 rlist.classList.add(prsdom.system.repairs);
 
                 for (let y = 0; y < cwo.systems[x].repairs.length; y++) {
-                    repcost += cwo.systems[x].repairs[y].value;
 
                     //tell what column repcost goes to
 
@@ -428,40 +387,50 @@
 
                     //fill the difference
                     let r = rlist.appendChild(document.createElement('div'));
+
                     r.classList.add(prsdom.system.repair.cont);
-                    //r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].num;
                     r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].desc;
-                    r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].value;
-                    r.appendChild(document.createElement('div')).innerText = Math.abs(curwo.systems[x].repairs[y].value - GETbookprice(cwo.systems[x].repairs[y].num, cwo.cntrct));
-                    repsave += Number(r.children[r.children.length - 1].innerText);
+                    let rprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.reg);
+                    r.appendChild(document.createElement('div')).innerText =  rprice;
+                    cwo.build.regprice += rprice;
+                    let mprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.cntrct);
+                    r.appendChild(document.createElement('div')).innerText = mprice;
+                    cwo.build.memprice += mprice;
+                    r.appendChild(document.createElement('div')).innerText = rprice - mprice;
+                    cwo.build.savings += rprice - mprice;
                     r.appendChild(document.createElement('input')).type = "checkbox";
                 }
             }
-
-            document.getElementById(prsdom.invest.regprice).value = repcost;
-            document.getElementById(prsdom.invest.memprice).value = 89
-            document.getElementById(prsdom.invest.savings).value = repsave;
-            document.getElementById(prsdom.invest.month).value = GETcntrctprice();
+            document.getElementById('wo-present-membership').innerText = GETmemhead(document.getElementById(prsdom.contract.form.name).value);
+            document.getElementById(prsdom.invest.regprice).value = cwo.build.regprice;
+            document.getElementById(prsdom.invest.memprice).value = cwo.build.memprice;
+            document.getElementById(prsdom.invest.savings).value = cwo.build.savings;
+            console.log(cwo);
+            //document.getElementById(prsdom.invest.month).value = GETcntrctprice();
         }
     }
 
-    var SETprice = () => {
+    //Pass the name from the contract FORM
+    //Either uses that OR the associated pl
+    var GETmemhead = (pname)=>{
+      switch(pname){
+        case 'CLASSIC': return 'CLASSIC'
+        case 'PREMIUM': return 'PREMIUM'
+        case 'ULTIMATE': return 'ULTIMATE'
+        case '':
+          switch(document.getElementById(fbdom.search.pl).value){
+            case 'CLA':return 'CLASSIC'
+            case 'PRE':return 'PREMIUM'
+            case 'ULT':return 'ULTIMATE'
+          }
+      }
     }
 
-    var SETprestype = (pl) => {
-        if (pl != '') {
-            if (pl == 'CLA' || pl == 'PRE' || pl == 'ULT') { //has a contract
-                document.getElementById(prsdom.contract.form.name).value = '';
-                //make other adjustments
-                $(document.getElementById(prsdom.contract.form.cont)).hide();//collapse contract form
-                return true;
-            } else if (pl == 'STA' || pl == 'AHR') { //does not have a contract
-                document.getElementById(prsdom.contract.form.name).value = document.getElementById(prsdom.contract.form.name).value == '' ? 'PREMIUM' : document.getElementById(prsdom.contract.form.name).value;
-                $(document.getElementById(prsdom.contract.form.cont)).show();//expand contract form
-                return false;
-            }
+    var HasContract = (pl) => {
+        if (pl == 'CLA' || pl == 'PRE' || pl == 'ULT'){
+          return true;
         }
-
+        return false;
 
     }
 
@@ -491,15 +460,41 @@
         }
         return price;
     }
+
+    var GETcntrctpl = (pname)=>{
+
+      switch(pname){ //first try and use the contract form
+        case 'CLASSIC':
+          return 'CLA'
+        case 'PREMIUM':
+          return 'PRE'
+        case 'ULTIMATE':
+          return 'ULT'
+        case '':
+          switch(document.getElementById(fbdom.search.pl).value){
+            case 'CLA':return 'CLA'
+            case 'PRE':return 'PRE'
+            case 'ULT':return 'ULT'
+          }
+      }
+      return ''
+    }
+
+    document.getElementById(prsdom.contract.form.name).value = "PREMIUM";
+
+    //Contract Form CHANGE
+    document.getElementById(prsdom.contract.cont).addEventListener('change', (ele) => {
+        SETcntrctform();
+        GETcntrctprice();
+    });
+
+
     ////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////
 
-
     //  WO system   ////////////////////////////////////////////////////
-
-    //System DOM
-    var sysdom = {
+    var sysdom = { //System DOM
         input: {
             tagid: "wo-setup-sys-tagid"
         },
@@ -522,129 +517,19 @@
         }
     };
 
-    var CLEARSysSelect = () => {
-        let replist = document.getElementsByClassName(sysdom.list.selected);
-        for (let x = 0; x < replist.length; x++) {
-            $(replist[x].getElementsByClassName(sysdom.list.system.repairs)[0]).hide();
-            console.log(replist[x])
-            replist[x].classList.remove(sysdom.list.selected);
-        }
-    }
-
-    var ADDsystem = (system = { id: '' }) => {
-        if (system.id != '') {
-            let syslist = document.getElementById(sysdom.list.cont);
-
-            let sys = syslist.appendChild(document.createElement('div'));
-
-            CLEARSysSelect();
-
-            sys.classList.add(sysdom.list.system.cont);
-            sys.classList.add(sysdom.list.selected);
-
-            sys.appendChild(document.createElement('div')); //button to toggle repair list
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.button);
-            sys.children[sys.children.length - 1].innerText = '>'
-
-
-            sys.appendChild(document.createElement('input')).value = system.id; //tag id input
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.tagid);
-            sys.appendChild(document.createElement('input')).value = system.area ? sys.area : '';
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.area); //sys area input
-
-            //Input Repairs
-            sys.appendChild(document.createElement('div'));
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.repairs); //sys repair list
-
-            if (sys.repairs != undefined) {
-                for (let reps = 0; reps < sys.repairs.length; reps++) {
-                    ADDrepair(sys.repairs[reps]);
-                }
-            }
-            //button to show/hide repairs
-            sys.children[0].addEventListener('click', (ele) => {
-
-                CLEARSysSelect();
-                ele.target.parentNode.classList.add(sysdom.list.selected);
-                let replist = ele.target.parentNode.getElementsByClassName(sysdom.list.system.repairs)[0];
-
-                //need to check attribut display
-                if ($(replist).is(':visible')) { $(replist).hide(); }
-                else { $(replist).show(); }
-            });
-
-        }
-
-    }
-
-    /*  Add repair
-        PASS:{
-            task,
-            desc
-        }
-    */
-    var ADDrepair = (row = {}) => {
-        let rlist = document.getElementsByClassName(sysdom.list.selected)[0].getElementsByClassName(sysdom.list.system.repairs)[0];
-        let r = rlist.appendChild(document.createElement('div'));
-        r.classList.add(sysdom.list.system.repair.cont);
-        r.appendChild(document.createElement('div')).innerText = row.task != undefined ? row.task : '' //inrow.children[0].innerText;
-        r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
-        r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
-        r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
-    }
-
-    //gets the system info
-    var GETSysList = () => {
-        let syslist = document.getElementById(sysdom.list.cont);
-        let arr = [];
-        for (let x = 0; x < syslist.children.length; x++) {
-            arr.push(
-                (() => {
-                    let obj = {
-                        id: syslist.children[x].getElementsByClassName(sysdom.list.system.tagid)[0].value,
-                        area: syslist.children[x].getElementsByClassName(sysdom.list.system.area)[0].value,
-                        repairs: []
-                    };
-                    let rlist = syslist.children[x].getElementsByClassName(sysdom.list.system.repairs)[0];
-                    for (let y = 0; y < rlist.children.length; y++) { //add a repair
-                        obj.repairs.push({
-                            num: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText,
-                            desc: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.desc)[0].innerText,
-                            value: GETbookprice(rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText, document.getElementById(fbdom.search.pl).value),
-                            appr: true
-                        });
-                    }
-                    return obj;
-                })());
-        }
-        return arr
-    }
-
-    //gets the wo info from dom
-    var GETwo = () => {
-        let conname = document.getElementById(prsdom.contract.form.name).value;
-
-        return {
-            num: document.getElementById(wodom.info.num).value,
-            name: document.getElementById(wodom.info.name).value,
-            address: document.getElementById(wodom.info.address).value,
-            book: {
-                name: document.getElementById(fbdom.search.book).value,
-                pl: document.getElementById(fbdom.search.pl).value
-            },
-            cntrct: (conname != '' ? conprice[conname].pl : defpl),
-            hascntrct: SETprestype(document.getElementById(fbdom.search.pl).value), //NEED to account for contract upgrade presentation!!
-            systems: GETSysList()
-        }
-    }
+    //Tag ID CHANGE, adds a system to the list
+    document.getElementById(sysdom.input.tagid).addEventListener('change', (ele) => {
+        ADDsystem({
+            id: ele.target.value
+        });
+        ele.target.value = '';
+    });
 
     ////////////////////////////////////////////////////////////////////
 
 
     //  Flate Rate  ////////////////////////////////////////////////////
-
-    //  Flate Rate DOM
-    var fbdom = {
+    var fbdom = { //Flate Rate DOM
         cont: 'wo-setup-repair',
         search: {
             book: 'wo-repair-search-book',
@@ -665,48 +550,6 @@
             pls: 'flatrate-book-pl-list'
         }
     }
-    document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
-    document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);
-    document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {
-        SETprestype(ele.target.value);
-        getSearchList(ele);
-    });
-    ////////////////////////////////////////////////////////////////////
-
-    //PRINT Button
-    document.getElementById('wo-save').addEventListener('click', (ele) => {
-        window.print();
-    });
-
-    //WO Number CHANGE
-    document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
-        if (ele.target.value != '') {
-            document.getElementsByTagName('title')[0].innerText = ele.target.value;
-            $(document.getElementById('wo-setup-sys')).show();
-            $(document.getElementById('wo-setup-repair')).show();
-        }
-    });
-
-    //Tag ID CHANGE, adds a system to the list
-    document.getElementById(sysdom.input.tagid).addEventListener('change', (ele) => {
-        ADDsystem({
-            id: ele.target.value
-        });
-        ele.target.value = '';
-    });
-
-    //Contract Form CHANGE
-    document.getElementById(prsdom.contract.cont).addEventListener('change', (ele) => {
-        SETcntrctform();
-        GETcntrctprice();
-    });
-
-    //Document CHANGE
-    document.addEventListener('change', (ele) => {
-        curwo = GETwo();
-        console.log(curwo);
-        SETpresent(curwo);
-    });
 
     var defpl = (() => { //get STD or AHR price level depending on time and/of day
         let time = wodate.getHours();
@@ -717,12 +560,39 @@
                 ? 'AHR' : 'STA'
         );
     })();
-
-    document.getElementById(prsdom.contract.form.name).value = "PREMIUM";
-
-
-  console.log(defpl);
     document.getElementById(fbdom.search.pl).value = defpl;
+
+    document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
+    document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);
+    document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {
+        let cname = document.getElementById(prsdom.contract.form.name);
+
+        if(HasContract(ele.target.value)){
+          cname.value ='';
+        }else{
+          if(cname.value == ''){cname.value = 'PREMIUM';} //reintialize the contract
+        }
+
+        getSearchList(ele);
+    });
+    ////////////////////////////////////////////////////////////////////
+
+
+    //PRINT Button
+    document.getElementById('wo-save').addEventListener('click', (ele) => {
+        window.print();
+    });
+
+    //Document CHANGE
+    document.addEventListener('change', (ele) => {
+        curwo = GETwo(curwo);
+        console.log(curwo);
+
+
+        SETpresent(curwo);
+    });
+
+
 
 
     console.log(curbook);
