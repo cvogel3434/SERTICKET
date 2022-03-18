@@ -40,9 +40,9 @@
 
 
     <!--NAVIGATION
-
-    -->
-
+      <!-- TODO: want to add titles OR images to the side toggle buttons
+          current
+      -->
     <style>
     </style>
     <div id="vg-utilcont-top" class="vg-utilcont" style="display:none">
@@ -54,20 +54,23 @@
         <button id="wo-save" style="justify-content:flex-end;">Create PDF</button>
       </div>
     </div>
+
+
+    <!--PRESENTATION SECTION--------------------------------------------------->
     <div id="vg-utilcont-bottom" class="vg-utilcont"  style="display:none">
       <div class="vg-utilcont-toggle">
-        >
+        Presentation
       </div>
       <div class="vg-utilcont-bottom-info vg-utilcont-info">
-        <!--PRESENTATION 1---------->
-        <div id="wo-presentation-cont" class="twelve-col-grid">
+      >
+        <div id="wo-presentation-cont" class="twelve-col-grid"><!--PRESENTATION CONTAINER-->
             <div id="wo-present-repair-cont">
-                <div class="wo-present-repair">
-                  <div id="wo-present-membership">
+                <div class="wo-present-repair"><!--Extra Headers-->
+                  <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
                     Premium
                   </div>
                 </div>
-                <div class="wo-present-repair" style="font-weight:bold">
+                <div class="wo-present-repair" style="font-weight:bold"><!--Main Headers-->
                     <div>Benefit & Advantage (C/P)</div>
                     <div>Regular Price</div>
                     <div>Memeber Price</div>
@@ -76,16 +79,17 @@
                 </div>
                 <!--ALL OF THE REPAIRS BELOW-->
 
-                <div class="wo-present-repair">
-                    <!--DIAGNOSTIC FEE-->
-                    <div class="present-repair-desc">Diagnostic</div>
-                    <div class="present-repair-price">$119</div>
-                    <div class="present-repair-savings"></div>
-                    <input class="present-repair-appr" type="checkbox" />
-                </div>
+              <div id="wo-present-repair-diagnostic" class="wo-present-repair">
+                  <!--DIAGNOSTIC FEE-->
+                  <div class="present-repair-desc">Diagnostic</div>
+                  <div class="present-repair-price"></div>
+                  <div></div>
+                  <div class="present-repair-savings"></div>
+                  <input class="present-repair-appr" type="checkbox" />
+              </div>
 
-                <div id="wo-present-systems">
-                </div>
+              <div id="wo-present-systems">
+              </div>
             <!--INVESTMENT SECTION-->
             <div class="wo-present-repair"><!--Line GRID-->
                 <div>DUE TODAY</div><!--TITLE-->
@@ -99,6 +103,7 @@
       </div>
     </div>
 
+    <!------------------------------------------------------------------------->
     <!--RIGHT SIDE UTILITY
         The right side utility bar will hold the contract information
         in the vg-utilcont-info > div
@@ -362,6 +367,9 @@
             cont: 'wo-present-system',
             id: 'wo-present-system-id',
             repairs: 'wo-present-system-repairs',
+            specials:{
+              diagnostic:'wo-present-repair-diagnostic'
+            },
             repair: {
                 cont: 'wo-present-repair',
                 num: 'present-repair-num',
@@ -381,8 +389,24 @@
 
     var SETpresent = (cwo) => {
         if (cwo.systems != null) {
-            let slist = document.getElementById(prsdom.systems)
+            let slist = document.getElementById(prsdom.systems);
+
+            let rprice=0; //temp for reg book price
+            let mprice=0; //temp for mem book price
             slist.innerHTML = '';
+
+            //handle the DIAGNOSTIC
+            if(document.getElementById(fbdom.special.diagnostic).checked){
+              let diagrow = document.getElementById(prsdom.system.specials.diagnostic);
+              $(diagrow).show();
+
+              rprice = GETbookprice('DIAG',cwo.reg);
+              diagrow.children[1].innerText = rprice;
+              mprice = GETbookprice('DIAG',cwo.cntrct);
+              diagrow.children[2].innerText = mprice;
+              diagrow.children[3].innerText = rprice - mprice;
+
+            }else{$(document.getElementById(prsdom.system.specials.diagnostic)).hide();}
 
             for (let x = 0; x < cwo.systems.length; x++) {
                 let s = slist.appendChild(document.createElement('div'));
@@ -392,7 +416,8 @@
                 rlist.classList.add(prsdom.system.repairs);
 
                 for (let y = 0; y < cwo.systems[x].repairs.length; y++) {
-
+                    rprice = 0;
+                    mprice = 0;
                     //tell what column repcost goes to
 
                     //find the memebership cost (if any)
@@ -402,10 +427,10 @@
 
                     r.classList.add(prsdom.system.repair.cont);
                     r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].desc;
-                    let rprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.reg);
+                    rprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.reg);
                     r.appendChild(document.createElement('div')).innerText =  rprice;
                     cwo.build.regprice += rprice;
-                    let mprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.cntrct);
+                    mprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.cntrct);
                     r.appendChild(document.createElement('div')).innerText = mprice;
                     cwo.build.memprice += mprice;
                     r.appendChild(document.createElement('div')).innerText = rprice - mprice;
@@ -585,7 +610,8 @@
       });
     });
     document.getElementById(fbdom.special.diagnostic).addEventListener('change',(ele)=>{
-      console.log(3);
+      //may want to do something when this is is "checked"
+      // if there is also a clean and check then> alert the tech
     })
     document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
     document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);

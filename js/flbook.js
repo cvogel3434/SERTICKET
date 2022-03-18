@@ -66,6 +66,7 @@
 
     var specialrep = {
       'CLNCHK':{
+        'desc':'Clean and Check',
         'STA':149,
         'AHR':149,
         'CLA':0,
@@ -73,6 +74,7 @@
         'ULT':0
       },
       'DIAG':{
+        'desc':'Diagnostic',
         'STA':119,
         'AHR':149,
         'CLA':119,
