@@ -2,8 +2,8 @@
     display:flex;
     justify-content: space-evenly;
     text-align:center;
-    width: 50px;
-    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
     background-color:rgba(84, 112, 207, .4);
   }
   .vg-utilcont{
@@ -15,14 +15,14 @@
   #vg-utilcont-top{
     display:inline-grid;
     top:0;
-    width:100%;
+    width:100vh;
   }
   .vg-utilcont-top-info{
     height:50%;
   }
   #vg-utilcont-bottom{
     bottom:0;
-    width:100%;
+    width:100vh;
   }
   .vg-utilcont-bottom-info{
     min-height:100%;
