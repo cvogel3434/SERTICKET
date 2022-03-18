@@ -205,6 +205,18 @@
                 book.
             -->
         <div id="wo-setup-repair">
+
+            <div id="flatrate-special-repairs">
+              <div style="display:flex;">
+                <div>
+                  DIAGNOSTIC FEE
+                </div>
+                <input id="flatrate-repair-diagnostic" type="checkbox" />
+              </div>
+              <div id="flatrate-repair-cleancheck">
+                CLEAN AND CHECK
+              </div>
+            </div>
             <div>
                 <!--FLATBOOK------------>
                 <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
@@ -531,6 +543,10 @@
     //  Flate Rate  ////////////////////////////////////////////////////
     var fbdom = { //Flate Rate DOM
         cont: 'wo-setup-repair',
+        special:{
+          diagnostic:'flatrate-repair-diagnostic',
+          cleancheck:'flatrate-repair-cleancheck'
+        },
         search: {
             book: 'wo-repair-search-book',
             value: 'wo-repair-search-value',
@@ -560,8 +576,17 @@
                 ? 'AHR' : 'STA'
         );
     })();
-    document.getElementById(fbdom.search.pl).value = defpl;
 
+    document.getElementById(fbdom.search.pl).value = defpl;
+    document.getElementById(fbdom.special.cleancheck).addEventListener('click',(ele)=>{ //add a clean and check
+      ADDrepair({
+        task:'CLNCHK',
+        desc:'Clean and Check'
+      });
+    });
+    document.getElementById(fbdom.special.diagnostic).addEventListener('change',(ele)=>{
+      console.log(3);
+    })
     document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
     document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);
     document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {

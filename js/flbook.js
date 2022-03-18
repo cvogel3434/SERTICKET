@@ -11,7 +11,6 @@
     }
 
 
-
     var fltrs = (book, flts = {}) => {
         var finds = [];
         var bad;
@@ -65,6 +64,23 @@
         }
     }
 
+    var specialrep = {
+      'CLNCHK':{
+        'STA':149,
+        'AHR':149,
+        'CLA':0,
+        'PRE':0,
+        'ULT':0
+      },
+      'DIAG':{
+        'STA':119,
+        'AHR':149,
+        'CLA':119,
+        'PRE':59.5,
+        'ULT':0
+      }
+
+    }
     var GETbookprice = (tnum, tpl) => {
         let pl = 'pl';
         let count = '';
@@ -72,7 +88,8 @@
 
         if (curbook) {
             for (let x = 0; x < curbook.length; x++) {
-                if (curbook[x].num == tnum) {
+                if (curbook[x].num == tnum ){
+
                     while (curbook[x][pl + count] != undefined) {
                         if (curbook[x][pl + count] == tpl) {
                             return curbook[x]['sp' + count];
@@ -82,9 +99,12 @@
                 }
             }
         }
+        for(let s in specialrep){
+          if(s ==tnum){return specialrep[tnum][tpl]}
+        }
+
         return 0;
     }
-
     var loadFBFound = (finds, pl) => {
         let fbstable = document.getElementById(fbdom.table.cont);
         let row;

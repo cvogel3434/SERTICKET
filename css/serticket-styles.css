@@ -107,6 +107,13 @@
             margin: 5px;
         }
 
+        #flatrate-special-repairs{
+          display:flex;
+        }
+        #flatrate-special-repairs>:nth-child(n){
+          margin-right:3px;
+        }
+
         #flatrate-search-table-cont {
             overflow: auto;
             max-height: 400px;
@@ -177,7 +184,7 @@
             font-weight:bold;
         }
 
-        
+
         /*Specific items in presentation*/
         #wo-present-membership{
           grid-column:3;
