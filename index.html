@@ -91,12 +91,21 @@
               <div id="wo-present-systems">
               </div>
             <!--INVESTMENT SECTION-->
-            <div class="wo-present-repair"><!--Line GRID-->
-                <div>DUE TODAY</div><!--TITLE-->
-                <input id="wo-present-regprice-today"/>
-                <input id="wo-present-memprice-today"/>
-                <input id="wo-present-savings-today"/>
+            <div class="wo-present-repair" style="margin-top:10px;border-top:2px solid black"><!--SAVINGS ROW-->
+                <div>SAVINGS - TODAY</div><!--TITLE-->
+                <div>0</div>
+                <div id="wo-present-savings-today"></div>
             </div>
+            <div class="wo-present-repair">
+              <div>Monthly Membership</div>
+              <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
+            </div>
+            <div class="wo-present-repair">
+              <div>Due Today</div>
+              <div id="wo-present-regprice-today"></div>
+              <div id="wo-present-memprice-today"></div>
+            </div>
+
 
             </div>
         </div>
@@ -383,7 +392,7 @@
             savings: 'wo-present-savings-today',
             regprice: 'wo-present-regprice-today',
             memprice: 'wo-present-memprice-today',
-            conmonth: ''
+            conmonth: 'wo-present-contract-monthly'
         }
     }
 
@@ -439,11 +448,10 @@
                 }
             }
             document.getElementById('wo-present-membership').innerText = GETmemhead(document.getElementById(prsdom.contract.form.name).value);
-            document.getElementById(prsdom.invest.regprice).value = cwo.build.regprice;
-            document.getElementById(prsdom.invest.memprice).value = cwo.build.memprice;
-            document.getElementById(prsdom.invest.savings).value = cwo.build.savings;
-            console.log(cwo);
-            //document.getElementById(prsdom.invest.month).value = GETcntrctprice();
+            document.getElementById(prsdom.invest.regprice).innerText = cwo.build.regprice;
+            document.getElementById(prsdom.invest.memprice).innerText = cwo.build.memprice;
+            document.getElementById(prsdom.invest.savings).innerText = cwo.build.savings;
+            document.getElementById(prsdom.invest.conmonth).innerText = GETcntrctprice();
         }
     }
 

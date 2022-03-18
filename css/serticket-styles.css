@@ -189,6 +189,10 @@
         #wo-present-membership{
           grid-column:3;
         }
+        #wo-present-contract-monthly{
+          grid-column:3;
+        }
+        
         #wo-nav{
             border-top: 1px solid black;
             padding: 5px;
