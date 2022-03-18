@@ -6,11 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Presentation</title>
-    <link rel="stylesheet" href="css/serticket-styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/flbook.js"></script>
-    <script src="js/vg-ticket.js"></script>
+    <link rel="stylesheet" href="css/serticket-styles.css" />
+    <link rel="stylesheet" href="css/vg-edge-util.css" />
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/vg-ticket.js"></script>
+    <script src="js/vg-util-updownside.js"></script>
+    <script src="js/flbook.js"></script>
+    <script src="js/sticket-build.js"></script>
     <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 <mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers msdt:dt="string">Brian Kremmel</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers>
@@ -33,43 +37,77 @@
     <div id="wo-header-cont" class="twelve-col-grid">
         <img src="images/Vogel Logo.png" id="header-logo" alt="VOGEL"><div id="wo-presentation-header">REWARDS MEMBERSHIP SAVINGS</div>
     </div>
-    <!--Client / WO info---------------------->
-    <div id="wo-client-cont" class="twelve-col-grid">
-        <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
-        <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
-        <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
+
+
+    <!--NAVIGATION
+
+    -->
+
+    <style>
+    </style>
+    <div id="vg-utilcont-top" class="vg-utilcont" style="display:none">
+      <div class="vg-utilcont-top-info vg-utilcont-info">
+        this
+      </div>
+      <div class="vg-utilcont-toggle">
+        >
+        <button id="wo-save" style="justify-content:flex-end;">Create PDF</button>
+      </div>
     </div>
-    <!--Repair Selection----------------------->
-    <div id="wo-setup-cont" class="twelve-col-grid">
-        <!--Setup Systems--------------
-                Filter options on top of a
-                table with the systesms.
+    <div id="vg-utilcont-bottom" class="vg-utilcont"  style="display:none">
+      <div class="vg-utilcont-toggle">
+        >
+      </div>
+      <div class="vg-utilcont-bottom-info vg-utilcont-info">
+        <!--PRESENTATION 1---------->
+        <div id="wo-presentation-cont" class="twelve-col-grid">
+            <div id="wo-present-repair-cont">
+                <div class="wo-present-repair">
+                  <div id="wo-present-membership">
+                    Premium
+                  </div>
+                </div>
+                <div class="wo-present-repair" style="font-weight:bold">
+                    <div>Benefit & Advantage (C/P)</div>
+                    <div>Regular Price</div>
+                    <div>Memeber Price</div>
+                    <div>Savings</div>
+                    <div>Approved?</div>
+                </div>
+                <!--ALL OF THE REPAIRS BELOW-->
 
-                Most of the editing is done
-                in the table
-            -->
-        <div id="wo-setup-sys">
-            <div id="wo-setup-tag-selector"><label for="tagid">Add Tag ID: </label><input id="wo-setup-sys-tagid" name="tagid" /></div>
+                <div class="wo-present-repair">
+                    <!--DIAGNOSTIC FEE-->
+                    <div class="present-repair-desc">Diagnostic</div>
+                    <div class="present-repair-price">$119</div>
+                    <div class="present-repair-savings"></div>
+                    <input class="present-repair-appr" type="checkbox" />
+                </div>
 
-
-            <!-- WO System Table-----------
-                    Holds all of the customers
-                    service items.
-
-                    ADD: Empty row at end
-
-                    UPDATE: Can type in some
-                    table cells.
-
-                    DELETE: Maybe should only
-                    be able to disable, setting
-                    a flag back at the office.
-                -->
-            <div id="wo-sys-list">
+                <div id="wo-present-systems">
+                </div>
+            <!--INVESTMENT SECTION-->
+            <div class="wo-present-repair"><!--Line GRID-->
+                <div>DUE TODAY</div><!--TITLE-->
+                <input id="wo-present-regprice-today"/>
+                <input id="wo-present-memprice-today"/>
+                <input id="wo-present-savings-today"/>
+            </div>
 
             </div>
-            <!---------------------------->
         </div>
+      </div>
+    </div>
+
+    <!--RIGHT SIDE UTILITY
+        The right side utility bar will hold the contract information
+        in the vg-utilcont-info > div
+    -->
+    <div id="vg-utilcont-right" class="vg-utilcont" style="display:none">
+      <div class="vg-utilcont-toggle">
+        >
+      </div>
+      <div class="vg-utilcont-right-info vg-utilcont-info">
         <div id="wo-present-contract-cont">
             <input id="present-contract-name" type="search" list="contract-name-list" />
             <div id="present-contract-opts">
@@ -119,8 +157,47 @@
                         type="checkbox" />
                 </div>
             </div>
-
         </div>
+      </div>
+    </div>
+    <!---->
+
+
+    <!--Client / WO info---------------------->
+    <div id="wo-client-cont" class="twelve-col-grid">
+        <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
+        <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
+        <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
+    </div>
+
+    <!--Repair Selection----------------------->
+    <div id="wo-setup-cont" class="twelve-col-grid">
+        <!--Setup Systems--------------
+                Filter options on top of a
+                table with the systesms.
+
+                Most of the editing is done
+                in the table
+            -->
+        <div id="wo-setup-sys">
+            <div id="wo-setup-tag-selector"><label for="tagid">Add Tag ID: </label><input id="wo-setup-sys-tagid" name="tagid" /></div>
+            <!-- WO System Table-----------
+                    Holds all of the customers
+                    service items.
+
+                    ADD: Empty row at end
+
+                    UPDATE: Can type in some
+                    table cells.
+
+                    DELETE: Maybe should only
+                    be able to disable, setting
+                    a flag back at the office.
+                -->
+            <div id="wo-sys-list"></div>
+            <!---------------------------->
+        </div>
+
         <!--Setup Repair List----------
                 Holds an area to search and
                 selected different task items
@@ -128,6 +205,18 @@
                 book.
             -->
         <div id="wo-setup-repair">
+
+            <div id="flatrate-special-repairs">
+              <div style="display:flex;">
+                <div>
+                  DIAGNOSTIC FEE
+                </div>
+                <input id="flatrate-repair-diagnostic" type="checkbox" />
+              </div>
+              <div id="flatrate-repair-cleancheck">
+                CLEAN AND CHECK
+              </div>
+            </div>
             <div>
                 <!--FLATBOOK------------>
                 <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
@@ -153,34 +242,7 @@
         </div>
         <!---------------------------->
     </div>
-    <!--PRESENTATION 1---------->
-        <div id="wo-presentation-cont" class="twelve-col-grid">
-            <div id="wo-present-repair-cont">
-                <div class="wo-present-repair" style="font-weight:bold">
-                    <div>Solution (Task)</div>
-                    <div>Benefit & Advantage (C/P)</div>
-                    <div>Investment</div>
-                    <div>Savings</div>
-                    <div>Approved?</div>
-                </div>
-                <!--ALL OF THE REPAIRS BELOW-->
 
-                <div class="wo-present-repair">
-                    <!--DIAGNOSTIC FEE-->
-                    <div class="present-repair-num"></div>
-                    <div class="present-repair-desc">Diagnostic</div>
-                    <div class="present-repair-price">$119</div>
-                    <div class="present-repair-savings"></div>
-                    <input class="present-repair-appr" type="checkbox" />
-                </div>
-
-                <div id="wo-present-systems">
-                </div>
-            </div>
-            <div class="total-label">Total Price</div><input class="total-prices" id="wo-present-price" />
-            <div class="total-label">Total Savings</div><input class="total-prices" id="wo-present-savings" />
-            <div class="total-label">Total Contract</div><input class="total-prices" id="wo-present-month" />
-        </div>
 
     <!--BLOCK TO HOLD DATALIST-->
     <div>
@@ -204,10 +266,10 @@
     </div>
     <!--Buttons / Nav-------------------------->
     <div id="wo-nav">
-        <button>Show Presentation</button>&nbsp;<button id="wo-save">Create PDF</button>
     </div>
 </body>
 <script>
+
     var conprice = {
         CLASSIC: {
             pl: 'CLA',
@@ -256,30 +318,20 @@
         }
     }
 
-    //System DOM
-    var sysdom = {
-        input: {
-            tagid: "wo-setup-sys-tagid"
-        },
+    var wodate = new Date();
+    var curbook = fltbook.res;//set flat rate book to Residential Book
+    var curwo = null; //set the current WO to null
 
-        list: {
-            cont: 'wo-sys-list',
-            system: {
-                cont: 'wo-sys',
-                button: 'wo-sys-button',
-                tagid: 'wo-sys-tagid',
-                area: 'wo-sys-area',
-                repairs: 'wo-sys-repairs',
-                repair: {
-                    cont: 'wo-sys-repair',
-                    id: 'wo-sys-repair-id',
-                    desc: 'wo-sys-repair-desc',
-                }
-            },
-            selected: 'wo-sys-selected'
+    //WO Number CHANGE
+    document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
+        if (ele.target.value != '') {
+            document.getElementsByTagName('title')[0].innerText = ele.target.value;
+            $(document.getElementById('wo-setup-sys')).show();
+            $(document.getElementById('wo-setup-repair')).show();
         }
-    };
+    });
 
+    //  PRESENTATION    ////////////////////////////////////////////////
     //Presentation DOM
     var prsdom = {
         cont: 'wo-presentation-cont',
@@ -320,51 +372,17 @@
             }
         },
         invest: {
-            savings: 'wo-present-savings',
-            price: 'wo-present-price',
-            month: 'wo-present-month'
+            savings: 'wo-present-savings-today',
+            regprice: 'wo-present-regprice-today',
+            memprice: 'wo-present-memprice-today',
+            conmonth: ''
         }
     }
-
-    //Flate Rate DOM
-    var fbdom = {
-        cont: 'wo-setup-repair',
-        search: {
-            book: 'wo-repair-search-book',
-            value: 'wo-repair-search-value',
-            pl: 'wo-repair-search-pl',
-            fltr: 'wo-repair-search-column'
-        },
-        table: {
-            cont: 'flatrate-search-table',
-            row: {
-                cont: '',
-                task: 'flatrate-taskid',
-                desc: 'flatrate-desc',
-                value: 'flatrate-value'
-            }
-        },
-        lists: {
-            pls: 'flatrate-book-pl-list'
-        }
-    }
-
-
-    var wodate = new Date();
-    var curbook = fltbook.res;
-    var curwo = null;
-
-
-    //  PRESENTATION    ////////////////////////////////////////////////
 
     var SETpresent = (cwo) => {
         if (cwo.systems != null) {
             let slist = document.getElementById(prsdom.systems)
-            let repcost = 0;
-            let repsave = 0;
-
             slist.innerHTML = '';
-
 
             for (let x = 0; x < cwo.systems.length; x++) {
                 let s = slist.appendChild(document.createElement('div'));
@@ -372,47 +390,63 @@
                 s.appendChild(document.createElement('div')).innerText = cwo.systems[x].id;
                 let rlist = s.appendChild(document.createElement('div'));
                 rlist.classList.add(prsdom.system.repairs);
+
                 for (let y = 0; y < cwo.systems[x].repairs.length; y++) {
-                    repcost += cwo.systems[x].repairs[y].value;
+
+                    //tell what column repcost goes to
+
+                    //find the memebership cost (if any)
+
+                    //fill the difference
                     let r = rlist.appendChild(document.createElement('div'));
+
                     r.classList.add(prsdom.system.repair.cont);
-                    r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].num;
                     r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].desc;
-                    r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].value;
-                    r.appendChild(document.createElement('div')).innerText = Math.abs(curwo.systems[x].repairs[y].value - GETbookprice(cwo.systems[x].repairs[y].num, cwo.cntrct));
-                    repsave += Number(r.children[r.children.length - 1].innerText);
+                    let rprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.reg);
+                    r.appendChild(document.createElement('div')).innerText =  rprice;
+                    cwo.build.regprice += rprice;
+                    let mprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.cntrct);
+                    r.appendChild(document.createElement('div')).innerText = mprice;
+                    cwo.build.memprice += mprice;
+                    r.appendChild(document.createElement('div')).innerText = rprice - mprice;
+                    cwo.build.savings += rprice - mprice;
                     r.appendChild(document.createElement('input')).type = "checkbox";
                 }
             }
-
-            document.getElementById(prsdom.invest.price).value = repcost;
-            document.getElementById(prsdom.invest.savings).value = repsave;
-            document.getElementById(prsdom.invest.month).value = GETcntrctprice();
+            document.getElementById('wo-present-membership').innerText = GETmemhead(document.getElementById(prsdom.contract.form.name).value);
+            document.getElementById(prsdom.invest.regprice).value = cwo.build.regprice;
+            document.getElementById(prsdom.invest.memprice).value = cwo.build.memprice;
+            document.getElementById(prsdom.invest.savings).value = cwo.build.savings;
+            console.log(cwo);
+            //document.getElementById(prsdom.invest.month).value = GETcntrctprice();
         }
     }
 
-    var SETprice = () => {
+    //Pass the name from the contract FORM
+    //Either uses that OR the associated pl
+    var GETmemhead = (pname)=>{
+      switch(pname){
+        case 'CLASSIC': return 'CLASSIC'
+        case 'PREMIUM': return 'PREMIUM'
+        case 'ULTIMATE': return 'ULTIMATE'
+        case '':
+          switch(document.getElementById(fbdom.search.pl).value){
+            case 'CLA':return 'CLASSIC'
+            case 'PRE':return 'PREMIUM'
+            case 'ULT':return 'ULTIMATE'
+          }
+      }
     }
 
-    var SETprestype = (pl) => {
-        if (pl != '') {
-            if (pl == 'CLA' || pl == 'PRE' || pl == 'ULT') { //has a contract
-                document.getElementById(prsdom.contract.form.name).value = '';
-                //make other adjustments
-                $(document.getElementById(prsdom.contract.form.cont)).hide();//collapse contract form
-                return true;
-            } else if (pl == 'STA' || pl == 'AHR') { //does not have a contract
-                document.getElementById(prsdom.contract.form.name).value = document.getElementById(prsdom.contract.form.name).value == '' ? 'PREMIUM' : document.getElementById(prsdom.contract.form.name).value;
-                $(document.getElementById(prsdom.contract.form.cont)).show();//expand contract form
-                return false;
-            }
+    var HasContract = (pl) => {
+        if (pl == 'CLA' || pl == 'PRE' || pl == 'ULT'){
+          return true;
         }
-
+        return false;
 
     }
 
     //  CONTRACT FORM   ////////////////////////
-
     var SETcntrctform = () => {
         let conname = document.getElementById(prsdom.contract.form.name).value;
         if (conname != '' && conprice[conname] != undefined) {
@@ -438,286 +472,62 @@
         }
         return price;
     }
+
+    var GETcntrctpl = (pname)=>{
+
+      switch(pname){ //first try and use the contract form
+        case 'CLASSIC':
+          return 'CLA'
+        case 'PREMIUM':
+          return 'PRE'
+        case 'ULTIMATE':
+          return 'ULT'
+        case '':
+          switch(document.getElementById(fbdom.search.pl).value){
+            case 'CLA':return 'CLA'
+            case 'PRE':return 'PRE'
+            case 'ULT':return 'ULT'
+          }
+      }
+      return ''
+    }
+
+    document.getElementById(prsdom.contract.form.name).value = "PREMIUM";
+
+    //Contract Form CHANGE
+    document.getElementById(prsdom.contract.cont).addEventListener('change', (ele) => {
+        SETcntrctform();
+        GETcntrctprice();
+    });
+
+
     ////////////////////////////////////////////
 
     ////////////////////////////////////////////////////////////////////
 
-
     //  WO system   ////////////////////////////////////////////////////
+    var sysdom = { //System DOM
+        input: {
+            tagid: "wo-setup-sys-tagid"
+        },
 
-    var CLEARSysSelect = () => {
-        let replist = document.getElementsByClassName(sysdom.list.selected);
-        for (let x = 0; x < replist.length; x++) {
-            $(replist[x].getElementsByClassName(sysdom.list.system.repairs)[0]).hide();
-            console.log(replist[x])
-            replist[x].classList.remove(sysdom.list.selected);
-        }
-    }
-
-    var ADDsystem = (system = { id: '' }) => {
-        if (system.id != '') {
-            let syslist = document.getElementById(sysdom.list.cont);
-
-            let sys = syslist.appendChild(document.createElement('div'));
-
-            CLEARSysSelect();
-
-            sys.classList.add(sysdom.list.system.cont);
-            sys.classList.add(sysdom.list.selected);
-
-            sys.appendChild(document.createElement('div')); //button to toggle repair list
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.button);
-            sys.children[sys.children.length - 1].innerText = '>'
-
-
-            sys.appendChild(document.createElement('input')).value = system.id; //tag id input
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.tagid);
-            sys.appendChild(document.createElement('input')).value = system.area ? sys.area : '';
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.area); //sys area input
-
-            //Input Repairs
-            sys.appendChild(document.createElement('div'));
-            sys.children[sys.children.length - 1].classList.add(sysdom.list.system.repairs); //sys repair list
-
-            if (sys.repairs != undefined) {
-                for (let reps = 0; reps < sys.repairs.length; reps++) {
-                    ADDrepair(sys.repairs[reps]);
+        list: {
+            cont: 'wo-sys-list',
+            system: {
+                cont: 'wo-sys',
+                button: 'wo-sys-button',
+                tagid: 'wo-sys-tagid',
+                area: 'wo-sys-area',
+                repairs: 'wo-sys-repairs',
+                repair: {
+                    cont: 'wo-sys-repair',
+                    id: 'wo-sys-repair-id',
+                    desc: 'wo-sys-repair-desc',
                 }
-            }
-            //button to show/hide repairs
-            sys.children[0].addEventListener('click', (ele) => {
-
-                CLEARSysSelect();
-                ele.target.parentNode.classList.add(sysdom.list.selected);
-                let replist = ele.target.parentNode.getElementsByClassName(sysdom.list.system.repairs)[0];
-
-                //need to check attribut display
-                if ($(replist).is(':visible')) { $(replist).hide(); }
-                else { $(replist).show(); }
-            });
-
-        }
-
-    }
-
-    /*  Add repair
-        PASS:{
-            task,
-            desc
-        }
-    */
-    var ADDrepair = (row = {}) => {
-        let rlist = document.getElementsByClassName(sysdom.list.selected)[0].getElementsByClassName(sysdom.list.system.repairs)[0];
-        let r = rlist.appendChild(document.createElement('div'));
-        r.classList.add(sysdom.list.system.repair.cont);
-        r.appendChild(document.createElement('div')).innerText = row.task != undefined ? row.task : '' //inrow.children[0].innerText;
-        r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
-        r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
-        r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
-    }
-
-    //gets the system info
-    var GETSysList = () => {
-        let syslist = document.getElementById(sysdom.list.cont);
-        let arr = [];
-        for (let x = 0; x < syslist.children.length; x++) {
-            arr.push(
-                (() => {
-                    let obj = {
-                        id: syslist.children[x].getElementsByClassName(sysdom.list.system.tagid)[0].value,
-                        area: syslist.children[x].getElementsByClassName(sysdom.list.system.area)[0].value,
-                        repairs: []
-                    };
-                    let rlist = syslist.children[x].getElementsByClassName(sysdom.list.system.repairs)[0];
-                    for (let y = 0; y < rlist.children.length; y++) { //add a repair
-                        obj.repairs.push({
-                            num: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText,
-                            desc: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.desc)[0].innerText,
-                            value: GETbookprice(rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText, document.getElementById(fbdom.search.pl).value),
-                            appr: true
-                        });
-                    }
-                    return obj;
-                })());
-        }
-        return arr
-    }
-
-    //gets the wo info from dom
-    var GETwo = () => {
-        let conname = document.getElementById(prsdom.contract.form.name).value;
-
-        return {
-            num: document.getElementById(wodom.info.num).value,
-            name: document.getElementById(wodom.info.name).value,
-            address: document.getElementById(wodom.info.address).value,
-            book: {
-                name: document.getElementById(fbdom.search.book).value,
-                pl: document.getElementById(fbdom.search.pl).value
             },
-            cntrct: (conname != '' ? conprice[conname].pl : defpl),
-            hascntrct: SETprestype(document.getElementById(fbdom.search.pl).value), //NEED to account for contract upgrade presentation!!
-            systems: GETSysList()
+            selected: 'wo-sys-selected'
         }
-    }
-
-    ////////////////////////////////////////////////////////////////////
-
-
-    //  Flate Rate  ////////////////////////////////////////////////////
-
-    var fltrs = (book, flts = {}) => {
-        var finds = [];
-        var bad;
-        if (book) {
-            for (let x = 0; x < book.length; x++) {
-                bad = false;
-                for (let f in flts) {
-                    if (book[x][f] && !book[x][f].includes(flts[f].toUpperCase()) || book[x][f] == '') {
-                        bad = true;
-                        break;
-                    }
-                }
-                if (!bad) {
-                    finds.push(book[x]);
-                }
-            }
-        }
-        return finds;
-    }
-
-    var switchBook = (ele) => {
-        switch (ele.target.value) {
-            case 'Res Book': {
-                curbook = fltbook.res; break;
-            }
-            case 'Comm Book': {
-                curbook = fltbook.comm; break;
-            }
-            case '': {
-                curbook = null; break;
-            }
-            default: {
-                ele.target.value = '';
-            }
-        }
-        setPriceLevel();
-    }
-
-    var setPriceLevel = () => {
-        let dlist = document.getElementById(fbdom.lists.pls);
-        let opt;
-        dlist.innerHTML = '';
-        if (curbook) {
-            for (let f in curbook[0]) {
-                if (f.includes('pl')) {
-                    opt = document.createElement('option');
-                    opt.innerText = curbook[0][f];
-                    dlist.appendChild(opt);
-                }
-            }
-        }
-    }
-
-    var GETbookprice = (tnum, tpl) => {
-        let pl = 'pl';
-        let count = '';
-        let cnum = 1;
-
-        if (curbook) {
-            for (let x = 0; x < curbook.length; x++) {
-                if (curbook[x].num == tnum) {
-                    while (curbook[x][pl + count] != undefined) {
-                        if (curbook[x][pl + count] == tpl) {
-                            return curbook[x]['sp' + count];
-                        }
-                        count = '_' + cnum++;
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    var loadFBFound = (finds, pl) => {
-        let fbstable = document.getElementById(fbdom.table.cont);
-        let row;
-        let data;
-        let val;
-        let foundpl = false;
-        fbstable.innerHTML = '';
-        for (let x = 0; x < finds.length; x++) {
-            row = document.createElement('tr');
-            row.addEventListener('click', (ele) => {
-                ADDrepair({
-                    task: ele.target.parentNode.children[0].innerText,
-                    desc: ele.target.parentNode.children[1].innerText
-                });
-            });
-            for (let f in finds[x]) {
-                val = '';
-                if (f == 'desc' || f == 'num') {
-                    val = finds[x][f];
-                }
-                else if (finds[x][f] == pl) {
-                    foundpl = true;
-                    if (f.includes('_')) {
-                        val = finds[x]['sp_' + f.split('_')[1]];
-                    } else { val = finds[x].sp }
-                }
-                if (val != '') {
-                    data = document.createElement('td')
-
-                    data.innerText = val;
-                    row.appendChild(data);
-                }
-            }
-            if (!foundpl) { alert('Select Price Level'); return false }
-
-            fbstable.appendChild(row);
-        }
-    }
-
-    var getSearchList = (ele) => {
-        let sval = document.getElementById(fbdom.search.value).value;
-        let plval = document.getElementById(fbdom.search.pl).value;
-        switch (document.getElementById(fbdom.search.fltr).value) {
-            case 'Task Description': {
-                loadFBFound(fltrs(curbook, { desc: sval }), plval);
-                break;
-            }
-            case 'Task Code': {
-                loadFBFound(fltrs(curbook, { desc: sval }), plval);
-                break;
-            }
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////
-
-
-    document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
-    document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);
-    document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {
-        SETprestype(ele.target.value);
-        getSearchList(ele);
-    });
-
-
-
-    //PRINT Button
-    document.getElementById('wo-save').addEventListener('click', (ele) => {
-        window.print();
-    });
-
-    //WO Number CHANGE
-    document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
-        if (ele.target.value != '') {
-            document.getElementsByTagName('title')[0].innerText = ele.target.value;
-            $(document.getElementById('wo-setup-sys')).show();
-            $(document.getElementById('wo-setup-repair')).show();
-        }
-    });
+    };
 
     //Tag ID CHANGE, adds a system to the list
     document.getElementById(sysdom.input.tagid).addEventListener('change', (ele) => {
@@ -727,21 +537,35 @@
         ele.target.value = '';
     });
 
-
-    //Contract Form CHANGE
-    document.getElementById(prsdom.contract.cont).addEventListener('change', (ele) => {
-        SETcntrctform();
-        GETcntrctprice();
-    });
-
-    //Document CHANGE
-    document.addEventListener('change', (ele) => {
-        curwo = GETwo();
-        console.log(curwo);
-        SETpresent(curwo);
-    });
+    ////////////////////////////////////////////////////////////////////
 
 
+    //  Flate Rate  ////////////////////////////////////////////////////
+    var fbdom = { //Flate Rate DOM
+        cont: 'wo-setup-repair',
+        special:{
+          diagnostic:'flatrate-repair-diagnostic',
+          cleancheck:'flatrate-repair-cleancheck'
+        },
+        search: {
+            book: 'wo-repair-search-book',
+            value: 'wo-repair-search-value',
+            pl: 'wo-repair-search-pl',
+            fltr: 'wo-repair-search-column'
+        },
+        table: {
+            cont: 'flatrate-search-table',
+            row: {
+                cont: '',
+                task: 'flatrate-taskid',
+                desc: 'flatrate-desc',
+                value: 'flatrate-value'
+            }
+        },
+        lists: {
+            pls: 'flatrate-book-pl-list'
+        }
+    }
 
     var defpl = (() => { //get STD or AHR price level depending on time and/of day
         let time = wodate.getHours();
@@ -753,19 +577,54 @@
         );
     })();
 
-    document.getElementById(prsdom.contract.form.name).value = "PREMIUM";
-
-
-
     document.getElementById(fbdom.search.pl).value = defpl;
+    document.getElementById(fbdom.special.cleancheck).addEventListener('click',(ele)=>{ //add a clean and check
+      ADDrepair({
+        task:'CLNCHK',
+        desc:'Clean and Check'
+      });
+    });
+    document.getElementById(fbdom.special.diagnostic).addEventListener('change',(ele)=>{
+      console.log(3);
+    })
+    document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
+    document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);
+    document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {
+        let cname = document.getElementById(prsdom.contract.form.name);
+
+        if(HasContract(ele.target.value)){
+          cname.value ='';
+        }else{
+          if(cname.value == ''){cname.value = 'PREMIUM';} //reintialize the contract
+        }
+
+        getSearchList(ele);
+    });
+    ////////////////////////////////////////////////////////////////////
+
+
+    //PRINT Button
+    document.getElementById('wo-save').addEventListener('click', (ele) => {
+        window.print();
+    });
+
+    //Document CHANGE
+    document.addEventListener('change', (ele) => {
+        curwo = GETwo(curwo);
+        console.log(curwo);
+
+
+        SETpresent(curwo);
+    });
+
+
+
 
     console.log(curbook);
-    document.addEventListener('mousemove',(ele)=>{
-      console.log(ele.clientX);
-    })
-    document.addEventListener('mousedown',(ele)=>{
-      console.log(ele.clientX);
-    })
+
+    SETupdownside(true,true,true,false);
+
+
 </script>
 
 </html>
