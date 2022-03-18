@@ -52,6 +52,7 @@
             padding-bottom:10px;
             border: 2px solid var(--contract-color);
         }
+
         .wo-sys {
             grid-column: 1 / span 2;
             display: inline-grid;
@@ -174,6 +175,12 @@
         }
         .wo-present-system >:nth-child(1){
             font-weight:bold;
+        }
+
+        
+        /*Specific items in presentation*/
+        #wo-present-membership{
+          grid-column:3;
         }
         #wo-nav{
             border-top: 1px solid black;
