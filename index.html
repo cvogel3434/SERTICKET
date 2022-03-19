@@ -44,11 +44,12 @@
           current
       -->
     <div id="vg-utilcont-top" class="vg-utilcont" style="display:none">
-        <div class="vg-utilcont-top-info vg-utilcont-info"></div>
+        <div class="vg-utilcont-top-info vg-utilcont-info">
+            <button id="wo-save">Create PDF</button>
+        </div>
         <div class="vg-utilcont-toggle">
-        >
-        <button id="wo-save" style="justify-content:flex-end;">Create PDF</button>
-      </div>
+            Drop Nav
+        </div>
     </div>
 
 
@@ -65,10 +66,10 @@
                     Premium
                   </div>
                 </div>
-                <div class="wo-present-repair" style="font-weight:bold"><!--Main Headers-->
+                <div id="wo-present-headers"><!--Main Headers-->
                     <div>Benefit & Advantage (C/P)</div>
                     <div>Regular Price</div>
-                    <div>Memeber Price</div>
+                    <div>Member Price</div>
                     <div>Savings</div>
                     <div>Approved?</div>
                 </div>
@@ -86,7 +87,7 @@
               <div id="wo-present-systems">
               </div>
             <!--INVESTMENT SECTION-->
-            <div class="wo-present-repair" style="margin-top:10px;border-top:2px solid black"><!--SAVINGS ROW-->
+            <div class="wo-present-repair"><!--SAVINGS ROW-->
                 <div>SAVINGS - TODAY</div><!--TITLE-->
                 <div>0</div>
                 <div id="wo-present-savings-today"></div>
@@ -123,19 +124,19 @@
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
                     <div>------</div>
-                    <div id="present-contract-monthly">$24</div><input type="checkbox" />
+                    <div id="present-contract-monthly">24</div><input type="checkbox" />
                 </div>
 
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Additional System(s)</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addsys">$21</div><input class="present-contract-opt-appr"
+                    <div id="present-contract-addsys">21</div><input class="present-contract-opt-appr"
                         type="checkbox" />
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Additional Component(s)</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addcomp">$12</div><input class="present-contract-opt-appr"
+                    <div id="present-contract-addcomp">12</div><input class="present-contract-opt-appr"
                         type="checkbox" />
                 </div>
 
@@ -144,25 +145,25 @@
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Standard Filters</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addstdflt">$5</div><input class="present-contract-opt-appr"
+                    <div id="present-contract-addstdflt">5</div><input class="present-contract-opt-appr"
                         type="checkbox" />
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addhumpad">$5</div><input class="present-contract-opt-appr"
+                    <div id="present-contract-addhumpad">5</div><input class="present-contract-opt-appr"
                         type="checkbox" />
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Specialty Filters</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addspcflt">$12</div><input class="present-contract-opt-appr"
+                    <div id="present-contract-addspcflt">12</div><input class="present-contract-opt-appr"
                         type="checkbox" />
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Time Saver Disc.</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addtimesave">-$4</div><input class="present-contract-opt-appr"
+                    <div id="present-contract-addtimesave">-4</div><input class="present-contract-opt-appr"
                         type="checkbox" />
                 </div>
             </div>
@@ -189,7 +190,10 @@
                 in the table
             -->
         <div id="wo-setup-sys">
-            <div id="wo-setup-tag-selector"><label for="tagid">Add Tag ID: </label><input id="wo-setup-sys-tagid" name="tagid" /></div>
+            <div id="wo-setup-tag-selector">
+                <label for="tagid">Add Tag ID: </label>
+                <input id="wo-setup-sys-tagid" name="tagid" />
+            </div>
             <!-- WO System Table-----------
                     Holds all of the customers
                     service items.
@@ -218,12 +222,12 @@
             <div id="flatrate-special-repairs">
               <div style="display:flex;">
                 <div>
-                  DIAGNOSTIC FEE
+                  Diagnostic Fee
                 </div>
                 <input id="flatrate-repair-diagnostic" type="checkbox" />
               </div>
               <div id="flatrate-repair-cleancheck">
-                CLEAN AND CHECK
+                Clean and Check
               </div>
             </div>
             <div>
@@ -272,9 +276,6 @@
             <option>ULTIMATE</option>
         </datalist>
 
-    </div>
-    <!--Buttons / Nav-------------------------->
-    <div id="wo-nav">
     </div>
 </body>
 <script>

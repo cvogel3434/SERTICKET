@@ -10,7 +10,8 @@
         body{
             background-color: var(--present-back-color);
             margin: 10px;
-            border: 1px solid black;
+            border: 2px solid black;
+            box-sizing: border-box;
         }
         .twelve-col-grid{
             display: grid;
@@ -19,23 +20,11 @@
             row-gap:5px;
             padding: 5px;
             background-color: var(--back-color);
+            border-radius: 10px;
         }
-
-
-        /* TESTING */
-        #wo-setup-cont{
-
-        }
-        #wo-presentation-cont{
-
-        }
-        /* TESTING */
-
         /* for Mobile Phones */
         #wo-present-repair-cont {
             grid-column: 1 / span all;
-            background-color: var(--back-color);
-            border: 1px solid black;
         }
 
         #wo-setup-sys{
@@ -47,19 +36,23 @@
             grid-row:2;
         }
         #wo-present-contract-cont {
-            grid-column: 1 / span all;
-            margin-bottom:15px;
-            padding-bottom:10px;
+            padding:0px 0px 10px 10px;
+            background-color: white;
             border: 2px solid var(--contract-color);
+            border-right:0px;
         }
 
         .wo-sys {
-            grid-column: 1 / span 2;
+            width:calc(100% - 20px);
             display: inline-grid;
             grid-template-columns: 20px repeat(3, 1fr);
             padding: 5px;
             margin: 5px;
             background-color: var(--back-color);
+        }
+        .wo-sys-repair {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
         }
         .total-label{
             grid-column:1 / 11;
@@ -71,8 +64,7 @@
         /* for Desktop */
         @media only screen and (min-width: 768px) {
             .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
-            #wo-setup-sys{grid-column: 1 / 8;}
-            #wo-present-contract-cont {grid-column: -1 / 8;}
+            .wo-sys-repair{grid-template-columns: repeat(5, 1fr);}
             .total-label{grid-column:8 / 11;}
         }
 
@@ -90,19 +82,20 @@
             grid-column: 3 / span 1;
         }
         .wo-sys-selected {
-            background-color: var(--highlight-color);
+            background-image: linear-gradient(to right, var(--highlight-color),rgba(255,0,0,0));
+
         }
 
         .wo-sys-repairs {
-            grid-column: 1 / span 4;
+            grid-column: 1 / span all;
             margin-left: 20px;
         }
-
-        .wo-sys-repair {
-            display: flex;
-            justify-content: space-between;
+        .wo-sys-repair-id{
+            grid-column: 1 ;
         }
-
+        .wo-sys-repair-desc{
+            grid-column:2 / 5;
+        }
         .wo-sys-repair>div {
             margin: 5px;
         }
@@ -118,11 +111,16 @@
             overflow: auto;
             max-height: 400px;
         }
+        #flatrate-search-table{
+            width: 75%;
+        }
+        #flatrate-search-table tr{
+            display:flex;
+            justify-content:space-between;
+        }
 
         #wo-flatrate-cont {
             margin-left: 20px;
-            width: 100%;
-            max-width: 600px;
         }
 
         /* Presentation Styling */
@@ -141,7 +139,7 @@
         #header-logo{
             width: 200px;
         }
-        #present-contract-name {
+        #present-contract-name, #wo-present-membership {
             width: 100%;
             text-align: center;
             font-size: larger;
@@ -149,6 +147,18 @@
             border: 0px;
             border-bottom: 1px solid var(--contract-color);
             color: var(--contract-color);
+        }
+        #wo-present-membership{
+            grid-column:3;
+          }
+        #wo-present-contract-monthly{
+            grid-column:3;
+        }
+        [id*="present-contract-add"]::before{
+            content:"$";
+        }
+        #present-contract-monthly::before{
+            content:"$";
         }
         #monthly-tag{
             font-weight: bold;
@@ -163,16 +173,24 @@
         }
         .present-contract-opt {
             display: grid;
-            grid-template-columns: 1fr 35px 35px 25px;
+            grid-template-columns: 1fr 50px 50px 50px;
             column-gap: 5px;
-            align-items: center;
             text-align: right;
             padding-top: 5px;
+            padding-left: 15px;
         }
         .present-contract-opt>:nth-child(2){
             text-align:center;
         }
-        .wo-present-repair{
+        .present-contract-opt :nth-child(4){
+            place-self: center center;
+        }
+        #wo-present-headers{
+            font-weight:bold;
+            padding-bottom:5px;
+            border-bottom: 1px solid black;
+        }
+        #wo-present-headers, .wo-present-repair{
             display:grid;
             grid-template-columns: 40% 15% 15% 15% 1fr;
             column-gap: 5px;
@@ -180,20 +198,24 @@
             justify-items: center;
             text-align: center;
         }
+        .wo-present-repair>:nth-child(-n+4)::before{
+            content:"$";
+        }    
+        .wo-present-repair>:nth-child(1)::before{
+            content:"";
+        } 
         .wo-present-system >:nth-child(1){
             font-weight:bold;
         }
-
-
-        /*Specific items in presentation*/
-        #wo-present-membership{
-          grid-column:3;
+        .vg-utilcont-top-info{
+            background-color: white;
+            border: 2px solid black;
+            border-top: 0px;
+            border-radius: 0px 0px 10px 10px;
         }
-        #wo-present-contract-monthly{
-          grid-column:3;
-        }
-        
-        #wo-nav{
-            border-top: 1px solid black;
-            padding: 5px;
+        .vg-utilcont-bottom-info{
+            background-color: white;
+            border: 2px solid black;
+            border-bottom: 0px;
+            border-radius: 10px 10px 0px 0px;
         }
