@@ -5,13 +5,13 @@
             --contract-color: #213982;
             --present-back-color: rgb(224, 227, 255);
             --highlight-color: rgb(255, 129, 129);
+            box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
         body{
             background-color: var(--present-back-color);
             margin: 10px;
             border: 2px solid black;
-            box-sizing: border-box;
         }
         .twelve-col-grid{
             display: grid;
@@ -129,7 +129,9 @@
             margin: 0px;
             border: none;
         }
-
+        #wo-present-repair-cont>:last-child{
+            font-weight: bold;
+        }
         #wo-presentation-header {
             grid-column: -1 / 4;
             text-align:right;
@@ -203,6 +205,10 @@
         }    
         .wo-present-repair>:nth-child(1)::before{
             content:"";
+        }
+        .wo-present-system{
+            margin-bottom: 10px;
+            border-bottom: 1px solid black;
         } 
         .wo-present-system >:nth-child(1){
             font-weight:bold;
@@ -212,10 +218,25 @@
             border: 2px solid black;
             border-top: 0px;
             border-radius: 0px 0px 10px 10px;
+            display: flex;
+            justify-content: space-evenly;
         }
         .vg-utilcont-bottom-info{
             background-color: white;
             border: 2px solid black;
             border-bottom: 0px;
             border-radius: 10px 10px 0px 0px;
+        }
+        .wo-nav-icon{
+            height:50px;
+            width:50px;
+            padding:10px 0px 10px 50px;
+        }
+        .wo-nav-icon:hover{
+            cursor: pointer;
+        }
+        .wo-right-nav{
+            float: right;
+            clear:none;
+            padding: 10px 50px 10px 0px
         }

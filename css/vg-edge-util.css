@@ -6,7 +6,6 @@
     text-align:center;
     min-width: 50px;
     min-height: 30px;
-    background-color:rgba(84, 112, 207, .4);
   }
   .vg-utilcont-toggle:hover{
     cursor: pointer;
@@ -20,6 +19,7 @@
   }
   #vg-utilcont-top{
     top:0;
+    left: 10px;
     width:calc(100% - 20px);
     grid-template-columns: repeat(5, 1fr);
   }
@@ -27,11 +27,11 @@
     grid-column: 3;
   }
   .vg-utilcont-top-info{
-    height:150px;
     grid-column: 1 / span all;
   }
   #vg-utilcont-bottom{
     bottom:0;
+    left:10px;
     width:calc(100% - 20px);
     grid-template-columns: repeat(5, 1fr);
   }
@@ -55,4 +55,16 @@
     min-width:200px;
     grid-column: 2;
     grid-row:1 / span all;
+  }
+  #vg-top-toggle{
+    height:50px;
+    width:50px;
+  }
+  #vg-bottom-toggle{
+    height:50px;
+    width:50px;
+  }
+  #vg-side-toggle{
+    height:50px;
+    width:50px;
   }
