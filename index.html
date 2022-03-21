@@ -33,12 +33,6 @@
              - Any System Information
              - Flat Rate Items (none approved)
         -->
-    <!--Ticket Header------------------------->
-    <div id="wo-header-cont" class="twelve-col-grid">
-        <img src="images/Vogel Logo.png" id="header-logo" alt="VOGEL"><div id="wo-presentation-header">REWARDS MEMBERSHIP SAVINGS</div>
-    </div>
-
-
     <!--NAVIGATION
         TODO: want to add titles OR images to the side toggle buttons
           current
@@ -53,9 +47,8 @@
             <img src="images/icons/twitter.png" class="wo-nav-icon wo-right-nav"  alt="TWITTER">
             <img src="images/icons/facebook.png" class="wo-nav-icon wo-right-nav"  alt="FACEBOOK">
         </div>
-        <img src="images/icons/menu-burger.png" alt="NAV MENU" class="vg-utilcont-toggle" id="vg-top-toggle">
+        <img src="images/icons/menu-burger.png" alt="NAV" class="vg-utilcont-toggle" id="vg-top-toggle">
     </div>
-
 
     <!--PRESENTATION SECTION--------------------------------------------------->
     <div id="vg-utilcont-bottom" class="vg-utilcont"  style="display:none">
@@ -112,7 +105,6 @@
       </div>
     </div>
 
-    <!------------------------------------------------------------------------->
     <!--RIGHT SIDE UTILITY
         The right side utility bar will hold the contract information
         in the vg-utilcont-info > div
@@ -172,11 +164,10 @@
         </div>
       </div>
     </div>
-    <!---->
 
-
-    <!--Client / WO info---------------------->
-    <div id="wo-client-cont" class="twelve-col-grid">
+    <!--Ticket Header & Client Info------------------------->
+    <div id="wo-header-cont" class="twelve-col-grid">
+        <img src="images/Vogel Logo.png" id="header-logo" alt="VOGEL"><div id="wo-presentation-header">REWARDS MEMBERSHIP SAVINGS</div>
         <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
         <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
         <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
@@ -191,10 +182,17 @@
                 Most of the editing is done
                 in the table
             -->
-        <div id="wo-setup-sys">
+
             <div id="wo-setup-tag-selector">
                 <label for="tagid">Add Tag ID: </label>
                 <input id="wo-setup-sys-tagid" name="tagid" />
+            </div>
+            <div id="flatrate-special-repairs">
+                <div style="display:flex;">
+                    <input id="flatrate-repair-diagnostic" type="checkbox" />
+                    <div>Diagnostic Fee</div>
+                </div>
+                <button id="flatrate-repair-cleancheck">Clean and Check</button>
             </div>
             <!-- WO System Table-----------
                     Holds all of the customers
@@ -211,7 +209,7 @@
                 -->
             <div id="wo-sys-list"></div>
             <!---------------------------->
-        </div>
+
 
         <!--Setup Repair List----------
                 Holds an area to search and
@@ -221,17 +219,7 @@
             -->
         <div id="wo-setup-repair">
 
-            <div id="flatrate-special-repairs">
-              <div style="display:flex;">
-                <div>
-                  Diagnostic Fee
-                </div>
-                <input id="flatrate-repair-diagnostic" type="checkbox" />
-              </div>
-              <div id="flatrate-repair-cleancheck">
-                Clean and Check
-              </div>
-            </div>
+            
             <div>
                 <!--FLATBOOK------------>
                 <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
@@ -257,7 +245,6 @@
         </div>
         <!---------------------------->
     </div>
-
 
     <!--BLOCK TO HOLD DATALIST-->
     <div>
