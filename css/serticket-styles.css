@@ -164,7 +164,7 @@
         #header-logo{
             max-width: 250px;
             grid-column: 1 / span 3;
-            place-self: start stretch;
+            /*place-self: start stretch;*/
             margin-bottom:10px;
         }
         #present-contract-name, #wo-present-membership {
@@ -228,14 +228,14 @@
         }
         .wo-present-repair>:nth-child(-n+4)::before{
             content:"$";
-        }    
+        }
         .wo-present-repair>:nth-child(1)::before{
             content:"";
         }
         .wo-present-system{
             margin-bottom: 10px;
             border-bottom: 1px solid black;
-        } 
+        }
         .wo-present-system >:nth-child(1){
             font-weight:bold;
         }
