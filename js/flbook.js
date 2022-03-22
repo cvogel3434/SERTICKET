@@ -118,8 +118,8 @@
             row = document.createElement('tr');
             row.addEventListener('click', (ele) => {
                 ADDrepair({
-                    task: ele.target.parentNode.children[0].innerText,
-                    desc: ele.target.parentNode.children[1].innerText
+                    task: (ele.target.tagName == 'TR') ? ele.target.children[0].innerText : ele.target.parentNode.children[0].innerText,
+                    desc: (ele.target.tagName == 'TR') ? ele.target.children[1].innerText : ele.target.parentNode.children[1].innerText
                 });
             });
             for (let f in finds[x]) {
