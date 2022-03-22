@@ -1,5 +1,7 @@
 :root {
-            --main-color: #213982;
+            --vogel-blue: rgb(33, 57, 130);
+            --row-color: rgb(240,240,255);
+            --member-price: rgb(0,150,0);
             --accent-color: red;
             --back-color: white;
             --contract-color: #213982;
@@ -32,7 +34,12 @@
         #wo-present-repair-cont {
             grid-column: 1 / span all;
         }
-
+        #wo-present-repair-cont::after{
+            content: "*Rewards Membership Subscription fees to be charged to your credit card monthly. All benefits apply with continued Membership, including in home Membership Service next season!";
+            font-size: .75em;
+            margin-top: 5px;
+            float: right;
+        }
         #wo-setup-sys{
             grid-column: 1 / span all;
             grid-row:1;
@@ -60,8 +67,8 @@
             background-color: var(--back-color);
         }
         .wo-sys-repair {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            justify-content: flex-start;
         }
         .total-label{
             grid-column:1 / 11;
@@ -73,7 +80,6 @@
         /* for Desktop */
         @media only screen and (min-width: 768px) {
             .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
-            .wo-sys-repair{grid-template-columns: repeat(5, 1fr);}
             .total-label{grid-column:8 / 11;}
         }
 
@@ -111,15 +117,11 @@
             margin-left: 20px;
         }
         .wo-sys-repair-id{
-            grid-column: 1 ;
+            margin:5px 0px 5px 0px;
         }
         .wo-sys-repair-desc{
-            grid-column:2 / 5;
+            margin:5px 0px 5px 50px;
         }
-        .wo-sys-repair>div {
-            margin: 5px;
-        }
-
         #flatrate-special-repairs{
           display:flex;
         }
@@ -151,6 +153,12 @@
             padding: 0px;
             margin: 0px;
             border: none;
+        }
+        #wo-present-repair-cont>:nth-last-child(3){
+            font-weight: bold;
+        }
+        #wo-present-repair-cont>:nth-last-child(2){
+            font-style: oblique;
         }
         #wo-present-repair-cont>:last-child{
             font-weight: bold;
@@ -222,7 +230,7 @@
             display:grid;
             grid-template-columns: 40% 15% 15% 15% 1fr;
             column-gap: 5px;
-            margin:5px;
+            padding:5px;
             justify-items: center;
             text-align: center;
         }
@@ -238,6 +246,9 @@
         }
         .wo-present-system >:nth-child(1){
             font-weight:bold;
+        }
+        .wo-present-system-repairs>:nth-child(odd){
+            background-color: var(--row-color);
         }
         .vg-utilcont-top-info{
             background-color: white;
@@ -260,3 +271,15 @@
             clear:none;
             padding: 10px 50px 10px 0px
         }
+        #vg-utilcont-bottom>.vg-utilcont-toggle{
+            grid-column: 1 / span all;
+            place-self: end end;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px;
+            color: var(--vogel-blue);
+            background-color: var(--back-color);
+          }
+          #wo-present-memprice-today{
+              color: var(--member-price)
+          }
