@@ -33,7 +33,7 @@
     bottom:0;
     left:10px;
     width:calc(100% - 20px);
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
   }
   .vg-utilcont-bottom-info{
     min-height:100%;

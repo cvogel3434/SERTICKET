@@ -95,6 +95,15 @@
         }
         #flatrate-special-repairs{
             grid-column: 4 / 13;
+            display:flex;
+            align-items: center;
+        }
+        #flatrate-repair-cleancheck{
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 3px 5px 3px 5px;
+            cursor: pointer;
+            margin-right: 15px;
         }
         #wo-sys-list{
             grid-column: 1 / span all;
@@ -109,9 +118,7 @@
         }
         .wo-sys-selected {
             background-image: linear-gradient(to right, var(--highlight-color),rgba(255,0,0,0));
-
         }
-
         .wo-sys-repairs {
             grid-column: 1 / span all;
             margin-left: 20px;
@@ -122,13 +129,6 @@
         .wo-sys-repair-desc{
             margin:5px 0px 5px 50px;
         }
-        #flatrate-special-repairs{
-          display:flex;
-        }
-        #flatrate-special-repairs>:nth-child(n){
-          margin-right:3px;
-        }
-
         #flatrate-search-table-cont {
             overflow: auto;
             max-height: 400px;
@@ -272,7 +272,7 @@
             padding: 10px 50px 10px 0px
         }
         #vg-utilcont-bottom>.vg-utilcont-toggle{
-            grid-column: 1 / span all;
+            grid-column: -1 / 6;
             place-self: end end;
             font-size: 2.5em;
             font-weight: bold;
@@ -283,3 +283,4 @@
           #wo-present-memprice-today{
               color: var(--member-price)
           }
+
