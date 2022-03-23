@@ -219,7 +219,7 @@
             -->
         <div id="wo-setup-repair">
 
-            
+
             <div>
                 <!--FLATBOOK------------>
                 <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
@@ -396,7 +396,7 @@
 
               rprice = GETbookprice('DIAG',cwo.reg);
               diagrow.children[1].innerText = rprice;
-              mprice = GETbookprice('DIAG',cwo.cntrct);
+              mprice = cwo.hascntrct ?  GETbookprice('DIAG',cwo.cntrct) : GETbookprice('DIAG',cwo.reg);
               diagrow.children[2].innerText = mprice;
               diagrow.children[3].innerText = rprice - mprice;
 
@@ -463,6 +463,8 @@
         return false;
 
     }
+
+
 
     //  CONTRACT FORM   ////////////////////////
     var SETcntrctform = () => {
