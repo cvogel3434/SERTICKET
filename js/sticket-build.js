@@ -26,8 +26,11 @@ var ADDsystem = (system = { id: '' }) => {
 
         sys.appendChild(document.createElement('input')).value = system.id; //tag id input
         sys.children[sys.children.length - 1].classList.add(sysdom.list.system.tagid);
-        sys.appendChild(document.createElement('input')).value = system.area ? sys.area : '';
-        sys.children[sys.children.length - 1].classList.add(sysdom.list.system.area); //sys area input
+
+        sys.appendChild(document.createElement('div')).innerText = 'DELETE';
+        sys.children[sys.children.length-1].addEventListener('dblclick',(ele)=>{
+          ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
+        });
 
         //Input Repairs
         sys.appendChild(document.createElement('div'));
@@ -64,10 +67,21 @@ var ADDrepair = (row = {}) => {
     let rlist = document.getElementsByClassName(sysdom.list.selected)[0].getElementsByClassName(sysdom.list.system.repairs)[0];
     let r = rlist.appendChild(document.createElement('div'));
     r.classList.add(sysdom.list.system.repair.cont);
+    r.appendChild(document.createElement('div')).classList.add('vg-checkbox');
+    r.children[r.children.length-1].addEventListener('click',(ele)=>{
+      if(ele.target.classList.contains('vg-checkbox-checked')){
+        ele.target.classList.remove('vg-checkbox-checked');
+      }else{ele.target.classList.add('vg-checkbox-checked')}
+    });
     r.appendChild(document.createElement('div')).innerText = row.task != undefined ? row.task : '' //inrow.children[0].innerText;
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
     r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
+    r.appendChild(document.createElement('div')).innerText = 'DELETE';
+    r.children[r.children.length-1].addEventListener('dblclick',(ele)=>{
+      ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
+    });
+
 }
 
 //gets the system info
@@ -88,7 +102,7 @@ var GETSysList = () => {
                         num: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText,
                         desc: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.desc)[0].innerText,
                         value: GETbookprice(rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText, document.getElementById(fbdom.search.pl).value),
-                        appr: true
+                        appr: rlist.children[y].getElementsByClassName('vg-checkbox')[0].classList.contains('vg-checkbox-checked') ? true:false
                     });
                 }
                 return obj;
@@ -130,7 +144,7 @@ var GETwo = (cwo) => {
         // presentation!!
         systems: GETSysList()
     }
-    
+
     if(cwo){
 
     }else{ //new wo / reset

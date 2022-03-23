@@ -8,6 +8,7 @@
     <title>Service Presentation</title>
     <link rel="stylesheet" href="css/serticket-styles.css" />
     <link rel="stylesheet" href="css/vg-edge-util.css" />
+    <link rel="stylesheet" href="css/vg-inputs.css" />
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -52,7 +53,7 @@
 
     <!--PRESENTATION SECTION--------------------------------------------------->
     <div id="vg-utilcont-bottom" class="vg-utilcont"  style="display:none">
-      <div class="vg-utilcont-toggle">
+      <div id="button-open-presentation" class="vg-utilcont-toggle">
         Two Paths Home to Comfort!
       </div>
       <div class="vg-utilcont-bottom-info vg-utilcont-info">
@@ -78,7 +79,7 @@
                   <div class="present-repair-price"></div>
                   <div></div>
                   <div class="present-repair-savings"></div>
-                  <input class="present-repair-appr" type="checkbox" />
+                  <div>YES</div>
               </div>
 
               <div id="wo-present-systems">
@@ -100,6 +101,19 @@
             </div>
 
 
+            </div>
+
+            <iframe id="video-screen" src="https://www.vogelheating.com"></iframe>
+            <div id="video-option-buttons">
+              <div class="https://www.youtube.com/watch?v=dn89so-EA8Q">
+                video 1
+              </div>
+              <div class="https://www.youtube.com/watch?v=Vgtvb-SdkkE">
+                video 2
+              </div>
+              <div class="https://www.youtube.com/watch?v=alQ04t4WfTs">
+                video 3
+              </div>
             </div>
         </div>
       </div>
@@ -335,6 +349,9 @@
     var prsdom = {
         cont: 'wo-presentation-cont',
         head: 'wo-presentaiton-header',
+        button:{
+          open:'button-open-presentation'
+        },
         contract: {
             cont: 'wo-present-contract-cont',
             form: {
@@ -429,7 +446,8 @@
                     cwo.build.memprice += mprice;
                     r.appendChild(document.createElement('div')).innerText = rprice - mprice;
                     cwo.build.savings += rprice - mprice;
-                    r.appendChild(document.createElement('input')).type = "checkbox";
+
+                    r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].appr ? 'YES':'NO';
                 }
             }
             document.getElementById('wo-present-membership').innerText = GETmemhead(document.getElementById(prsdom.contract.form.name).value);
@@ -439,6 +457,8 @@
             document.getElementById(prsdom.invest.conmonth).innerText = GETcntrctprice();
         }
     }
+
+
 
     //Pass the name from the contract FORM
     //Either uses that OR the associated pl
@@ -527,6 +547,7 @@
 
     //  WO system   ////////////////////////////////////////////////////
     var sysdom = { //System DOM
+        cont:'wo-setup-cont',
         input: {
             tagid: "wo-setup-sys-tagid"
         },
@@ -598,6 +619,8 @@
     })();
 
     document.getElementById(fbdom.search.pl).value = defpl;
+    document.getElementById(fbdom.search.book).value = 'Res Book';
+    document.getElementById(fbdom.search.fltr).value = 'Task Description';
     document.getElementById(fbdom.special.cleancheck).addEventListener('click',(ele)=>{ //add a clean and check
       ADDrepair({
         task:'CLNCHK',
@@ -644,8 +667,27 @@
     console.log(curbook);
 
     SETupdownside(true,true,true,false);
+    document.getElementById(prsdom.button.open).addEventListener('click',(ele)=>{
+        if($(document.getElementById(sysdom.cont)).is(':visible')){
+          $(document.getElementById(sysdom.cont)).hide();
+        }else{$(document.getElementById(sysdom.cont)).show()}
+        curwo = GETwo(curwo);
+        console.log(curwo);
+        SETpresent(curwo);
+    });
 
-
+  /*  Video buttons
+  */
+  (() => { //get STD or AHR price level depending on time and/of day
+    console.log(33);
+    let vidbar = document.getElementById('video-option-buttons');
+    for(let x=0;x<vidbar.children.length;x++){
+      vidbar.children[x].addEventListener('dblclick',(ele)=>{
+        console.log(ele.target.classList);
+        document.getElementById('video-screen').setAttribute('src',ele.target.classList);
+      });
+    }
+  })();
 </script>
 
 </html>

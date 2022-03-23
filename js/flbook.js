@@ -83,6 +83,7 @@
       }
 
     }
+
     var GETbookprice = (tnum, tpl) => {
         let pl = 'pl';
         let count = '';
@@ -107,6 +108,7 @@
 
         return 0;
     }
+
     var loadFBFound = (finds, pl) => {
         let fbstable = document.getElementById(fbdom.table.cont);
         let row;
@@ -116,6 +118,8 @@
         fbstable.innerHTML = '';
         for (let x = 0; x < finds.length; x++) {
             row = document.createElement('tr');
+
+            //set the repair select event (repair add)
             row.addEventListener('click', (ele) => {
                 ADDrepair({
                     task: (ele.target.tagName == 'TR') ? ele.target.children[0].innerText : ele.target.parentNode.children[0].innerText,
@@ -155,7 +159,7 @@
                     break;
                 }
                 case 'Task Code': {
-                    loadFBFound(fltrs(curbook, { desc: sval }), plval);
+                    loadFBFound(fltrs(curbook, { num: sval }), plval);
                     break;
                 }
             }
