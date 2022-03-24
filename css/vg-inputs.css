@@ -1,9 +1,10 @@
 .vg-checkbox{
     border: 1px solid black;
-    height: 15px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
     margin: 5px;
     border-radius: 3px;
+    cursor: pointer;
 }
 .vg-checkbox-checked{
   background-color: var(--background-light);

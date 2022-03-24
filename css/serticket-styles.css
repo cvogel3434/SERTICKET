@@ -261,7 +261,7 @@
         .wo-nav-icon{
             height:50px;
             width:50px;
-            padding:10px 0px 10px 50px;
+            margin:10px 0px 10px 50px;
         }
         .wo-nav-icon:hover{
             cursor: pointer;
@@ -269,7 +269,7 @@
         .wo-right-nav{
             float: right;
             clear:none;
-            padding: 10px 50px 10px 0px
+            margin: 10px 50px 10px 0px
         }
         #vg-utilcont-bottom>.vg-utilcont-toggle{
             grid-column: -1 / 6;
