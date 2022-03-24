@@ -183,7 +183,6 @@
         #header-logo{
             max-width: 250px;
             grid-column: 1 / span 3;
-            justify-self: stretch;
             margin-bottom:10px;
         }
         #present-contract-name, #wo-present-membership {
@@ -276,7 +275,6 @@
         }
         .wo-nav-icon:hover{
             cursor: pointer;
-            color: blue;
         }
         .wo-right-nav{
             float: right;
@@ -294,4 +292,12 @@
           }
           #wo-present-memprice-today{
               color: var(--member-price)
+          }
+          #video-option-buttons{
+              grid-column: 1 / span all;
+              display: grid;
+              grid-template-columns: repeat(4, 25%);
+          }
+          #video-option-buttons div{
+              border: 1px solid black;
           }

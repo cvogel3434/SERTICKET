@@ -380,7 +380,7 @@
               diagnostic:'wo-present-repair-diagnostic'
             },
             repair: {
-                approved:'wo-present-repair-approved',
+                unapproved:'wo-present-repair-unapproved',
                 cont: 'wo-present-repair',
                 num: 'present-repair-num',
                 desc: 'present-repair-desc',
@@ -446,8 +446,8 @@
                     r.appendChild(document.createElement('div')).innerText = rprice - mprice;
                     cwo.build.savings += rprice - mprice;
 
-                    if(cwo.systems[x].repairs[y].appr){
-                      r.classList.add(prsdom.system.repair.approved);
+                    if(!cwo.systems[x].repairs[y].appr){
+                      r.classList.add(prsdom.system.repair.unapproved);
                     }
                     r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].appr ? 'YES':'NO';
                 }
