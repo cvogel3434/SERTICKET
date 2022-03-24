@@ -382,6 +382,7 @@
               diagnostic:'wo-present-repair-diagnostic'
             },
             repair: {
+                approved:'wo-present-repair-approved',
                 cont: 'wo-present-repair',
                 num: 'present-repair-num',
                 desc: 'present-repair-desc',
@@ -447,6 +448,9 @@
                     r.appendChild(document.createElement('div')).innerText = rprice - mprice;
                     cwo.build.savings += rprice - mprice;
 
+                    if(cwo.systems[x].repairs[y].appr){
+                      r.classList.add(prsdom.system.repair.approved);
+                    }
                     r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].appr ? 'YES':'NO';
                 }
             }

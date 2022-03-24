@@ -78,7 +78,7 @@ var ADDrepair = (row = {}) => {
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
     r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
-    
+
     r.appendChild(document.createElement('div')).innerText = 'DELETE';
     r.children[r.children.length-1].classList.add(sysdom.buttons.delete);
     r.children[r.children.length-1].addEventListener('dblclick',(ele)=>{
@@ -96,7 +96,6 @@ var GETSysList = () => {
             (() => {
                 let obj = {
                     id: syslist.children[x].getElementsByClassName(sysdom.list.system.tagid)[0].value,
-                    area: syslist.children[x].getElementsByClassName(sysdom.list.system.area)[0].value,
                     repairs: []
                 };
                 let rlist = syslist.children[x].getElementsByClassName(sysdom.list.system.repairs)[0];
