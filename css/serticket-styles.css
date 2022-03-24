@@ -16,6 +16,10 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+        a{
+            text-decoration: none;
+            color: black;
+        }
         body::-webkit-scrollbar {
             display: none;
           }
@@ -33,6 +37,7 @@
         /* for Mobile Phones */
         #wo-present-repair-cont {
             grid-column: 1 / span all;
+            margin: 5px;
         }
         #wo-present-repair-cont::after{
             content: "*Rewards Membership Subscription fees to be charged to your credit card monthly. All benefits apply with continued Membership, including in home Membership Service next season!";
@@ -158,7 +163,14 @@
 
         /* Presentation Styling */
         #wo-presentation-cont{
-            height:calc(100vh - 5px - 2px - 200px);
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 1fr 1fr 125px;
+            margin-bottom: 5px;
+            background-color: var(--back-color);
+            border-radius: 10px;
+            border: 2px solid black;
+            height:calc(100vh - 2px - 200px);
         }
         #wo-presentation-cont input {
             padding: 0px;
@@ -250,6 +262,15 @@
         .wo-present-repair>:nth-child(1)::before{
             content:"";
         }
+        .wo-present-repair-unapproved div{
+            color: gray;
+        }
+        .wo-present-repair-unapproved div:first-child{
+            text-decoration: line-through;
+        }
+        .wo-present-repair-unapproved div:last-child{
+            font-style: oblique;
+        }
         .wo-present-system{
             margin-bottom: 10px;
             border-bottom: 1px solid black;
@@ -293,11 +314,44 @@
           #wo-present-memprice-today{
               color: var(--member-price)
           }
+
+          /* Video Stuff */
+          #video-screen{grid-column: 2 / span all;}
+
           #video-option-buttons{
               grid-column: 1 / span all;
               display: grid;
               grid-template-columns: repeat(4, 25%);
           }
-          #video-option-buttons div{
-              border: 1px solid black;
+          #video-option-buttons>div{
+            border-top:1px solid black;
+            border-right:1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #video-option-buttons>div:hover{
+            background-color: var(--vogel-blue);
+            color: white;
+        }
+        #video-option-buttons>div:hover>span>a{
+            color: white;
+        }
+        #video-option-buttons div:last-child{
+            border-right:0px;
+        }
+        #video-note{
+            font-style: oblique;
+            grid-column: 1 / span all;
+            margin-left: 10px;
+            align-self: end;
+        }
+          #video-membership{
+              grid-column: 1 / 3;
+          }
+          #video-john{
+              grid-column: 3 / 6;
+              border-right:0px !important;
           }
