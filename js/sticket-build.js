@@ -96,7 +96,6 @@ var GETSysList = () => {
             (() => {
                 let obj = {
                     id: syslist.children[x].getElementsByClassName(sysdom.list.system.tagid)[0].value,
-                    area: syslist.children[x].getElementsByClassName(sysdom.list.system.area)[0].value,
                     repairs: []
                 };
                 let rlist = syslist.children[x].getElementsByClassName(sysdom.list.system.repairs)[0];
