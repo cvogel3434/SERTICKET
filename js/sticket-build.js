@@ -28,6 +28,7 @@ var ADDsystem = (system = { id: '' }) => {
         sys.children[sys.children.length - 1].classList.add(sysdom.list.system.tagid);
 
         sys.appendChild(document.createElement('div')).innerText = 'DELETE';
+        sys.children[sys.children.length-1].classList.add(sysdom.buttons.delete);
         sys.children[sys.children.length-1].addEventListener('dblclick',(ele)=>{
           ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
         });
@@ -77,7 +78,9 @@ var ADDrepair = (row = {}) => {
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
     r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
+    
     r.appendChild(document.createElement('div')).innerText = 'DELETE';
+    r.children[r.children.length-1].classList.add(sysdom.buttons.delete);
     r.children[r.children.length-1].addEventListener('dblclick',(ele)=>{
       ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
     });
