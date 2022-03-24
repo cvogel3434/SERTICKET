@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office"
+    xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Presentation</title>
+    <link rel="stylesheet" href="../css/serticket-styles.css" />
+    <link rel="stylesheet" href="../css/vg-edge-util.css" />
+    <link rel="stylesheet" href="../css/vg-inputs.css" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/vg-util-updownside.js"></script>
+
+    <script src="js/vg-ticket.js"></script>
+    <script src="js/flbook.js"></script>
+    <script src="js/sticket-build.js"></script>
+    <!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers msdt:dt="string">Brian Kremmel</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers>
+<mso:SharedWithUsers msdt:dt="string">55;#Brian Kremmel</mso:SharedWithUsers>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+    <!--WO SETUP-----------------------
+            Tech will begin here
+
+            Inputs:
+             - Any WO Info
+             - Any Customer Info
+             - Any System Information
+             - Flat Rate Items (none approved)
+        -->
+    <!--NAVIGATION
+        TODO: want to add titles OR images to the side toggle buttons
+          current
+      -->
+    <div id="vg-utilcont-top" class="vg-utilcont" style="display:none">
+        <div class="vg-utilcont-top-info vg-utilcont-info">
+            <img src="../images/icons/key.png" class="wo-nav-icon" alt="LOGIN">
+            <img src="../images/icons/layers.png" class="wo-nav-icon" alt="SOMET">
+            <img src="../images/icons/settings.png" class="wo-nav-icon" alt="SOMEC">
+            <img src="../images/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
+            <div class="wo-nav-icon wo-right-nav">Leave us a Review!</div>
+            <img src="../images/icons/twitter.png" class="wo-nav-icon wo-right-nav"  alt="TWITTER">
+            <img src="../images/icons/facebook.png" class="wo-nav-icon wo-right-nav"  alt="FACEBOOK">
+        </div>
+        <img src="../images/icons/menu-burger.png" alt="NAV" class="vg-utilcont-toggle" id="vg-top-toggle">
+    </div>
+
+    <!--PRESENTATION SECTION--------------------------------------------------->
+    <div id="vg-utilcont-bottom" class="vg-utilcont"  style="display:none">
+      <div id="button-open-presentation" class="vg-utilcont-toggle">
+        Two Paths Home to Comfort!
+      </div>
+      <div class="vg-utilcont-bottom-info vg-utilcont-info">
+        <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
+            <div id="wo-present-repair-cont">
+                <div class="wo-present-repair"><!--Extra Headers-->
+                  <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
+                    Premium
+                  </div>
+                </div>
+                <div id="wo-present-headers"><!--Main Headers-->
+                    <div>Services & Repairs</div>
+                    <div>Regular</div>
+                    <div>Member</div>
+                    <div>Savings</div>
+                    <div>Approval</div>
+                </div>
+                <!--ALL OF THE REPAIRS BELOW-->
+
+              <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
+                  <!--DIAGNOSTIC FEE-->
+                  <div class="present-repair-desc">Diagnostic</div>
+                  <div class="present-repair-price"></div>
+                  <div></div>
+                  <div class="present-repair-savings"></div>
+                  <div>YES</div>
+              </div>
+
+              <div id="wo-present-systems">
+              </div>
+            <!--INVESTMENT SECTION-->
+            <div class="wo-present-repair"><!--SAVINGS ROW-->
+                <div>Savings Today</div><!--TITLE-->
+                <div>0</div>
+                <div id="wo-present-savings-today"></div>
+            </div>
+            <div class="wo-present-repair">
+              <div>Monthly Membership</div>
+              <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
+            </div>
+            <div class="wo-present-repair">
+              <div>Due Today</div>
+              <div id="wo-present-regprice-today"></div>
+              <div id="wo-present-memprice-today"></div>
+            </div>
+
+
+            </div>
+
+            <iframe id="video-screen" src="https://www.vogelheating.com"></iframe>
+            <div id="video-option-buttons">
+                <span id="video-note">Click any of the below to explore a bit more about Vogel!</span>
+                <div id="video-membership"><span><a href="https://www.youtube.com/embed/dn89so-EA8Q" target="_blank">Sign Up for Your Membership!</a></span></div>
+                <div id="video-john"><span><a href="https://www.vogelheating.com/why-vogel.html" target="_blank">A Message from Our President: John Vogel</a></span></div>
+                <div ><span><a href="https://www.youtube.com/embed/dn89so-EA8Q" target="_blank">Rewards Memberships</a></span>
+                </div>
+                <div><span><a href="https://www.youtube.com/embed/dn89so-EA8Q" target="_blank">No Remorse Guarantee</a></span>
+                </div>
+                <div><span><a href="https://www.youtube.com/embed/dn89so-EA8Q" target="_blank">My Repair Warranty</a></span>
+                </div>
+                <div><span><a href="https://www.youtube.com/embed/dn89so-EA8Q" target="_blank">Repair or Replace?</a></span>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!--RIGHT SIDE UTILITY
+        The right side utility bar will hold the contract information
+        in the vg-utilcont-info > div
+    -->
+    <div id="vg-utilcont-right" class="vg-utilcont" style="display:none">
+      <img src="../images/icons/badge-solid.png" alt="<" class="vg-utilcont-toggle" id="vg-side-toggle">
+      <div class="vg-utilcont-right-info vg-utilcont-info">
+        <div id="wo-present-contract-cont">
+            <input id="present-contract-name" type="search" list="contract-name-list" />
+            <div id="present-contract-opts">
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
+                    <div>------</div>
+                    <div id="present-contract-monthly">24</div><input type="checkbox" />
+                </div>
+
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc">Additional System(s)</div><input
+                        class="present-contract-opt-quantity" type="number" />
+                    <div id="present-contract-addsys">21</div><input class="present-contract-opt-appr"
+                        type="checkbox" />
+                </div>
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc">Additional Component(s)</div><input
+                        class="present-contract-opt-quantity" type="number" />
+                    <div id="present-contract-addcomp">12</div><input class="present-contract-opt-appr"
+                        type="checkbox" />
+                </div>
+
+                <div id="enhance-tag">Enhancements</div>
+
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc">Standard Filters</div><input
+                        class="present-contract-opt-quantity" type="number" />
+                    <div id="present-contract-addstdflt">5</div><input class="present-contract-opt-appr"
+                        type="checkbox" />
+                </div>
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
+                        class="present-contract-opt-quantity" type="number" />
+                    <div id="present-contract-addhumpad">5</div><input class="present-contract-opt-appr"
+                        type="checkbox" />
+                </div>
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc">Specialty Filters</div><input
+                        class="present-contract-opt-quantity" type="number" />
+                    <div id="present-contract-addspcflt">12</div><input class="present-contract-opt-appr"
+                        type="checkbox" />
+                </div>
+                <div class="present-contract-opt">
+                    <div class="present-contract-opt-desc">Time Saver Disc.</div><input
+                        class="present-contract-opt-quantity" type="number" />
+                    <div id="present-contract-addtimesave">-4</div><input class="present-contract-opt-appr"
+                        type="checkbox" />
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Ticket Header & Client Info------------------------->
+    <div id="wo-header-cont" class="twelve-col-grid">
+        <img src="../images/Vogel Logo.png" id="header-logo" alt="VOGEL">
+        <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
+        <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
+        <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
+    </div>
+
+    <!--Repair Selection----------------------->
+    <div id="wo-setup-cont" class="twelve-col-grid">
+        <!--Setup Systems--------------
+                Filter options on top of a
+                table with the systesms.
+
+                Most of the editing is done
+                in the table
+            -->
+
+            <label for="tagid">Add Tag ID: </label>
+            <input id="wo-setup-sys-tagid" name="tagid" />
+            <div id="flatrate-special-repairs">
+                <div id="flatrate-repair-cleancheck">Add Clean and Check</div>
+                <div style="display:flex;">
+                    <input id="flatrate-repair-diagnostic" type="checkbox" />
+                    <div>Diagnostic Fee</div>
+                </div>
+            </div>
+            <!-- WO System Table-----------
+                    Holds all of the customers
+                    service items.
+
+                    ADD: Empty row at end
+
+                    UPDATE: Can type in some
+                    table cells.
+
+                    DELETE: Maybe should only
+                    be able to disable, setting
+                    a flag back at the office.
+                -->
+            <div id="wo-sys-list"></div>
+            <!---------------------------->
+
+
+        <!--Setup Repair List----------
+                Holds an area to search and
+                selected different task items
+                from the loaded flat rate
+                book.
+            -->
+        <div id="wo-setup-repair">
+
+
+            <div>
+                <!--FLATBOOK------------>
+                <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
+                    list="flatrate-book-list" />
+                <!--List of all available flat rate books-->
+                <input id="wo-repair-search-pl" placeholder="Select Price Level" type="search"
+                    list="flatrate-book-pl-list" />
+                <!--List of all available price level in selected book-->
+                <input id="wo-repair-search-column" placeholder="Select Filter Type" type="search"
+                    list="flatrate-book-search-list" />
+                <!--List of the first-->
+                <input id="wo-repair-search-value" placeholder="Search Repair" type="text" />
+                <!--Type to find-->
+
+                <div id="wo-flatrate-cont">
+                    <div id="flatrate-search-table-cont">
+                        <table id="flatrate-search-table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!---------------------------->
+        </div>
+        <!---------------------------->
+    </div>
+
+    <!--BLOCK TO HOLD DATALIST-->
+    <div>
+        <datalist id="flatrate-book-search-list">
+            <option>Task Code</option>
+            <option>Task Description</option>
+        </datalist>
+        <datalist id="flatrate-book-list">
+            <option>Res Book</option>
+            <option>Comm Book</option>
+        </datalist>
+        <datalist id="flatrate-book-pl-list">
+        </datalist>
+
+        <datalist id="contract-name-list">
+            <option>CLASSIC</option>
+            <option>PREMIUM</option>
+            <option>ULTIMATE</option>
+        </datalist>
+
+    </div>
+</body>
+<script>
+
+    var conprice = {
+        CLASSIC: {
+            pl: 'CLA',
+            month: 24,
+            add: {
+                sys: 21,
+                comp: 12,
+                stdflt: 5,
+                humpad: 5,
+                spcflt: 12,
+                timesave: -4
+            }
+        },
+        PREMIUM: {
+            pl: 'PRE',
+            month: 33,
+            add: {
+                sys: 29,
+                comp: 12,
+                stdflt: 0,
+                humpad: 0,
+                spcflt: 7,
+                timesave: -4
+            }
+        },
+        ULTIMATE: {
+            pl: 'ULT',
+            month: 44,
+            add: {
+                sys: 37,
+                comp: 12,
+                stdflt: 0,
+                humpad: 0,
+                spcflt: 7,
+                timesave: -4
+            }
+        }
+    }
+
+    var wodom = {
+        cont: '',
+        info: {
+            num: 'wo-info-num',
+            name: 'wo-info-customer',
+            address: 'wo-info-address'
+        }
+    }
+
+    var wodate = new Date();
+    var curbook = fltbook.res;//set flat rate book to Residential Book
+    var curwo = null; //set the current WO to null
+
+    //WO Number CHANGE
+    document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
+        if (ele.target.value != '') {
+            document.getElementsByTagName('title')[0].innerText = ele.target.value;
+            $(document.getElementById('wo-setup-sys')).show();
+            $(document.getElementById('wo-setup-repair')).show();
+        }
+    });
+
+    //  PRESENTATION    ////////////////////////////////////////////////
+    //Presentation DOM
+    var prsdom = {
+        cont: 'wo-presentation-cont',
+        head: 'wo-presentaiton-header',
+        button:{
+          open:'button-open-presentation'
+        },
+        contract: {
+            cont: 'wo-present-contract-cont',
+            form: {
+                cont: 'present-contract-opts',
+
+                desc: 'present-contract-opt-desc',
+                quantity: 'present-contract-opt-quantity',
+                appr: 'present-contract-opt-appr',
+                name: 'present-contract-name',
+                month: 'present-contract-monthly',
+
+                inputs: {
+                    sys: 'present-contract-addsys',
+                    comp: 'present-contract-addcomp',
+                    stdflt: 'present-contract-addstdflt',
+                    spcflt: 'present-contract-addspcflt',
+                    humpad: 'present-contract-addhumpad',
+                    timesave: 'present-contract-addtimesave'
+                }
+            }
+        },
+        systems: 'wo-present-systems',
+        system: {
+            cont: 'wo-present-system',
+            id: 'wo-present-system-id',
+            repairs: 'wo-present-system-repairs',
+            specials:{
+              diagnostic:'wo-present-repair-diagnostic'
+            },
+            repair: {
+                unapproved:'wo-present-repair-unapproved',
+                cont: 'wo-present-repair',
+                num: 'present-repair-num',
+                desc: 'present-repair-desc',
+                invst: 'present-repair-price',
+                savings: 'present-repair-savings',
+                appr: 'present-repair-appr'
+            }
+        },
+        invest: {
+            savings: 'wo-present-savings-today',
+            regprice: 'wo-present-regprice-today',
+            memprice: 'wo-present-memprice-today',
+            conmonth: 'wo-present-contract-monthly'
+        }
+    }
+
+    var SETpresent = (cwo) => {
+        if (cwo.systems != null) {
+            let slist = document.getElementById(prsdom.systems);
+
+            let rprice=0; //temp for reg book price
+            let mprice=0; //temp for mem book price
+            slist.innerHTML = '';
+
+            //handle the DIAGNOSTIC
+            if(document.getElementById(fbdom.special.diagnostic).checked){
+              let diagrow = document.getElementById(prsdom.system.specials.diagnostic);
+              $(diagrow).show();
+
+              rprice = GETbookprice('DIAG',cwo.reg);
+              diagrow.children[1].innerText = rprice;
+              mprice = cwo.hascntrct ?  GETbookprice('DIAG',cwo.cntrct) : GETbookprice('DIAG',cwo.reg);
+              diagrow.children[2].innerText = mprice;
+              diagrow.children[3].innerText = rprice - mprice;
+
+            }else{$(document.getElementById(prsdom.system.specials.diagnostic)).hide();}
+
+            for (let x = 0; x < cwo.systems.length; x++) {
+                let s = slist.appendChild(document.createElement('div'));
+                s.classList.add(prsdom.system.cont);
+                s.appendChild(document.createElement('div')).innerText = cwo.systems[x].id;
+                let rlist = s.appendChild(document.createElement('div'));
+                rlist.classList.add(prsdom.system.repairs);
+
+                for (let y = 0; y < cwo.systems[x].repairs.length; y++) {
+                    rprice = 0;
+                    mprice = 0;
+                    //tell what column repcost goes to
+
+                    //find the memebership cost (if any)
+
+                    //fill the difference
+                    let r = rlist.appendChild(document.createElement('div'));
+
+                    r.classList.add(prsdom.system.repair.cont);
+                    r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].desc;
+                    rprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.reg);
+                    r.appendChild(document.createElement('div')).innerText =  rprice;
+                    cwo.build.regprice += rprice;
+                    mprice = GETbookprice(cwo.systems[x].repairs[y].num,cwo.cntrct);
+                    r.appendChild(document.createElement('div')).innerText = mprice;
+                    cwo.build.memprice += mprice;
+                    r.appendChild(document.createElement('div')).innerText = rprice - mprice;
+                    cwo.build.savings += rprice - mprice;
+
+                    if(!cwo.systems[x].repairs[y].appr){
+                      r.classList.add(prsdom.system.repair.unapproved);
+                    }
+                    r.appendChild(document.createElement('div')).innerText = cwo.systems[x].repairs[y].appr ? 'YES':'NO';
+                }
+            }
+            document.getElementById('wo-present-membership').innerText = GETmemhead(document.getElementById(prsdom.contract.form.name).value);
+            document.getElementById(prsdom.invest.regprice).innerText = cwo.build.regprice;
+            document.getElementById(prsdom.invest.memprice).innerText = cwo.build.memprice;
+            document.getElementById(prsdom.invest.savings).innerText = cwo.build.savings;
+            document.getElementById(prsdom.invest.conmonth).innerText = GETcntrctprice();
+        }
+    }
+
+
+
+    //Pass the name from the contract FORM
+    //Either uses that OR the associated pl
+    var GETmemhead = (pname)=>{
+      switch(pname){
+        case 'CLASSIC': return 'CLASSIC'
+        case 'PREMIUM': return 'PREMIUM'
+        case 'ULTIMATE': return 'ULTIMATE'
+        case '':
+          switch(document.getElementById(fbdom.search.pl).value){
+            case 'CLA':return 'CLASSIC'
+            case 'PRE':return 'PREMIUM'
+            case 'ULT':return 'ULTIMATE'
+          }
+      }
+    }
+
+    var HasContract = (pl) => {
+        if (pl == 'CLA' || pl == 'PRE' || pl == 'ULT'){
+          return true;
+        }
+        return false;
+
+    }
+
+
+
+    //  CONTRACT FORM   ////////////////////////
+    var SETcntrctform = () => {
+        let conname = document.getElementById(prsdom.contract.form.name).value;
+        if (conname != '' && conprice[conname] != undefined) {
+            document.getElementById(prsdom.contract.form.month).innerText = conprice[conname].month;
+            for (let p in prsdom.contract.form.inputs) {
+                document.getElementById(prsdom.contract.form.inputs[p]).innerText = conprice[conname].add[p];
+            }
+        }
+    }
+
+    //returns the contract price from form, multiplied by pmnts (pmnts=12 == annual payment)
+    var GETcntrctprice = (pmnts = 1) => {
+        let conname = document.getElementById(prsdom.contract.form.name).value;
+        let price = 0;
+        if (conname != '' && conprice[conname] != undefined) {
+            price = Number(document.getElementById(prsdom.contract.form.month).innerText);
+            for (let i in prsdom.contract.form.inputs) {
+                let opt = document.getElementById(prsdom.contract.form.inputs[i]).parentNode;
+                if (opt.getElementsByClassName(prsdom.contract.form.appr)[0].checked) {
+                    price += Number(document.getElementById(prsdom.contract.form.inputs[i]).innerText) * (opt.getElementsByClassName(prsdom.contract.form.quantity)[0].value != '' ? opt.getElementsByClassName(prsdom.contract.form.quantity)[0].value : 0);
+                }
+            }
+        }
+        return price;
+    }
+
+    var GETcntrctpl = (pname)=>{
+
+      switch(pname){ //first try and use the contract form
+        case 'CLASSIC':
+          return 'CLA'
+        case 'PREMIUM':
+          return 'PRE'
+        case 'ULTIMATE':
+          return 'ULT'
+        case '':
+          switch(document.getElementById(fbdom.search.pl).value){
+            case 'CLA':return 'CLA'
+            case 'PRE':return 'PRE'
+            case 'ULT':return 'ULT'
+          }
+      }
+      return ''
+    }
+
+    document.getElementById(prsdom.contract.form.name).value = "PREMIUM";
+
+    //Contract Form CHANGE
+    document.getElementById(prsdom.contract.cont).addEventListener('change', (ele) => {
+        SETcntrctform();
+        GETcntrctprice();
+    });
+
+
+    ////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////
+
+    //  WO system   ////////////////////////////////////////////////////
+    var sysdom = { //System DOM
+        cont:'wo-setup-cont',
+        input: {
+            tagid: "wo-setup-sys-tagid"
+        },
+        buttons:{
+          approver:{
+            toggle:'vg-checkbox',
+            approved:'vg-checkbox-checked'
+          },
+          delete:'vg-deleter'
+        },
+
+        list: {
+            cont: 'wo-sys-list',
+            system: {
+                cont: 'wo-sys',
+                button: 'wo-sys-button',
+                tagid: 'wo-sys-tagid',
+                area: 'wo-sys-area',
+                repairs: 'wo-sys-repairs',
+                repair: {
+                    cont: 'wo-sys-repair',
+                    id: 'wo-sys-repair-id',
+                    desc: 'wo-sys-repair-desc',
+                }
+            },
+            selected: 'wo-sys-selected'
+        }
+    };
+
+    //Tag ID CHANGE, adds a system to the list
+    document.getElementById(sysdom.input.tagid).addEventListener('change', (ele) => {
+        ADDsystem({
+            id: ele.target.value
+        });
+        ele.target.value = '';
+    });
+
+    ////////////////////////////////////////////////////////////////////
+
+
+    //  Flate Rate  ////////////////////////////////////////////////////
+    var fbdom = { //Flate Rate DOM
+        cont: 'wo-setup-repair',
+        special:{
+          diagnostic:'flatrate-repair-diagnostic',
+          cleancheck:'flatrate-repair-cleancheck'
+        },
+        search: {
+            book: 'wo-repair-search-book',
+            value: 'wo-repair-search-value',
+            pl: 'wo-repair-search-pl',
+            fltr: 'wo-repair-search-column'
+        },
+        table: {
+            cont: 'flatrate-search-table',
+            row: {
+                cont: '',
+                task: 'flatrate-taskid',
+                desc: 'flatrate-desc',
+                value: 'flatrate-value'
+            }
+        },
+        lists: {
+            pls: 'flatrate-book-pl-list'
+        }
+    }
+
+    var defpl = (() => { //get STD or AHR price level depending on time and/of day
+        let time = wodate.getHours();
+        let day = wodate.getDay();
+        return (
+            (time > 17 ||
+                day >= 6)
+                ? 'AHR' : 'STA'
+        );
+    })();
+
+    document.getElementById(fbdom.search.pl).value = defpl;
+    document.getElementById(fbdom.search.book).value = 'Res Book';
+    document.getElementById(fbdom.search.fltr).value = 'Task Description';
+    document.getElementById(fbdom.special.cleancheck).addEventListener('click',(ele)=>{ //add a clean and check
+      ADDrepair({
+        task:'CLNCHK',
+        desc:'Clean and Check'
+      });
+    });
+    document.getElementById(fbdom.special.diagnostic).addEventListener('change',(ele)=>{
+      //may want to do something when this is is "checked"
+      // if there is also a clean and check then> alert the tech
+    })
+    document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
+    document.getElementById(fbdom.search.value).addEventListener('change', getSearchList);
+    document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {
+        let cname = document.getElementById(prsdom.contract.form.name);
+
+        if(HasContract(ele.target.value)){
+          cname.value ='';
+        }else{
+          if(cname.value == ''){cname.value = 'PREMIUM';} //reintialize the contract
+        }
+
+        getSearchList(ele);
+    });
+    ////////////////////////////////////////////////////////////////////
+
+
+    //PRINT Button
+    document.getElementById('wo-save').addEventListener('click', (ele) => {
+        window.print();
+    });
+
+    //Document CHANGE
+    document.addEventListener('change', (ele) => {
+        curwo = GETwo(curwo);
+        console.log(curwo);
+
+
+        SETpresent(curwo);
+    });
+
+
+
+
+    console.log(curbook);
+
+    SETupdownside(true,true,true,false);
+    document.getElementById(prsdom.button.open).addEventListener('click',(ele)=>{
+        if($(document.getElementById(sysdom.cont)).is(':visible')){
+          $(document.getElementById(sysdom.cont)).hide();
+        }else{$(document.getElementById(sysdom.cont)).show()}
+        curwo = GETwo(curwo);
+        console.log(curwo);
+        SETpresent(curwo);
+    });
+
+  /*  Video buttons
+  */
+  (() => { //get STD or AHR price level depending on time and/of day
+    console.log(33);
+    let vidbar = document.getElementById('video-option-buttons');
+    for(let x=0;x<vidbar.children.length;x++){
+      vidbar.children[x].addEventListener('dblclick',(ele)=>{
+        console.log(ele.target.classList);
+        document.getElementById('video-screen').setAttribute('src',ele.target.classList);
+      });
+    }
+  })();
+</script>
+
+</html>
