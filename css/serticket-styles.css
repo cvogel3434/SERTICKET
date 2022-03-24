@@ -21,7 +21,7 @@
           }
         .twelve-col-grid{
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);
             column-gap:5px;
             row-gap:5px;
             padding: 5px;
@@ -66,11 +66,7 @@
             margin: 5px;
             background-color: var(--back-color);
         }
-        .wo-sys-repair {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
+
         .total-label{
             grid-column:1 / 11;
         }
@@ -102,7 +98,7 @@
         #flatrate-repair-cleancheck{
             border: 1px solid black;
             border-radius: 5px;
-            padding: 3px 5px 3px 5px;
+            padding: 1px 5px 1px 5px;
             cursor: pointer;
             margin-right: 15px;
         }
@@ -120,7 +116,12 @@
             font-weight: bold;
             background-color: transparent;
         }
-
+        .wo-sys-repair {
+            display:grid;
+            grid-template-columns: 25px 100px 1fr 50px;
+            align-items: center;
+            margin-bottom: 5px;
+        }
         .wo-sys-area {
             grid-column: 3 / span 1;
         }
@@ -129,26 +130,28 @@
         }
         .wo-sys-repairs {
             grid-column: 1 / span all;
-            margin-left: 20px;
-        }
-        .wo-sys-repair-id{
-            margin:5px 0px 5px 0px;
-        }
-        .wo-sys-repair-desc{
-            margin:5px 0px 5px 50px;
         }
         #flatrate-search-table-cont {
             overflow: auto;
             max-height: 400px;
         }
         #flatrate-search-table{
-            width: 75%;
+            width: 100%;
         }
         #flatrate-search-table tr{
-            display:flex;
-            justify-content:space-between;
+            display:grid;
+            grid-template-columns: 100px 1fr 50px;
+            cursor: pointer;
+            margin-bottom: 5px;
         }
-
+        #flatrate-search-table tr>td:last-child{
+            text-align: right;
+        }
+        #flatrate-search-table tr>td:last-child::before{
+            content: "$";
+            vertical-align: super;
+            font-size: .75em;
+        }
         #wo-flatrate-cont {
             margin-left: 20px;
         }
@@ -180,7 +183,7 @@
         #header-logo{
             max-width: 250px;
             grid-column: 1 / span 3;
-            /*place-self: start stretch;*/
+            justify-self: stretch;
             margin-bottom:10px;
         }
         #present-contract-name, #wo-present-membership {
@@ -273,6 +276,7 @@
         }
         .wo-nav-icon:hover{
             cursor: pointer;
+            color: blue;
         }
         .wo-right-nav{
             float: right;
