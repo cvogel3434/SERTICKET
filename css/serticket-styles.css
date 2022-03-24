@@ -13,8 +13,12 @@
         body{
             background-color: var(--present-back-color);
             margin: 10px;
+<<<<<<< HEAD
+            border: 2px solid black;
+=======
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
+>>>>>>> ea946922ec0d85aad6896c294acd04a86fe970e0
         }
         body::-webkit-scrollbar {
             display: none;
