@@ -69,6 +69,7 @@
         .wo-sys-repair {
             display: flex;
             justify-content: flex-start;
+            align-items: center;
         }
         .total-label{
             grid-column:1 / 11;
@@ -105,12 +106,19 @@
             cursor: pointer;
             margin-right: 15px;
         }
+        .wo-sys-button{
+            cursor: pointer;
+        }
         #wo-sys-list{
             grid-column: 1 / span all;
             grid-row: 2;
         }
         .wo-sys-tagid {
             grid-column: 2 / span 1;
+            border:0px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: transparent;
         }
 
         .wo-sys-area {
@@ -261,7 +269,7 @@
         .wo-nav-icon{
             height:50px;
             width:50px;
-            padding:10px 0px 10px 50px;
+            margin:10px 0px 10px 50px;
         }
         .wo-nav-icon:hover{
             cursor: pointer;
@@ -269,7 +277,7 @@
         .wo-right-nav{
             float: right;
             clear:none;
-            padding: 10px 50px 10px 0px
+            margin: 10px 50px 10px 0px
         }
         #vg-utilcont-bottom>.vg-utilcont-toggle{
             grid-column: -1 / 6;
@@ -283,4 +291,3 @@
           #wo-present-memprice-today{
               color: var(--member-price)
           }
-
