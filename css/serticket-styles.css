@@ -69,6 +69,7 @@
         .wo-sys-repair {
             display: flex;
             justify-content: flex-start;
+            align-items: center;
         }
         .total-label{
             grid-column:1 / 11;
@@ -105,12 +106,19 @@
             cursor: pointer;
             margin-right: 15px;
         }
+        .wo-sys-button{
+            cursor: pointer;
+        }
         #wo-sys-list{
             grid-column: 1 / span all;
             grid-row: 2;
         }
         .wo-sys-tagid {
             grid-column: 2 / span 1;
+            border:0px;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: transparent;
         }
 
         .wo-sys-area {
@@ -283,4 +291,3 @@
           #wo-present-memprice-today{
               color: var(--member-price)
           }
-

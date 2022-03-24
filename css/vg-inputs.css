@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 .vg-checkbox-checked{
-  background-color: var(--background-light);
+  background-color: white;
 }
 .vg-checkbox-checked::after{
   content: "\2713";
