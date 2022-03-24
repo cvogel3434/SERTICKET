@@ -5,6 +5,7 @@
     margin: 5px;
     border-radius: 3px;
     cursor: pointer;
+    background-color: white;
 }
 .vg-checkbox-checked{
   background-color: white;

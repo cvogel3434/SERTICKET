@@ -1,8 +1,8 @@
 :root {
             --vogel-blue: rgb(33, 57, 130);
+            --vogel-red: rgb(230,0,0);
             --row-color: rgb(240,240,255);
             --member-price: rgb(0,150,0);
-            --accent-color: red;
             --back-color: white;
             --contract-color: #213982;
             --present-back-color: rgb(224, 227, 255);
@@ -131,10 +131,16 @@
             grid-column: 3 / span 1;
         }
         .wo-sys-selected {
-            background-image: linear-gradient(to right, var(--highlight-color),rgba(255,0,0,0));
+            border: 2px solid var(--vogel-red);
+        }
+        .wo-sys-selected>.wo-sys-tagid{
+            color: var(--vogel-red);
         }
         .wo-sys-repairs {
             grid-column: 1 / span all;
+        }
+        .wo-sys-repairs>div:nth-child(even){
+            background-color: var(--row-color);
         }
         #flatrate-search-table-cont {
             overflow: auto;
@@ -147,7 +153,10 @@
             display:grid;
             grid-template-columns: 100px 1fr 50px;
             cursor: pointer;
-            margin-bottom: 5px;
+            padding: 5px 0px;
+        }
+        #flatrate-search-table tr:nth-child(even){
+            background-color: var(--row-color);
         }
         #flatrate-search-table tr>td:last-child{
             text-align: right;
@@ -155,7 +164,7 @@
         #flatrate-search-table tr>td:last-child::before{
             content: "$";
             vertical-align: super;
-            font-size: .75em;
+            font-size: .5em;
         }
         #wo-flatrate-cont {
             margin-left: 20px;
