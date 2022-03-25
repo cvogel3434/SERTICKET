@@ -89,7 +89,7 @@ var SETupdownside = (top,bottom,right,left)=>{
   document.addEventListener('touchstart',(ele)=>{
     var edg = EdgeFinder(edges,ele);
     mdown = true;
-    console.log('touch fired')
+    console.log('touch fired', ele.touches[0].clientX)
     if(edg!=''){
       console.log(edg);
       mpos[0] = ele.touches[0].clientX;
