@@ -284,14 +284,17 @@
 
     </div>
 </body>
-<script type="module">
+<script type="module" value=wo>
     import{wolstore}from '../js/lstore.js';
 
+</script>
+<script>
 
 
 
 
-    
+    console.log(wo.wolstore);
+
     var conprice = {
         CLASSIC: {
             pl: 'CLA',
@@ -470,8 +473,6 @@
             document.getElementById(prsdom.invest.conmonth).innerText = GETcntrctprice();
         }
     }
-
-
 
     //Pass the name from the contract FORM
     //Either uses that OR the associated pl
