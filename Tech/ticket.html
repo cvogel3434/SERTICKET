@@ -13,11 +13,6 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/vg-util-updownside.js"></script>
-
-    <script src="js/vg-ticket.js"></script>
-    <script src="js/flbook.js"></script>
-    <script src="js/sticket-build.js">
 
     </script>
     <!--[if gte mso 9]><xml>
@@ -284,17 +279,13 @@
 
     </div>
 </body>
-<script type="module" value=wo>
-    import{wolstore}from '../js/lstore.js';
 
-</script>
-<script>
+<script src="../js/vg-util-updownside.js"></script>
 
-
-
-
-    console.log(wo.wolstore);
-
+<script src="js/vg-ticket.js"></script>
+<script src="js/flbook.js"></script>
+<script src="js/sticket-build.js"></script>
+<script type="module">
     var conprice = {
         CLASSIC: {
             pl: 'CLA',
@@ -497,9 +488,6 @@
         return false;
 
     }
-
-
-
     //  CONTRACT FORM   ////////////////////////
     var SETcntrctform = () => {
         let conname = document.getElementById(prsdom.contract.form.name).value;
