@@ -74,7 +74,7 @@ var SETupdownside = (top,bottom,right,left)=>{
     }
   }
 
-  document.addEventListener('touchstart',(ele)=>{
+  document.addEventListener('mousedown',(ele)=>{
     var edg = EdgeFinder(edges,ele);
     mdown = true;
     console.log('touch fired')
@@ -86,13 +86,25 @@ var SETupdownside = (top,bottom,right,left)=>{
       document.addEventListener('mousemove',DragEdgeOpen);
     }
   });
+    document.addEventListener('touchstart',(ele)=>{
+      var edg = EdgeFinder(edges,ele);
+      mdown = true;
+      console.log('touch fired')
+      if(edg!=''){
+        console.log(edg);
+        mpos[0] = ele.clientX;
+        mpos[1] = ele.clientY;
+        mpos[2] = edg;
+        document.addEventListener('touchmove',DragEdgeOpen);
+      }
+    });
   document.addEventListener('touchend',(ele)=>{
     console.log('touch out')
     mpos[0] = 0;
     mpos[1] = 0;
     mpos[2] = '';
     mdown = false;
-    document.removeEventListener('mousemove',DragEdgeOpen);
+    document.removeEventListener('touchmove',DragEdgeOpen);
   });
   document.addEventListener('mouseup',(ele)=>{
     console.log('touch out')
