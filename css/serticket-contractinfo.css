@@ -18,8 +18,11 @@
   margin:0px;
 }
 /* Video Stuff */
-#video-screen{grid-column: 1 / span 5;}
-#video-screen-1{grid-column: 6 / span 12;}
+#video-screen{
+  width: 50%;
+  border-radius: 10px;
+  border: 2px solid black;
+}
 #video-option-buttons{
     grid-column: 1 / span all;
     display: grid;
