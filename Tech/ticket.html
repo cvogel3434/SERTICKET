@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Presentation</title>
     <link rel="stylesheet" href="../css/serticket-styles.css" />
-    <link rel="stylesheet" href="../css/serticket-ticket.css" />    
+    <link rel="stylesheet" href="../css/serticket-ticket.css" />
     <link rel="stylesheet" href="../css/vg-edge-util.css" />
     <link rel="stylesheet" href="../css/vg-inputs.css" />
 
@@ -17,7 +17,9 @@
 
     <script src="js/vg-ticket.js"></script>
     <script src="js/flbook.js"></script>
-    <script src="js/sticket-build.js"></script>
+    <script src="js/sticket-build.js">
+
+    </script>
     <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 <mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers msdt:dt="string">Brian Kremmel</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_SharedWithUsers>
@@ -282,8 +284,14 @@
 
     </div>
 </body>
-<script>
+<script type="module">
+    import{wolstore}from '../js/lstore.js';
 
+
+
+
+
+    
     var conprice = {
         CLASSIC: {
             pl: 'CLA',
@@ -700,6 +708,8 @@
       });
     }
   })();
+
+;
 </script>
 
 </html>
