@@ -1,6 +1,6 @@
 .client-grid{
   display: grid;
-  grid-template-columns: repeat(12, minmax(25px,1fr));
+  grid-template-columns: repeat(10, minmax(25px,1fr));
   margin-bottom: 5px;
   background-color: var(--back-color);
   border-radius: 10px;
@@ -8,7 +8,7 @@
   place-items: center center;
 }
 #call-header{
-  grid-column: 2 / 13;
+  grid-column: 2 / 11;
   font-size: 1.5em;
   font-style: oblique;
   font-weight: bold;
@@ -31,6 +31,7 @@
   padding-bottom: 56.25%;
   width: calc(100% - 4px);
   height: 0;
+  margin-bottom: 5px;
 }
 #video-screen{
   position: absolute;
@@ -40,6 +41,7 @@
   height: 100%;
   border-radius: 10px;
   border: 2px solid black;
+
 }
 #video-option-buttons{
     grid-column: 1 / span all;
@@ -81,4 +83,19 @@
 #video-john{
     grid-column: 3 / 6;
     border-right:0px !important;
+}
+#review-cont{
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  left: 10px;
+}
+#review-tag{
+  grid-column: 1 / span all;
+  padding-top: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.review-icon{
+  margin:10px 0px;
 }
