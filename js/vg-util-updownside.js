@@ -19,7 +19,8 @@ var vudom = {
     info:'vg-utilcont-left-info'
   }
 }
-
+var mdown = false;
+var mpos = [0,'N'];
 /*  Sets the needed side utilty elements
 
     PASS:
@@ -64,7 +65,7 @@ var SETupdownside = (top,bottom,right,left)=>{
   //  }catch{make=false}
     if(make){
       edge.getElementsByClassName(vudom.toggler)[0].addEventListener('click',TOGGLEutil); //set the show hide of utility contents
-
+      edge.getElementsBy
       edge.addEventListener('mouseleave',(ele)=>{ //hide edge if info is hidden
         if(!$(ele.target.getElementsByClassName(vudom.info)[0]).is(':visible')){
           $(ele.target).hide();
@@ -72,35 +73,24 @@ var SETupdownside = (top,bottom,right,left)=>{
       });
     }
   }
+  document.addEventListener('mousedown',(ele)=>{
+    var edg = EdgeFinder(edges,ele);
+    mdown = true;
+    if(edg!=''){
+
+      document.addEventListener('mousemove',DragEdgeOpen);
+    }
+    document.removeEventListener('mousemove',DragEdgeOpen);
+  });
+  document.addEventListener('mouseup',(ele)=>{
+    mpos = 0;
+    mdown = false;
+  })
+
 
   document.addEventListener('mousemove',(ele)=>{
-    for(let x=0;x<edges.length;x++){
-      switch(edges[x]){
-        case 'top':
-          if(ele.clientY < 30){
-            $(document.getElementById(vudom.top.cont)).show();
-            return
-          }
-          break;
-        case 'bottom':
-          if(ele.clientY>window.innerHeight - 30){
-            $(document.getElementById(vudom.bottom.cont)).show();
-            return
-          }
-          break;
-        case 'right':
-          if(ele.clientX>window.innerWidth - 30){
-            $(document.getElementById(vudom.right.cont)).show();
-            return
-          }
-          break;
-        case 'left':
-          if(ele.clientX<30){
-            $(document.getElementById(vudom.left.cont)).show();
-            return
-          }
-      }
-    }
+    var edg = EdgeFinder(edges,ele);
+    if(edg!=''){$(document.getElementById(vudom[edg].cont))}
   });
 }
 
@@ -119,4 +109,53 @@ var TOGGLEutil = (ele)=>{
 //hide/show toggle button
 var TOGGLEr = (ele)=>{
 
+}
+
+var EdgeFinder=(edgs,ele)=>{
+  for(let x=0;x<edgs.length;x++){
+    switch(edgs[x]){
+      case 'top':
+        if(ele.clientY < 30){
+          mpos[0] = ele.clientY;
+          mpos[1] = 'Y';
+          $(document.getElementById(vudom.top.cont)).show();
+          return 'top'
+        }
+        break;
+      case 'bottom':
+        if(ele.clientY>window.innerHeight - 30){
+          mpos[0] = ele.clientY;
+          mpos[1] = 'Y';
+          $(document.getElementById(vudom.bottom.cont)).show();
+          return 'bottom'
+        }
+        break;
+      case 'right':
+        if(ele.clientX>window.innerWidth - 30){
+          mpos[0] = ele.clientX;
+          mpos[1] = 'X';
+          $(document.getElementById(vudom.right.cont)).show();
+          return 'right'
+        }
+        break;
+      case 'left':
+        if(ele.clientX<30){
+          mpos[0] = ele.clientX;
+          mpos[1] = 'X';
+          $(document.getElementById(vudom.left.cont)).show();
+          return 'left'
+        }
+    }
+    return '';
+  }
+
+}
+var DragEdgeOpen=(ele)=>{
+
+  console.log(ele.clientX);
+  if(mpos[1] != 'N'){
+    if(mpos[1] == 'Y'){
+      
+    }
+  }
 }
