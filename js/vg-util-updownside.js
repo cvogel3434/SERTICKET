@@ -172,26 +172,29 @@ var EdgeFinder=(edgs,clX,clY)=>{
 }
 
 var DragEdgeOpen=(ele)=>{
+  var clX = (ele.touches!=undefined) ? ele.touches[0].clientX : ele.clientX;
+  var clY = (ele.touches!=undefined) ? ele.touches[0].clientY : ele.clientY;
+
   var drug = false;
   if(mpos[2] != ''){
     switch(mpos[2]){
       case 'top':
-        if(ele.clientX > mpos[0]){
+        if(clX > mpos[0]){
           drug = true;
         }
       break;
       case 'bottom':
-        if(ele.clientX< mpos[0]){
+        if(clX< mpos[0]){
           drug = true;
         }
       break;
       case 'right':
-        if(ele.clientY < mpos[1]){
+        if(clY < mpos[1]){
           drug = true;
         }
       break;
       case 'left':
-        if(ele.clientY > mpos[1]){
+        if(clY > mpos[1]){
           drug = true;
         }
     }
