@@ -279,7 +279,6 @@
 </body>
 
 <script src="../js/vg-util-updownside.js"></script>
-
 <script src="js/vg-ticket.js"></script>
 <script src="js/flbook.js"></script>
 <script src="js/sticket-build.js"></script>
@@ -674,6 +673,8 @@
     console.log(curbook);
 
     SETupdownside(true,true,true,false);
+
+    
     document.getElementById(prsdom.button.open).addEventListener('click',(ele)=>{
         if($(document.getElementById(sysdom.cont)).is(':visible')){
           $(document.getElementById(sysdom.cont)).hide();

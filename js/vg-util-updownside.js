@@ -20,7 +20,7 @@ var vudom = {
   }
 }
 var mdown = false;
-var mpos = [0,'N'];
+var mpos = [0,0,''];
 /*  Sets the needed side utilty elements
 
     PASS:
@@ -65,7 +65,7 @@ var SETupdownside = (top,bottom,right,left)=>{
   //  }catch{make=false}
     if(make){
       edge.getElementsByClassName(vudom.toggler)[0].addEventListener('click',TOGGLEutil); //set the show hide of utility contents
-      edge.getElementsBy
+
       edge.addEventListener('mouseleave',(ele)=>{ //hide edge if info is hidden
         if(!$(ele.target.getElementsByClassName(vudom.info)[0]).is(':visible')){
           $(ele.target).hide();
@@ -73,19 +73,47 @@ var SETupdownside = (top,bottom,right,left)=>{
       });
     }
   }
-  document.addEventListener('mousedown',(ele)=>{
-    var edg = EdgeFinder(edges,ele);
-    mdown = true;
-    if(edg!=''){
 
+  document.addEventListener('mousedown',(ele)=>{
+    var edg = EdgeFinder(edges,ele.clientX,ele.clientY);
+    mdown = true;
+    console.log('touch fired')
+    if(edg!=''){
+      console.log(edg);
+      mpos[0] = ele.clientX;
+      mpos[1] = ele.clientY;
+      mpos[2] = edg;
       document.addEventListener('mousemove',DragEdgeOpen);
     }
-    document.removeEventListener('mousemove',DragEdgeOpen);
+  });
+  document.addEventListener('touchstart',(ele)=>{
+    var edg = EdgeFinder(edges,ele.touches[0].clientX,ele.touches[0].clientY);
+    mdown = true;
+    console.log('touch fired', ele.touches[0].clientX)
+    if(edg!=''){
+      console.log(edg);
+      mpos[0] = ele.touches[0].clientX;
+      mpos[1] = ele.touches[0].clientY;
+      mpos[2] = edg;
+      document.addEventListener('touchmove',DragEdgeOpen);
+    }
+  });
+  document.addEventListener('touchend',(ele)=>{
+    console.log('touch out')
+    mpos[0] = 0;
+    mpos[1] = 0;
+    mpos[2] = '';
+    mdown = false;
+    document.removeEventListener('touchmove',DragEdgeOpen);
   });
   document.addEventListener('mouseup',(ele)=>{
-    mpos = 0;
+    console.log('touch out')
+    mpos[0] = 0;
+    mpos[1] = 0;
+    mpos[2] = '';
     mdown = false;
-  })
+    document.removeEventListener('mousemove',DragEdgeOpen);
+  });
 
 
   document.addEventListener('mousemove',(ele)=>{
@@ -102,6 +130,7 @@ var SETupdownside = (top,bottom,right,left)=>{
 var TOGGLEutil = (ele)=>{
   cont = ele.target.parentNode;
   if($(cont.getElementsByClassName(vudom.info)[0]).is(':visible')){
+    $(cont).hide();
     $(cont.getElementsByClassName(vudom.info)[0]).hide();
   }else{$(cont.getElementsByClassName(vudom.info)[0]).show();}
 }
@@ -111,51 +140,70 @@ var TOGGLEr = (ele)=>{
 
 }
 
-var EdgeFinder=(edgs,ele)=>{
+var EdgeFinder=(edgs,clX,clY)=>{
   for(let x=0;x<edgs.length;x++){
     switch(edgs[x]){
       case 'top':
-        if(ele.clientY < 30){
-          mpos[0] = ele.clientY;
-          mpos[1] = 'Y';
+        if(clY < 30){
           $(document.getElementById(vudom.top.cont)).show();
           return 'top'
         }
         break;
       case 'bottom':
-        if(ele.clientY>window.innerHeight - 30){
-          mpos[0] = ele.clientY;
-          mpos[1] = 'Y';
+        if(clY>window.innerHeight - 30){
           $(document.getElementById(vudom.bottom.cont)).show();
           return 'bottom'
         }
         break;
       case 'right':
-        if(ele.clientX>window.innerWidth - 30){
-          mpos[0] = ele.clientX;
-          mpos[1] = 'X';
+        if(clX>window.innerWidth - 30){
           $(document.getElementById(vudom.right.cont)).show();
           return 'right'
         }
         break;
       case 'left':
-        if(ele.clientX<30){
-          mpos[0] = ele.clientX;
-          mpos[1] = 'X';
+        if(clX<30){
           $(document.getElementById(vudom.left.cont)).show();
           return 'left'
         }
     }
-    return '';
   }
-
+  return '';
 }
-var DragEdgeOpen=(ele)=>{
 
-  console.log(ele.clientX);
-  if(mpos[1] != 'N'){
-    if(mpos[1] == 'Y'){
-      
+var DragEdgeOpen=(ele)=>{
+  var clX = (ele.touches!=undefined) ? ele.touches[0].clientX : ele.clientX;
+  var clY = (ele.touches!=undefined) ? ele.touches[0].clientY : ele.clientY;
+
+  var drug = false;
+  if(mpos[2] != ''){
+    switch(mpos[2]){
+      case 'top':
+        if(clX > mpos[0]){
+          drug = true;
+        }
+      break;
+      case 'bottom':
+        if(clX< mpos[0]){
+          drug = true;
+        }
+      break;
+      case 'right':
+        if(clY < mpos[1]){
+          drug = true;
+        }
+      break;
+      case 'left':
+        if(clY > mpos[1]){
+          drug = true;
+        }
+    }
+    if(drug){
+      console.log('was drug open');
+      console.log(mpos[2]);
+      $(document.getElementById(vudom[mpos[2]].cont)).show();
+      $(document.getElementById(vudom[mpos[2]].cont).getElementsByClassName(vudom.info)[0]).show();
+      document.removeEventListener('mousemove',DragEdgeOpen);
     }
   }
 }
