@@ -19,8 +19,10 @@ var vudom = {
     info:'vg-utilcont-left-info'
   }
 }
-var mdown = false;
-var mpos = [0,0,''];
+
+var mdown = false; //is the mousedown
+var mpos = [0,0,'']; //holds [clientX,clientY,'edge name']
+
 /*  Sets the needed side utilty elements
 
     PASS:

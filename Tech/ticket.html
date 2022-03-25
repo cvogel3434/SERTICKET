@@ -283,6 +283,7 @@
 <script src="js/vg-ticket.js"></script>
 <script src="js/flbook.js"></script>
 <script src="js/sticket-build.js"></script>
+
 <script>
     var conprice = {
         CLASSIC: {
@@ -486,6 +487,8 @@
         return false;
 
     }
+
+
     //  CONTRACT FORM   ////////////////////////
     var SETcntrctform = () => {
         let conname = document.getElementById(prsdom.contract.form.name).value;
@@ -668,14 +671,10 @@
         SETpresent(curwo);
     });
 
-
-
-
     console.log(curbook);
-
     SETupdownside(true,true,true,false);
 
-    
+
     document.getElementById(prsdom.button.open).addEventListener('click',(ele)=>{
         if($(document.getElementById(sysdom.cont)).is(':visible')){
           $(document.getElementById(sysdom.cont)).hide();
@@ -685,20 +684,6 @@
         SETpresent(curwo);
     });
 
-  /*  Video buttons
-  */
-  (() => { //get STD or AHR price level depending on time and/of day
-    console.log(33);
-    let vidbar = document.getElementById('video-option-buttons');
-    for(let x=0;x<vidbar.children.length;x++){
-      vidbar.children[x].addEventListener('dblclick',(ele)=>{
-        console.log(ele.target.classList);
-        document.getElementById('video-screen').setAttribute('src',ele.target.classList);
-      });
-    }
-  })();
-
-;
 </script>
 
 </html>
