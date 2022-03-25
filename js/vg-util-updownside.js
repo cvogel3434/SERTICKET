@@ -74,7 +74,7 @@ var SETupdownside = (top,bottom,right,left)=>{
     }
   }
 
-  document.addEventListener('mousedown',(ele)=>{
+  document.addEventListener('touchstart',(ele)=>{
     var edg = EdgeFinder(edges,ele);
     mdown = true;
     if(edg!=''){
@@ -145,34 +145,32 @@ var EdgeFinder=(edgs,ele)=>{
         }
     }
   }
-    return '';
-
+  return '';
 }
 
 var DragEdgeOpen=(ele)=>{
   var drug = false;
   if(mpos[2] != ''){
     switch(mpos[2]){
-      case 'top':{
+      case 'top':
         if(ele.clientX > mpos[0]){
           drug = true;
         }
-      }
-      case 'bottom':{
+      break;
+      case 'bottom':
         if(ele.clientX< mpos[0]){
           drug = true;
         }
-      }
-      case 'right':{
+      break;
+      case 'right':
         if(ele.clientY < mpos[1]){
           drug = true;
         }
-      }
-      case 'left':{
+      break;
+      case 'left':
         if(ele.clientY > mpos[1]){
           drug = true;
         }
-      }
     }
     if(drug){
       console.log('was drug open');
