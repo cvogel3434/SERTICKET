@@ -86,18 +86,18 @@ var SETupdownside = (top,bottom,right,left)=>{
       document.addEventListener('mousemove',DragEdgeOpen);
     }
   });
-    document.addEventListener('touchstart',(ele)=>{
-      var edg = EdgeFinder(edges,ele);
-      mdown = true;
-      console.log('touch fired')
-      if(edg!=''){
-        console.log(edg);
-        mpos[0] = ele.clientX;
-        mpos[1] = ele.clientY;
-        mpos[2] = edg;
-        document.addEventListener('touchmove',DragEdgeOpen);
-      }
-    });
+  document.addEventListener('touchstart',(ele)=>{
+    var edg = EdgeFinder(edges,ele);
+    mdown = true;
+    console.log('touch fired')
+    if(edg!=''){
+      console.log(edg);
+      mpos[0] = ele.touches[0].clientX;
+      mpos[1] = ele.touches[0].clientY;
+      mpos[2] = edg;
+      document.addEventListener('touchmove',DragEdgeOpen);
+    }
+  });
   document.addEventListener('touchend',(ele)=>{
     console.log('touch out')
     mpos[0] = 0;
