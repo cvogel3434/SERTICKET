@@ -75,7 +75,7 @@ var SETupdownside = (top,bottom,right,left)=>{
   }
 
   document.addEventListener('mousedown',(ele)=>{
-    var edg = EdgeFinder(edges,ele);
+    var edg = EdgeFinder(edges,ele.clientX,ele.clientY);
     mdown = true;
     console.log('touch fired')
     if(edg!=''){
@@ -87,7 +87,7 @@ var SETupdownside = (top,bottom,right,left)=>{
     }
   });
   document.addEventListener('touchstart',(ele)=>{
-    var edg = EdgeFinder(edges,ele);
+    var edg = EdgeFinder(edges,ele.touches[0].clientX,ele.touches[0].clientY);
     mdown = true;
     console.log('touch fired', ele.touches[0].clientX)
     if(edg!=''){
@@ -139,29 +139,29 @@ var TOGGLEr = (ele)=>{
 
 }
 
-var EdgeFinder=(edgs,ele)=>{
+var EdgeFinder=(edgs,clX,clY)=>{
   for(let x=0;x<edgs.length;x++){
     switch(edgs[x]){
       case 'top':
-        if(ele.clientY < 30){
+        if(clY < 30){
           $(document.getElementById(vudom.top.cont)).show();
           return 'top'
         }
         break;
       case 'bottom':
-        if(ele.clientY>window.innerHeight - 30){
+        if(clY>window.innerHeight - 30){
           $(document.getElementById(vudom.bottom.cont)).show();
           return 'bottom'
         }
         break;
       case 'right':
-        if(ele.clientX>window.innerWidth - 30){
+        if(clX>window.innerWidth - 30){
           $(document.getElementById(vudom.right.cont)).show();
           return 'right'
         }
         break;
       case 'left':
-        if(ele.clientX<30){
+        if(clX<30){
           $(document.getElementById(vudom.left.cont)).show();
           return 'left'
         }
