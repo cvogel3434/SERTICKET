@@ -1,9 +1,29 @@
+.client-grid{
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0,1fr));
+  margin-bottom: 5px;
+  background-color: var(--back-color);
+  border-radius: 10px;
+  border: 2px solid black;
+  place-items: center center;
+}
+#home-link{
+  grid-column: -1;
+  margin:10px;
+}
+#header-logo{
+  width: 250px;
+}
+.client-icon{
+  margin:0px;
+}
 /* Video Stuff */
-#video-screen{grid-column: 1 / span all;}
-#video-screen-1{grid-column: 6 / span all;}
+#video-screen{grid-column: 1 / span 5;}
+#video-screen-1{grid-column: 6 / span 12;}
 #video-option-buttons{
     grid-column: 1 / span all;
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(4, 25%);
 }
 #video-option-buttons>div{
@@ -14,6 +34,7 @@
   justify-content: center;
   cursor: pointer;
   font-weight: bold;
+  height: 50px;
 }
 #video-option-buttons>div:hover{
   background-color: var(--vogel-blue);

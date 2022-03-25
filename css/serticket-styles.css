@@ -9,6 +9,7 @@
             --highlight-color: rgb(255, 129, 129);
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
+            user-select: none;
         }
         body{
             background-color: var(--present-back-color);
@@ -25,7 +26,7 @@
           }
         .twelve-col-grid{
             display: grid;
-            grid-template-columns: repeat(12, minmax(0, 1fr));
+            grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);
             column-gap:5px;
             row-gap:5px;
             padding: 5px;
@@ -33,6 +34,13 @@
             background-color: var(--back-color);
             border-radius: 10px;
             border: 2px solid black;
+        }
+        .vg-deleter{
+            height:20px;
+            width:20px;
+        }
+        .vg-deleter:hover{
+            cursor: pointer;
         }
         /* for Mobile Phones */
         #wo-present-repair-cont {
@@ -75,7 +83,6 @@
         /* for Desktop */
         @media only screen and (min-width: 768px) {
             .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
-            .total-label{grid-column:8 / 11;}
         }
 
 
