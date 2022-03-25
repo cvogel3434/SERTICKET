@@ -130,6 +130,7 @@ var SETupdownside = (top,bottom,right,left)=>{
 var TOGGLEutil = (ele)=>{
   cont = ele.target.parentNode;
   if($(cont.getElementsByClassName(vudom.info)[0]).is(':visible')){
+    $(cont).hide();
     $(cont.getElementsByClassName(vudom.info)[0]).hide();
   }else{$(cont.getElementsByClassName(vudom.info)[0]).show();}
 }
