@@ -72,224 +72,13 @@
             background-color: var(--back-color);
         }
 
-        .total-label{
-            grid-column:1 / 11;
-        }
-        .total-prices{
-            grid-column:12;
-            text-align: right;
-        }
         /* for Desktop */
         @media only screen and (min-width: 768px) {
             .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
             .total-label{grid-column:8 / 11;}
         }
 
-        /* Setup Side Styling */
-        .client-label{
-            grid-column:1;
-            min-width: 84px;
-        }
-        .client-input{grid-column:2 / span 3;}
 
-        #wo-setup-tag-selector{
-            grid-column: 1 / 4;
-        }
-        #flatrate-special-repairs{
-            grid-column: 4 / 13;
-            display:flex;
-            align-items: center;
-        }
-        #flatrate-repair-cleancheck{
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 1px 5px 1px 5px;
-            cursor: pointer;
-            margin-right: 15px;
-        }
-        .wo-sys-button{
-            cursor: pointer;
-        }
-        #wo-sys-list{
-            grid-column: 1 / span all;
-            grid-row: 2;
-        }
-        .wo-sys-tagid {
-            grid-column: 2 / span 1;
-            border:0px;
-            font-size: 1.2em;
-            font-weight: bold;
-            background-color: transparent;
-        }
-        .wo-sys-repair {
-            display:grid;
-            grid-template-columns: 25px 100px 1fr 50px;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        .wo-sys-area {
-            grid-column: 3 / span 1;
-        }
-        .wo-sys-selected {
-            border: 2px solid var(--vogel-red);
-        }
-        .wo-sys-selected>.wo-sys-tagid{
-            color: var(--vogel-red);
-        }
-        .wo-sys-repairs {
-            grid-column: 1 / span all;
-        }
-        .wo-sys-repairs>div:nth-child(even){
-            background-color: var(--row-color);
-        }
-        #flatrate-search-table-cont {
-            overflow: auto;
-            max-height: 400px;
-        }
-        #flatrate-search-table{
-            width: 100%;
-        }
-        #flatrate-search-table tr{
-            display:grid;
-            grid-template-columns: 100px 1fr 50px;
-            cursor: pointer;
-            padding: 5px 0px;
-        }
-        #flatrate-search-table tr:nth-child(even){
-            background-color: var(--row-color);
-        }
-        #flatrate-search-table tr>td:last-child{
-            text-align: right;
-        }
-        #flatrate-search-table tr>td:last-child::before{
-            content: "$";
-            vertical-align: super;
-            font-size: .5em;
-        }
-        #wo-flatrate-cont {
-            margin-left: 20px;
-        }
-
-        /* Presentation Styling */
-        #wo-presentation-cont{
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-rows: 1fr 1fr 125px;
-            margin-bottom: 5px;
-            background-color: var(--back-color);
-            border-radius: 10px;
-            border: 2px solid black;
-            height:calc(100vh - 2px - 200px);
-        }
-        #wo-presentation-cont input {
-            padding: 0px;
-            margin: 0px;
-            border: none;
-        }
-        #wo-present-repair-cont>:nth-last-child(3){
-            font-weight: bold;
-        }
-        #wo-present-repair-cont>:nth-last-child(2){
-            font-style: oblique;
-        }
-        #wo-present-repair-cont>:last-child{
-            font-weight: bold;
-        }
-        #wo-presentation-header {
-            grid-column: -1 / 4;
-            text-align:right;
-            font-size: x-large;
-            font-weight:bold;
-        }
-        #header-logo{
-            max-width: 250px;
-            grid-column: 1 / span 3;
-            margin-bottom:10px;
-        }
-        #present-contract-name, #wo-present-membership {
-            width: 100%;
-            text-align: center;
-            font-size: larger;
-            font-weight: bolder;
-            border: 0px;
-            border-bottom: 1px solid var(--contract-color);
-            color: var(--contract-color);
-        }
-        #wo-present-membership{
-            grid-column:3;
-          }
-        #wo-present-contract-monthly{
-            grid-column:3;
-        }
-        [id*="present-contract-add"]::before{
-            content:"$";
-        }
-        #present-contract-monthly::before{
-            content:"$";
-        }
-        #monthly-tag{
-            font-weight: bold;
-        }
-        #enhance-tag{
-            padding-left: 15px;
-            padding-top: 10px;
-            border-bottom: 1px solid var(--contract-color);
-            font-style:italic;
-            font-weight: bold;
-            color: var(--contract-color);
-        }
-        .present-contract-opt {
-            display: grid;
-            grid-template-columns: 1fr 50px 50px 50px;
-            column-gap: 5px;
-            text-align: right;
-            padding-top: 5px;
-            padding-left: 15px;
-        }
-        .present-contract-opt>:nth-child(2){
-            text-align:center;
-        }
-        .present-contract-opt :nth-child(4){
-            place-self: center center;
-        }
-        #wo-present-headers{
-            font-weight:bold;
-            padding-bottom:5px;
-            border-bottom: 1px solid black;
-        }
-        #wo-present-headers, .wo-present-repair{
-            display:grid;
-            grid-template-columns: 40% 15% 15% 15% 1fr;
-            column-gap: 5px;
-            padding:5px;
-            justify-items: center;
-            text-align: center;
-        }
-        .wo-present-repair>:nth-child(-n+4)::before{
-            content:"$";
-        }
-        .wo-present-repair>:nth-child(1)::before{
-            content:"";
-        }
-        .wo-present-repair-unapproved div{
-            color: gray;
-        }
-        .wo-present-repair-unapproved div:first-child{
-            text-decoration: line-through;
-        }
-        .wo-present-repair-unapproved div:last-child{
-            font-style: oblique;
-        }
-        .wo-present-system{
-            margin-bottom: 10px;
-            border-bottom: 1px solid black;
-        }
-        .wo-present-system >:nth-child(1){
-            font-weight:bold;
-        }
-        .wo-present-system-repairs>:nth-child(odd){
-            background-color: var(--row-color);
-        }
         .vg-utilcont-top-info{
             background-color: white;
             border: 2px solid black;
@@ -299,9 +88,9 @@
             justify-content: space-evenly;
         }
         .wo-nav-icon{
-            height:50px;
-            width:50px;
-            margin:10px 0px 10px 50px;
+            height:40px;
+            width:40px;
+            margin:10px 0px 10px 30px;
         }
         .wo-nav-icon:hover{
             cursor: pointer;
@@ -319,48 +108,4 @@
             margin: 10px;
             color: var(--vogel-blue);
             background-color: var(--back-color);
-          }
-          #wo-present-memprice-today{
-              color: var(--member-price)
-          }
-
-          /* Video Stuff */
-          #video-screen{grid-column: 2 / span all;}
-
-          #video-option-buttons{
-              grid-column: 1 / span all;
-              display: grid;
-              grid-template-columns: repeat(4, 25%);
-          }
-          #video-option-buttons>div{
-            border-top:1px solid black;
-            border-right:1px solid black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        #video-option-buttons>div:hover{
-            background-color: var(--vogel-blue);
-            color: white;
-        }
-        #video-option-buttons>div:hover>span>a{
-            color: white;
-        }
-        #video-option-buttons div:last-child{
-            border-right:0px;
-        }
-        #video-note{
-            font-style: oblique;
-            grid-column: 1 / span all;
-            margin-left: 10px;
-            align-self: end;
-        }
-          #video-membership{
-              grid-column: 1 / 3;
-          }
-          #video-john{
-              grid-column: 3 / 6;
-              border-right:0px !important;
           }
