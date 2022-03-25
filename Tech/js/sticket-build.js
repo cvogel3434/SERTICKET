@@ -1,4 +1,6 @@
 
+
+
 var CLEARSysSelect = () => {
     let replist = document.getElementsByClassName(sysdom.list.selected);
     for (let x = 0; x < replist.length; x++) {
