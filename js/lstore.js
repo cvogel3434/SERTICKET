@@ -6,13 +6,13 @@
 
 /*SERVICE TICKET /////////////////////////////////////////////////////////
 */
-
 var wolstore = {
-  currentwo:'CURwo'
+  currentwo:'CURwo', //holds the current wo
+  techwo:'TECHwo' //holds all the techs wo
 }
 //////////////////////////////////////////////////////////////////////////
 
 
-export {
+export{
   wolstore
 }

@@ -31,12 +31,12 @@ var mpos = [0,0,'']; //holds [clientX,clientY,'edge name']
     My want to also pass a relative container. These side utilities could
     be oriented inside a parent div???
 */
-var SETupdownside = (top,bottom,right,left)=>{
+export var SETupdownside = (top,bottom,right,left)=>{
   let edge;
   let edges = []; //to track all active edges
 
   for(let x=1;x<=4;x++){
-    make = true; //whether or not to make the elements
+    var make = true; //whether or not to make the elements
     edge = null;
   //  try{
       switch (x) { //set the edges
@@ -130,7 +130,7 @@ var SETupdownside = (top,bottom,right,left)=>{
     and the the the lastChild
 */
 var TOGGLEutil = (ele)=>{
-  cont = ele.target.parentNode;
+  let cont = ele.target.parentNode;
   if($(cont.getElementsByClassName(vudom.info)[0]).is(':visible')){
     $(cont).hide();
     $(cont.getElementsByClassName(vudom.info)[0]).hide();
