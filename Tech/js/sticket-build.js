@@ -29,7 +29,7 @@ var ADDsystem = (system = { id: '' }) => {
         sys.appendChild(document.createElement('input')).value = system.id; //tag id input
         sys.children[sys.children.length - 1].classList.add(sysdom.list.system.tagid);
 
-        sys.appendChild(document.createElement('img')).src = '../../images/icons/trash.png';
+        sys.appendChild(document.createElement('img')).src = '../images/icons/trash.png';
         sys.children[sys.children.length-1].classList.add(sysdom.buttons.delete);
         sys.children[sys.children.length-1].addEventListener('dblclick',(ele)=>{
           ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
