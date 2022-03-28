@@ -81,7 +81,7 @@ var ADDrepair = (row = {}) => {
     r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
     r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
 
-    r.appendChild(document.createElement('img')).src = '../../images/icons/trash.png';
+    r.appendChild(document.createElement('img')).src = '../images/icons/trash.png';
     r.children[r.children.length-1].classList.add(sysdom.buttons.delete);
     r.children[r.children.length-1].addEventListener('dblclick',(ele)=>{
       ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
