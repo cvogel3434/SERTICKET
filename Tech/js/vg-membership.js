@@ -1,5 +1,5 @@
 
-
+import {fbdom} from './flbook.js';
 
 var conprice = {
     CLASSIC: {

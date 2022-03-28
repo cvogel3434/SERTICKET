@@ -1,5 +1,5 @@
 /* Utility elements that hide off screen */
-var vudom = {
+export var vudom = {
   toggler:'vg-utilcont-toggle',
   info:'vg-utilcont-info',
   top:{
@@ -36,7 +36,7 @@ export var SETupdownside = (top,bottom,right,left)=>{
   let edges = []; //to track all active edges
 
   for(let x=1;x<=4;x++){
-    var make = true; //whether or not to make the elements
+    let make = true; //whether or not to make the elements
     edge = null;
   //  try{
       switch (x) { //set the edges
@@ -75,6 +75,10 @@ export var SETupdownside = (top,bottom,right,left)=>{
       });
     }
   }
+  document.addEventListener('mousemove',(ele)=>{
+    var edg = EdgeFinder(edges,ele.clientX,ele.clientY);
+    if(edg!=''){$(document.getElementById(vudom[edg].cont))}
+  });
 
   document.addEventListener('mousedown',(ele)=>{
     var edg = EdgeFinder(edges,ele.clientX,ele.clientY);
@@ -118,10 +122,6 @@ export var SETupdownside = (top,bottom,right,left)=>{
   });
 
 
-  document.addEventListener('mousemove',(ele)=>{
-    var edg = EdgeFinder(edges,ele);
-    if(edg!=''){$(document.getElementById(vudom[edg].cont))}
-  });
 }
 
 /*  Toggle an utility

@@ -58,7 +58,7 @@ var prsdom = {
     }
 }
 
-var sysdom = { //System DOM
+export var sysdom = { //System DOM
     cont:'wo-setup-cont',
     input: {
         tagid: "wo-setup-sys-tagid"
@@ -98,7 +98,7 @@ var CLEARSysSelect = () => {
     }
 }
 
-var ADDsystem = (system = { id: '' }) => {
+export var ADDsystem = (system = { id: '' }) => {
     if (system.id != '') {
         let syslist = document.getElementById(sysdom.list.cont);
 
@@ -145,7 +145,6 @@ var ADDsystem = (system = { id: '' }) => {
         });
 
     }
-
 }
 
 /*  Add repair
@@ -159,6 +158,7 @@ export var ADDrepair = (row = {}) => {
     let r = rlist.appendChild(document.createElement('div'));
     r.classList.add(sysdom.list.system.repair.cont);
     r.appendChild(document.createElement('div')).classList.add('vg-checkbox');
+    if(row.appr){r.children[r.children.length-1].classList.add('vg-checkbox-checked')}
     r.children[r.children.length-1].addEventListener('click',(ele)=>{
       if(ele.target.classList.contains('vg-checkbox-checked')){
         ele.target.classList.remove('vg-checkbox-checked');
@@ -191,7 +191,7 @@ var GETSysList = () => {
                 let rlist = syslist.children[x].getElementsByClassName(sysdom.list.system.repairs)[0];
                 for (let y = 0; y < rlist.children.length; y++) { //add a repair
                     obj.repairs.push({
-                        num: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText,
+                        task: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText,
                         desc: rlist.children[y].getElementsByClassName(sysdom.list.system.repair.desc)[0].innerText,
                         value: GETbookprice(rlist.children[y].getElementsByClassName(sysdom.list.system.repair.id)[0].innerText, document.getElementById(fbdom.search.pl).value),
                         appr: rlist.children[y].getElementsByClassName('vg-checkbox')[0].classList.contains('vg-checkbox-checked') ? true:false
@@ -202,7 +202,6 @@ var GETSysList = () => {
     }
     return arr
 }
-
 
 //gets the wo info from dom
 //accepts a work order
@@ -301,11 +300,27 @@ var SETpresent = (cwo) => {
 
 */
 var SAVEwo = (cwo)=>{
-  var wolist = JSON.parse(localStore.getItem(wolstore.techwo));
-  console.log(wolist);
+  var wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
   if(cwo){
-
-  }
+    if(wolist){
+      for(let x=0;x<wolist.length;x++){
+        if(cwo.num == wolist[x].num){
+          //update the wo
+          wolist[x] = cwo;
+          localStorage.setItem(wolstore.techwo,JSON.stringify(wolist)); //update local storage
+          return cwo;
+        }
+      }
+      wolist.push(cwo);
+      localStorage.setItem(wolstore.techwo,JSON.stringify(wolist)); //update local storage
+      return cwo;
+    }else{ //wolist has not been initialized
+      wolist = [];
+      wolist.push(cwo);
+      localStorage.setItem(wolstore.techwo,JSON.stringify(wolist));
+      return cwo;
+    }
+  }else{return null}
 }
 
 export var SETUPbuild = (curwo)=>{
@@ -317,10 +332,13 @@ export var SETUPbuild = (curwo)=>{
       ele.target.value = '';
   });
 
-      //Document CHANGE
-  document.addEventListener('change', (ele) => {
+
+  document.addEventListener('change', (ele) => {  //Document CHANGE
       curwo = GETwo(curwo);
       console.log(curwo);
+      localStorage.setItem(wolstore.currentwo,JSON.stringify(curwo));
+      SAVEwo(curwo);
+      //update in wo list / or add
       SETpresent(curwo);
   });
 
