@@ -5,6 +5,7 @@ import{dashdom,wodom} from './ticket-dom.js';
 import {ServiceWO} from './sticket-build.js';
 import {SETupdownside} from '../../js/vg-util-updownside.js';
 
+
 var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
 
 var LOADwolist = ()=>{
@@ -40,11 +41,12 @@ var LOADwolist = ()=>{
 }
 //WO Number CHANGE
 document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
-
+    
     if (ele.target.value != '') {
         document.getElementsByTagName('title')[0].innerText = ele.target.value;
         $(document.getElementById('wo-setup-sys')).show();
         $(document.getElementById('wo-setup-repair')).show();
+        curwo.SAVEwo();
         LOADwolist();
     }
 });

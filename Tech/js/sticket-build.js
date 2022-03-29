@@ -5,8 +5,41 @@ import {RewardsMembership} from './vg-membership.js';
 import {FlatRateBook} from './flbook.js';
 import {sysdom,prsdom,wodom,fbdom,dashdom} from './ticket-dom.js';
 
+export var srvwo = (wo)=>{
+  if(!wo){
+    wo = {
+      num:'',
+      name:'',
+      address:'',
+      book:{
+        name:''
+      }
+    }
+  }
+}
 export class ServiceWO extends FlatRateBook{
   constructor(wo){
+    if(!wo){
+      wo = {
+        num:'',
+        name:'',
+        address:'',
+        book:{
+          name:'Res Book',
+          pl:'STA',
+        },
+        reg:'STA',
+        cntrct:'PREMIUM',
+        hascntrct:false,
+        build:{
+          regprice:0,
+          memprice:0,
+          savings:0,
+          memonth:0,
+        },
+        systems:[]
+      }
+    }
     super(wo.book.name,wo.book.pl);
     this.wo = wo;
     this.rewardform = new RewardsMembership();
