@@ -137,11 +137,6 @@ var TOGGLEutil = (ele)=>{
   }else{$(cont.getElementsByClassName(vudom.info)[0]).show();}
 }
 
-//hide/show toggle button
-var TOGGLEr = (ele)=>{
-
-}
-
 var EdgeFinder=(edgs,clX,clY)=>{
   for(let x=0;x<edgs.length;x++){
     switch(edgs[x]){
