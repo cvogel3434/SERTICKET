@@ -61,7 +61,7 @@
   background-color: var(--vogel-blue);
   color: white;
 }
-#video-option-buttons>div:hover>span>a{
+#video-option-buttons>div:hover>a{
   color: white;
 }
 #video-option-buttons div:last-child{
@@ -76,11 +76,8 @@
   margin-left: 10px;
   align-self: end;
 }
-#video-membership{
-    grid-column: 1 / 3;
-}
 #video-john{
-    grid-column: 3 / 6;
+    grid-column: 1 / span all;
     border-right:0px !important;
 }
 #review-cont{

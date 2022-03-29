@@ -100,11 +100,6 @@
         .wo-nav-icon:hover{
             cursor: pointer;
         }
-        .wo-right-nav{
-            float: right;
-            clear:none;
-            margin: 10px 50px 10px 0px
-        }
         #vg-utilcont-bottom>.vg-utilcont-toggle{
             grid-column: -1 / 6;
             place-self: end end;
