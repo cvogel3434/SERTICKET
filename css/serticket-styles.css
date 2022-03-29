@@ -84,8 +84,6 @@
         @media only screen and (min-width: 768px) {
             .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
         }
-
-
         .vg-utilcont-top-info{
             background-color: white;
             border: 2px solid black;
@@ -97,7 +95,7 @@
         .wo-nav-icon{
             height:40px;
             width:40px;
-            margin:10px 0px 10px 30px;
+            margin:10px 0px 10px 20px;
         }
         .wo-nav-icon:hover{
             cursor: pointer;
@@ -114,5 +112,4 @@
             font-weight: bold;
             margin: 10px;
             color: var(--vogel-blue);
-            background-color: var(--back-color);
           }

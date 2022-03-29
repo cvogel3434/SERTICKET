@@ -1,3 +1,37 @@
+/* Nav Bar */
+#wo-save{
+    position: fixed;
+    top: 190px;
+    left: 0px;
+    height: 25px;
+    width: 25px;
+}
+
+/* WO List */
+#vg-wo-dash{
+    border-top: 1px solid black;
+}
+#vg-wo-dash-header{
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+}
+#vg-wo-list{
+    padding: 3px 0 5px 10px;
+    overflow: auto;
+    max-height: 100px;
+}
+#vg-wo-list>div{
+    padding: 3px 0px;
+}
+#vg-wo-list>div:nth-child(even){
+    background-color: var(--row-color);
+}
+.vg-wo-item, #vg-wo-dash-header{
+    display: grid;
+    grid-template-columns: 150px repeat(2, 1fr);
+}
+
 
         /* Setup Side Styling */
         .client-label{

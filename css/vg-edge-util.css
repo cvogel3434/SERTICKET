@@ -55,14 +55,14 @@
     grid-row:3 / span all;
   }
   #vg-top-toggle{
-    height:50px;
-    width:50px;
+    height:40px;
+    width:40px;
   }
   #vg-bottom-toggle{
-    height:50px;
-    width:50px;
+    height:40px;
+    width:40px;
   }
   #vg-side-toggle{
     height:50px;
-    width:50px;
+    width:40px;
   }
