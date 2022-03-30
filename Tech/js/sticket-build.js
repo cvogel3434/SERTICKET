@@ -63,7 +63,7 @@ export class ServiceWO extends FlatRateBook{
         if($(document.getElementById(sysdom.cont)).is(':visible')){
           $(document.getElementById(sysdom.cont)).hide();
         }else{$(document.getElementById(sysdom.cont)).show()}
-        this.wo = GETwo();
+        this.wo = this.GETwo();
         console.log(this.wo);
         this.SETpresent();
     });
@@ -71,7 +71,7 @@ export class ServiceWO extends FlatRateBook{
     document.getElementById(fbdom.search.pl).addEventListener('change', (ele) => {
         let cname = document.getElementById(prsdom.contract.form.name);
 
-        if(rewardform.ISmember(ele.target.value)){
+        if(this.rewardform.ISmember(ele.target.value)){
           cname.value ='';
         }else{
           if(cname.value == ''){cname.value = 'PREMIUM';} //reintialize the contract
