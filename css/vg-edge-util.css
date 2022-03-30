@@ -57,6 +57,7 @@
   #vg-top-toggle{
     height:40px;
     width:40px;
+    place-self: center center;
   }
   #vg-bottom-toggle{
     height:40px;
