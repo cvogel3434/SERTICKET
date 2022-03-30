@@ -96,10 +96,11 @@
         .wo-nav-icon{
             height:40px;
             width:40px;
-            margin:10px 0px 10px 20px;
+            padding:10px 15px;
         }
         .wo-nav-icon:hover{
             cursor: pointer;
+            background: radial-gradient(rgb(250, 250, 0),rgba(0,0,0,0));
         }
         #vg-utilcont-bottom>.vg-utilcont-toggle{
             grid-column: -1 / 6;
