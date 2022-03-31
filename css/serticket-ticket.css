@@ -19,7 +19,7 @@
     background-color: var(--back-color);
     border-radius: 10px;
     border: 5px solid var(--vogel-red);
-    
+
 }
 [id*="wo-info-guide-"]{
     display: grid;
@@ -270,15 +270,17 @@
             color: var(--member-price)
         }
 
+
+
 /* Video Stuff */
-#video-option-buttons{
+#video-gallary-buttons{
     grid-column: 1 / span all;
     grid-row: -1;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(2, 50px);
 }
-#video-option-buttons>div, #video-option-buttons>a {
+#video-gallary-buttons>div, #video-gallary-buttons>a {
   border-top:1px solid black;
   border-right:1px solid black;
   display: flex;
@@ -287,11 +289,11 @@
   cursor: pointer;
   font-weight: bold;
 }
-#video-option-buttons>div:hover, #video-option-buttons>a:hover{
+#video-gallary-buttons>div:hover, #video-gallary-buttons>a:hover{
   background-color: var(--vogel-blue);
   color: white;
 }
-#video-option-buttons div:last-child{
+#video-gallary-buttons div:last-child{
   border-right:0px;
 }
 #video-membership{
