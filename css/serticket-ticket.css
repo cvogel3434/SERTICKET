@@ -273,14 +273,14 @@
 
 
 /* Video Stuff */
-#video-gallary-buttons{
+#video-gallery-buttons{
     grid-column: 1 / span all;
     grid-row: -1;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(2, 50px);
 }
-#video-gallary-buttons>div, #video-gallary-buttons>a {
+#video-gallery-buttons>div, #video-gallery-buttons>a {
   border-top:1px solid black;
   border-right:1px solid black;
   display: flex;
@@ -289,11 +289,11 @@
   cursor: pointer;
   font-weight: bold;
 }
-#video-gallary-buttons>div:hover, #video-gallary-buttons>a:hover{
+#video-gallery-buttons>div:hover, #video-gallery-buttons>a:hover{
   background-color: var(--vogel-blue);
   color: white;
 }
-#video-gallary-buttons div:last-child{
+#video-gallery-buttons div:last-child{
   border-right:0px;
 }
 #video-membership{
