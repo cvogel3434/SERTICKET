@@ -279,14 +279,16 @@ export class ServiceWO extends FlatRateBook{
 
                   r.classList.add(prsdom.system.repair.cont);
                   r.appendChild(document.createElement('div')).innerText = this.wo.systems[x].repairs[y].desc;
-                  rprice = this.GETbookprice(this.wo.systems[x].repairs[y].num,this.wo.reg);
+
+                  rprice = this.GETbookprice(this.wo.systems[x].repairs[y].task,this.wo.reg);
                   r.appendChild(document.createElement('div')).innerText =  rprice;
-                  this.wo.build.regprice += rprice;
-                  mprice = this.GETbookprice(this.wo.systems[x].repairs[y].num,this.wo.cntrct);
+                  this.wo.build.regprice += (this.wo.systems[x].repairs[y].appr ? rprice : 0);
+
+                  mprice = this.GETbookprice(this.wo.systems[x].repairs[y].task,this.wo.cntrct);
                   r.appendChild(document.createElement('div')).innerText = mprice;
-                  this.wo.build.memprice += mprice;
+                  this.wo.build.memprice += (this.wo.systems[x].repairs[y].appr ? mprice : 0);
                   r.appendChild(document.createElement('div')).innerText = rprice - mprice;
-                  this.wo.build.savings += rprice - mprice;
+                  this.wo.build.savings += (this.wo.systems[x].repairs[y].appr ? rprice - mprice :0);
 
                   if(!this.wo.systems[x].repairs[y].appr){
                     r.classList.add(prsdom.system.repair.unapproved);
