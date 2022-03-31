@@ -42,13 +42,13 @@
   border: 2px solid black;
 
 }
-#video-option-buttons{
+#video-gallery-buttons{
     grid-column: 1 / span all;
     display: grid;
     width: 100%;
     grid-template-columns: repeat(4, 25%);
 }
-#video-option-buttons>div{
+#video-gallery-buttons>div{
   border-right:1px solid black;
   display: flex;
   align-items: center;
@@ -57,17 +57,17 @@
   font-weight: bold;
   height: 50px;
 }
-#video-option-buttons>div:hover{
+#video-gallery-buttons>div:hover{
   background-color: var(--vogel-blue);
   color: white;
 }
-#video-option-buttons>div:hover>a{
+#video-gallery-buttons>div:hover>a{
   color: white;
 }
-#video-option-buttons div:last-child{
+#video-gallery-buttons div:last-child{
   border-right:0px;
 }
-#video-option-buttons div:nth-last-child(-n+4){
+#video-gallery-buttons div:nth-last-child(-n+4){
   border-top:1px solid black;
 }
 #video-note{
