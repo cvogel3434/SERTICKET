@@ -7,7 +7,8 @@ var viddom = {
   screen:'video-screen',
   gallery:{
     list:'video-gallery-buttons',
-    button:'video-button'
+    button:'video-button',
+    selected:'video-button-selected'
   }
 }
 
@@ -42,13 +43,25 @@ var SETvideogallery = ()=>{
 }
 
 var GETgalleryvideo = (ele)=>{
+  RESETgallerybuttons();
   for(let v in vidgroup){
     if(ele.target.innerText == v){
       document.getElementById(viddom.screen).src = vidgroup[v].src;
+      ele.target.classList.add(viddom.gallery.selected);
+      return null;
     }
   }
 }
-
+var RESETgallerybuttons = ()=>{
+  let gallery = document.getElementsByClassName(viddom.gallery.button);
+  for(let x=0;x<gallery.length;x++){
+    if(gallery[x].classList.contains(viddom.gallery.selected)){
+      console.log(33);
+      gallery[x].classList.remove(viddom.gallery.selected);
+      return null;
+    }
+  }
+}
 
 //Setup gallery
 
