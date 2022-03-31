@@ -18,7 +18,7 @@ var vidgroup = {
   'Pre Service Call':{
     src:'https://service-test2.s3.us-east-2.amazonaws.com/Pre+Service+Call.mov'
   },
-  'Repair or Replace, No Remporse Program':{
+  'Repair or Replace, No Remorse Program':{
     src:'https://service-test2.s3.us-east-2.amazonaws.com/Repair+or+Replace%2C+No+Remporse+Program.mov'
   },
   'Rewards Membership':{
