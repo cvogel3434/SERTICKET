@@ -41,22 +41,12 @@
   height: 50%;
   border-radius: 10px;
   border: 2px solid black;
-
 }
 #video-gallery-buttons{
     grid-column: 1 / span all;
     display: grid;
+    grid-template-columns: repeat(5, 1fr);
     width: 100%;
-    grid-template-columns: repeat(4, 25%);
-}
-#video-gallery-buttons>div{
-  border-right:1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-weight: bold;
-  height: 50px;
 }
 #video-gallery-buttons>div:hover{
   background-color: var(--vogel-blue);
@@ -68,18 +58,26 @@
 #video-gallery-buttons div:last-child{
   border-right:0px;
 }
-#video-gallery-buttons div:nth-last-child(-n+4){
+.video-button{
   border-top:1px solid black;
-}
-#video-note{
-  font-style: oblique;
-  grid-column: 1 / span all;
-  margin-left: 10px;
-  align-self: end;
+  border-right:1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  height: 50px;
+  text-align: center;
 }
 #video-john{
-    grid-column: 1 / span all;
-    border-right:0px !important;
+  grid-column: 1 / span all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  height: 50px;
+  text-align: center;
 }
 #review-cont{
   position: fixed;
