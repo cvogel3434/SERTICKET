@@ -13,7 +13,6 @@ var LOADwolist = ()=>{
   let dlist = document.getElementById(dashdom.list.cont);
   dlist.innerHTML = '';
   if(wolist){
-    console.log(wolist);
     for(let x=0;x<wolist.length;x++){
       let item = document.createElement('div');
       item.classList.add(dashdom.list.item.cont);
@@ -39,9 +38,9 @@ var LOADwolist = ()=>{
     }
   }
 }
+
 //WO Number CHANGE
 document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
-    
     if (ele.target.value != '') {
         document.getElementsByTagName('title')[0].innerText = ele.target.value;
         $(document.getElementById('wo-setup-sys')).show();

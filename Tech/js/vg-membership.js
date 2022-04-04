@@ -2,7 +2,7 @@
 import {cntrctform,fbdom} from './ticket-dom.js';
 
 export class RewardsMembership{
-  constructor(){
+  constructor(plan = 'PREMIUM'){
     this.pricing = {
         CLASSIC: {
             pl: 'CLA',
@@ -41,7 +41,18 @@ export class RewardsMembership{
             }
         }
     }
-
+    this.form={ //form to
+      pl:plan ? plan : 'PREMIUM',
+      month:0,
+      add:{ //these should match that of the form dom element
+        sys:0,
+        comp:0,
+        stdfltr:0,
+        humpad:0,
+        spcfltr:0,
+        timesave:0
+      }
+    }
     document.getElementById(cntrctform.form.name).value = "PREMIUM"; //Default Contract
     document.getElementById(cntrctform.cont).addEventListener('change', (ele) => {
         this.SETcntrctform();
@@ -93,15 +104,23 @@ export class RewardsMembership{
           }
       }
   }
+
+  GETcntrctform = ()=>{
+
+  }
   //returns the contract price from form, multiplied by pmnts (pmnts=12 == annual payment)
   GETformprice = (pmnts = 1) => { //get price from form
       let conname = document.getElementById(cntrctform.form.name).value;
       let price = 0;
       if (conname != '' && this.pricing[conname] != undefined) {
+          this.form.pl = conname;
+
           price = Number(document.getElementById(cntrctform.form.month).innerText);
           for (let i in cntrctform.form.inputs) {
               let opt = document.getElementById(cntrctform.form.inputs[i]).parentNode;
-              if (opt.getElementsByClassName(cntrctform.form.appr)[0].checked) {
+              //if (opt.getElementsByClassName(cntrctform.form.appr)[0].checked) { //if the item is check *NOT BEING USED*
+                if(opt.getElementsByClassName(cntrctform.form.quantity)[0].value != '' && opt.getElementsByClassName(cntrctform.form.quantity)[0].value > 0){
+                  this.form.add[i] = opt.getElementsByClassName(cntrctform.form.quantity)
                   price += Number(document.getElementById(cntrctform.form.inputs[i]).innerText) * (opt.getElementsByClassName(cntrctform.form.quantity)[0].value != '' ? opt.getElementsByClassName(cntrctform.form.quantity)[0].value : 0);
               }
           }

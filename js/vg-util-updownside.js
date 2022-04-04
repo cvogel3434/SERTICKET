@@ -83,9 +83,9 @@ export var SETupdownside = (top,bottom,right,left)=>{
   document.addEventListener('mousedown',(ele)=>{
     var edg = EdgeFinder(edges,ele.clientX,ele.clientY);
     mdown = true;
-    console.log('touch fired')
+    //console.log('touch fired')
     if(edg!=''){
-      console.log(edg);
+      //console.log(edg);
       mpos[0] = ele.clientX;
       mpos[1] = ele.clientY;
       mpos[2] = edg;
@@ -95,9 +95,9 @@ export var SETupdownside = (top,bottom,right,left)=>{
   document.addEventListener('touchstart',(ele)=>{
     var edg = EdgeFinder(edges,ele.touches[0].clientX,ele.touches[0].clientY);
     mdown = true;
-    console.log('touch fired', ele.touches[0].clientX)
+    //console.log('touch fired', ele.touches[0].clientX)
     if(edg!=''){
-      console.log(edg);
+      //console.log(edg);
       mpos[0] = ele.touches[0].clientX;
       mpos[1] = ele.touches[0].clientY;
       mpos[2] = edg;
@@ -105,7 +105,7 @@ export var SETupdownside = (top,bottom,right,left)=>{
     }
   });
   document.addEventListener('touchend',(ele)=>{
-    console.log('touch out')
+    //console.log('touch out')
     mpos[0] = 0;
     mpos[1] = 0;
     mpos[2] = '';
@@ -113,7 +113,7 @@ export var SETupdownside = (top,bottom,right,left)=>{
     document.removeEventListener('touchmove',DragEdgeOpen);
   });
   document.addEventListener('mouseup',(ele)=>{
-    console.log('touch out')
+    //console.log('touch out')
     mpos[0] = 0;
     mpos[1] = 0;
     mpos[2] = '';
