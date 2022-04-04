@@ -2,7 +2,7 @@
 import {cntrctform,fbdom} from './ticket-dom.js';
 
 export class RewardsMembership{
-  constructor(plan = 'PREMIUM'){
+  constructor(form=null){
     this.pricing = {
         CLASSIC: {
             pl: 'CLA',
@@ -10,9 +10,9 @@ export class RewardsMembership{
             add: {
                 sys: 21,
                 comp: 12,
-                stdflt: 5,
+                stdfltr: 5,
                 humpad: 5,
-                spcflt: 12,
+                spcfltr: 12,
                 timesave: -4
             }
         },
@@ -22,9 +22,9 @@ export class RewardsMembership{
             add: {
                 sys: 29,
                 comp: 12,
-                stdflt: 0,
+                stdfltr: 0,
                 humpad: 0,
-                spcflt: 7,
+                spcfltr: 7,
                 timesave: -4
             }
         },
@@ -34,28 +34,18 @@ export class RewardsMembership{
             add: {
                 sys: 37,
                 comp: 12,
-                stdflt: 0,
+                stdfltr: 0,
                 humpad: 0,
-                spcflt: 7,
+                spcfltr: 7,
                 timesave: -4
             }
         }
     }
-    this.form={ //form to
-      pl:plan ? plan : 'PREMIUM',
-      month:0,
-      add:{ //these should match that of the form dom element
-        sys:0,
-        comp:0,
-        stdfltr:0,
-        humpad:0,
-        spcfltr:0,
-        timesave:0
-      }
-    }
-    document.getElementById(cntrctform.form.name).value = "PREMIUM"; //Default Contract
+    this.SETformob(form); //initialize form object
+    this.SETcntrctform(); //initialize form display
+
     document.getElementById(cntrctform.cont).addEventListener('change', (ele) => {
-        this.SETcntrctform();
+        if(ele.target.id == cntrctform.form.name){this.SETcntrctform();}
         this.GETformprice();
     });
 
@@ -94,35 +84,59 @@ export class RewardsMembership{
     }
     return ''
     }
+  SETformob = (form = null)=>{
 
+    this.form= (form !=undefined && form !=null) ? form: { //form to
+      pl:'PREMIUM',
+      add:{ //these should match that of the form dom element
+        sys:0,
+        comp:0,
+        stdfltr:0,
+        humpad:0,
+        spcfltr:0,
+        timesave:0
+      }
+    }
+    return this.form;
+
+  }
+  LOADform = ()=>{
+    document.getElementById(cntrctform.form.name).value = this.form.pl;
+    if (this.form.pl != '' && this.pricing[this.form.pl] != undefined) {
+        document.getElementById(cntrctform.form.month).innerText = this.pricing[this.form.pl].month;
+        for (let p in cntrctform.form.inputs) {
+            document.getElementById(cntrctform.form.inputs[p]).innerText = this.pricing[this.form.pl].add[p];
+            document.getElementById(cntrctform.form.inputs[p]).parentNode.getElementsByClassName(cntrctform.form.quantity)[0].value = this.form.add[p];
+        }
+    }
+
+  }
   SETcntrctform = () => {
-      let conname = document.getElementById(cntrctform.form.name).value;
-      if (conname != '' && this.pricing[conname] != undefined) {
-          document.getElementById(cntrctform.form.month).innerText = this.pricing[conname].month;
+      this.form.pl = document.getElementById(cntrctform.form.name).value;
+      if (this.form.pl != '' && this.pricing[this.form.pl] != undefined) {
+          document.getElementById(cntrctform.form.month).innerText = this.pricing[this.form.pl].month;
           for (let p in cntrctform.form.inputs) {
-              document.getElementById(cntrctform.form.inputs[p]).innerText = this.pricing[conname].add[p];
+              document.getElementById(cntrctform.form.inputs[p]).innerText = this.pricing[this.form.pl].add[p];
+              document.getElementById(cntrctform.form.inputs[p]).parentNode.getElementsByClassName(cntrctform.form.quantity)[0].value = this.form.add[p];
           }
       }
   }
 
-  GETcntrctform = ()=>{
-
-  }
   //returns the contract price from form, multiplied by pmnts (pmnts=12 == annual payment)
   GETformprice = (pmnts = 1) => { //get price from form
-      let conname = document.getElementById(cntrctform.form.name).value;
+      this.form.pl = document.getElementById(cntrctform.form.name).value;
+      let month = document.getElementById(cntrctform.form.month).parentNode;
+      let conappr = document.getElementById(cntrctform.form.memappr);
       let price = 0;
-      if (conname != '' && this.pricing[conname] != undefined) {
-          this.form.pl = conname;
-
-          price = Number(document.getElementById(cntrctform.form.month).innerText);
-          for (let i in cntrctform.form.inputs) {
-              let opt = document.getElementById(cntrctform.form.inputs[i]).parentNode;
-              //if (opt.getElementsByClassName(cntrctform.form.appr)[0].checked) { //if the item is check *NOT BEING USED*
-                if(opt.getElementsByClassName(cntrctform.form.quantity)[0].value != '' && opt.getElementsByClassName(cntrctform.form.quantity)[0].value > 0){
-                  this.form.add[i] = opt.getElementsByClassName(cntrctform.form.quantity)
-                  price += Number(document.getElementById(cntrctform.form.inputs[i]).innerText) * (opt.getElementsByClassName(cntrctform.form.quantity)[0].value != '' ? opt.getElementsByClassName(cntrctform.form.quantity)[0].value : 0);
-              }
+      if(conappr.checked){ //if the memebership has been "checked-on"
+        price = Number(document.getElementById(cntrctform.form.month).innerText);
+      }
+      for (let i in cntrctform.form.inputs) {
+          let opt = document.getElementById(cntrctform.form.inputs[i]).parentNode;
+          let optval = Number(document.getElementById(cntrctform.form.inputs[i]).innerText);
+          this.form.add[i] = opt.getElementsByClassName(cntrctform.form.quantity)[0].value != '' && opt.getElementsByClassName(cntrctform.form.quantity)[0].value >=0 ? Number(opt.getElementsByClassName(cntrctform.form.quantity)[0].value) : 0;
+          if(conappr.checked && this.form.add[i] != '' && this.form.add[i] > 0){
+            price += optval * this.form.add[i]; //add to memebership price
           }
       }
       return price;

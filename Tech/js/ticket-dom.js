@@ -27,7 +27,7 @@ export var cntrctform = {
     cont: 'wo-present-contract-cont',
     form: {
         cont: 'present-contract-opts',
-
+        memappr: 'wo-contract-appr',
         desc: 'present-contract-opt-desc',
         quantity: 'present-contract-opt-quantity',
         appr: 'present-contract-opt-appr',
@@ -37,8 +37,8 @@ export var cntrctform = {
         inputs: {
             sys: 'present-contract-addsys',
             comp: 'present-contract-addcomp',
-            stdflt: 'present-contract-addstdflt',
-            spcflt: 'present-contract-addspcflt',
+            stdfltr: 'present-contract-addstdflt',
+            spcfltr: 'present-contract-addspcflt',
             humpad: 'present-contract-addhumpad',
             timesave: 'present-contract-addtimesave'
         }

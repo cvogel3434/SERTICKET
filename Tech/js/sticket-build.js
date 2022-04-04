@@ -42,7 +42,8 @@ export class ServiceWO extends FlatRateBook{
     }
     super(wo.book.name,wo.book.pl);
     this.wo = wo;
-    this.rewardform = new RewardsMembership();
+    this.rewardform = new RewardsMembership(this.wo.memform);
+    this.wo.memform = this.rewardform.form;
 
     document.getElementById(sysdom.input.tagid).addEventListener('change', (ele) => {//Add new system
         this.ADDsystem({
@@ -180,7 +181,7 @@ export class ServiceWO extends FlatRateBook{
           reg: this.GETregpl(document.getElementById(fbdom.search.pl).value),
           cntrct: this.rewardform.GETcntrctpl(document.getElementById(prsdom.contract.form.name).value),
           hascntrct: this.rewardform.ISmember(document.getElementById(fbdom.search.pl).value), //NEED to account for contract upgrade
-
+          memform: this.rewardform.form,
           build:{
             regprice:0,
             memprice:0,
@@ -234,6 +235,10 @@ export class ServiceWO extends FlatRateBook{
       $(document.getElementById(vudom.top.cont)).hide();
       $(document.getElementsByClassName(vudom.top.info)[0]).hide();
       $(document.getElementById(dashdom.cont)).hide();
+
+      this.rewardform.SETformob(this.wo.memform);
+      this.rewardform.LOADform();
+      this.wo.memform = this.rewardform.SETformob(this.wo.memform);
     }
   }
 
