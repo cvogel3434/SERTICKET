@@ -131,16 +131,27 @@
       </div>
     </div>
 
-    <!--RIGHT SIDE UTILITY
-        The right side utility bar will hold the contract information
-        in the vg-utilcont-info > div
-    -->
-    <div id="vg-utilcont-right" class="vg-utilcont" style="display:none">
-      <img src="../images/icons/badge-solid.png" alt="<" class="vg-utilcont-toggle" id="vg-side-toggle">
-      <div class="vg-utilcont-right-info vg-utilcont-info">
+    <style>
+      #wo-action-buttons{
+        grid-column: 3 / span 2;
+        grid-row:2;
+      }
+    </style>
+    <!--Ticket Header & Client Info------------------------->
+    <div id="wo-header-cont" class="twelve-col-grid">
+        <img src="../images/Vogel Logo.png" id="header-logo" alt="VOGEL">
+        <div class="client-label" style="display:flex;align-items:center">WO Num:</div><input id="wo-info-num" type="text" />
+        <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
+        <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
+        <div id="wo-action-buttons">
+          <image id="wo-action-save" class="wo-nav-icon" src="../images/icons/disk.png"/>
+          <image id="wo-action-close"  class="wo-nav-icon" src="../images/icons/cross.png"/></image>
+          <image id="wo-action-delete"  class="wo-nav-icon" src="../images/icons/trash.png"/></image>
+
+        </div>
         <div id="wo-present-contract-cont">
-            <input id="present-contract-name" type="search" list="contract-name-list" />
-            <div id="present-contract-opts">
+          <input id="present-contract-name" type="search" list="contract-name-list" />
+          <div id="present-contract-opts">
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
                     <div>------</div>
@@ -188,18 +199,6 @@
                 </div>
             </div>
         </div>
-      </div>
-    </div>
-
-
-
-
-    <!--Ticket Header & Client Info------------------------->
-    <div id="wo-header-cont" class="twelve-col-grid">
-        <img src="../images/Vogel Logo.png" id="header-logo" alt="VOGEL">
-        <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
-        <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
-        <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
     </div>
 
     <!--Repair Selection----------------------->

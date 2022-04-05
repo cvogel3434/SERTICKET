@@ -61,7 +61,7 @@ document.getElementById(dashdom.buttons.editToggle).addEventListener('click',(el
   }else{$(dcont).show();}
 });
 
-SETupdownside(true,true,true,false);
+SETupdownside(true,true,false,false);
 //SETUPbuild(curwo);
 //SETUPfbblock();
 //SETUPmembers();
