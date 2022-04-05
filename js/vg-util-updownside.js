@@ -68,13 +68,15 @@ export var SETupdownside = (top,bottom,right,left)=>{
     if(make){
       edge.getElementsByClassName(vudom.toggler)[0].addEventListener('click',TOGGLEutil); //set the show hide of utility contents
 
-      edge.addEventListener('mouseleave',(ele)=>{ //hide edge if info is hidden
-        if(!$(ele.target.getElementsByClassName(vudom.info)[0]).is(':visible')){
-          $(ele.target).hide();
-        }
-      });
+      //edge.addEventListener('mouseleave',(ele)=>{ //hide edge if info is hidden
+      //  if(!$(ele.target.getElementsByClassName(vudom.info)[0]).is(':visible')){
+      //    $(ele.target).hide();
+      //  }
+      //});
     }
   }
+  /*THE BELOW COMMENTS OUT TOUCH EVENTS AND SOME MOUSE MOVES
+  /*
   document.addEventListener('mousemove',(ele)=>{
     var edg = EdgeFinder(edges,ele.clientX,ele.clientY);
     if(edg!=''){$(document.getElementById(vudom[edg].cont))}
@@ -120,7 +122,7 @@ export var SETupdownside = (top,bottom,right,left)=>{
     mdown = false;
     document.removeEventListener('mousemove',DragEdgeOpen);
   });
-
+ */
 
 }
 
@@ -132,7 +134,7 @@ export var SETupdownside = (top,bottom,right,left)=>{
 var TOGGLEutil = (ele)=>{
   let cont = ele.target.parentNode;
   if($(cont.getElementsByClassName(vudom.info)[0]).is(':visible')){
-    $(cont).hide();
+    //$(cont).hide();
     $(cont.getElementsByClassName(vudom.info)[0]).hide();
   }else{$(cont.getElementsByClassName(vudom.info)[0]).show();}
 }

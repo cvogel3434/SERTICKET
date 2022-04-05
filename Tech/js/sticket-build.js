@@ -232,7 +232,7 @@ export class ServiceWO extends FlatRateBook{
           this.ADDrepair(this.wo.systems[x].repairs[y]);
         }
       }
-      $(document.getElementById(vudom.top.cont)).hide();
+      //$(document.getElementById(vudom.top.cont)).hide();
       $(document.getElementsByClassName(vudom.top.info)[0]).hide();
       $(document.getElementById(dashdom.cont)).hide();
 
