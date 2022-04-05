@@ -1,8 +1,8 @@
 /* Nav Bar */
 #wo-save{
-    position: fixed;
-    top: 190px;
-    left: 0px;
+    position: absolute;
+    top: 110px;
+    left: -5px;
     height: 25px;
     width: 25px;
 }
@@ -154,7 +154,7 @@
           background-color: var(--back-color);
           border-radius: 10px;
           border: 2px solid black;
-          height:calc(100vh - 2px - 200px);
+          height:calc(100vh - 2px - 285px);
       }
       #wo-presentation-cont input {
           padding: 0px;
@@ -273,14 +273,14 @@
 
 
 /* Video Stuff */
-#video-gallery-buttons{
+#video-option-buttons{
     grid-column: 1 / span all;
     grid-row: -1;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(2, 50px);
 }
-#video-gallery-buttons>div, #video-gallery-buttons>a {
+#video-option-buttons>div, #video-option-buttons>a {
   border-top:1px solid black;
   border-right:1px solid black;
   display: flex;
@@ -289,11 +289,11 @@
   cursor: pointer;
   font-weight: bold;
 }
-#video-gallery-buttons>div:hover, #video-gallery-buttons>a:hover{
+#video-option-buttons>div:hover, #video-option-buttons>a:hover{
   background-color: var(--vogel-blue);
   color: white;
 }
-#video-gallery-buttons div:last-child{
+#video-option-buttons div:last-child{
   border-right:0px;
 }
 #video-membership{
