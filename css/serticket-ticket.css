@@ -1,8 +1,12 @@
 /* Nav Bar */
 #wo-save{
     position: absolute;
-    top: 110px;
-    left: -5px;
+    height: 25px;
+    width: 25px;
+}
+#button-open-presentation{
+    position: absolute;
+    top: 235px;
     height: 25px;
     width: 25px;
 }
@@ -60,18 +64,21 @@
 
 
         /* Setup Side Styling */
+        #wo-setup-cont{
+            display:flex;
+            height: 100%;
+            flex-direction: column;
+        }
+
         .client-label{
           grid-column:1;
           min-width: 84px;
       }
       .client-input{grid-column:2 / span 3;}
 
-      #wo-setup-tag-selector{
-          grid-column: 1 / 4;
-      }
       #flatrate-special-repairs{
-          grid-column: 4 / 13;
-          display:flex;
+          grid-column: 3 / span all;
+          display: flex;
           align-items: center;
       }
       #flatrate-repair-cleancheck{
@@ -86,9 +93,12 @@
           cursor: pointer;
       }
       #wo-sys-list{
-          grid-column: 1 / span all;
-          grid-row: 2;
+          flex: 0 0 auto;
       }
+      #wo-setup-repair{
+            flex: 2 0 auto;
+            margin-left: 5px;
+        }
       .wo-sys-tagid {
           grid-column: 2 / span 1;
           border:0px;
@@ -117,10 +127,18 @@
       .wo-sys-repairs>div:nth-child(even){
           background-color: var(--row-color);
       }
+      #wo-flatrate-cont {
+        flex: 1 1 auto;
+        display:flex;
+        
+        flex-direction: column;
+        margin-left: 20px;
+    }
       #flatrate-search-table-cont {
-          overflow: auto;
-          max-height: 400px;
-      }
+        flex: 1 1 auto;
+        max-height: 350px;
+        overflow-y: auto;
+        }
       #flatrate-search-table{
           width: 100%;
       }
@@ -141,20 +159,12 @@
           vertical-align: super;
           font-size: .5em;
       }
-      #wo-flatrate-cont {
-          margin-left: 20px;
-      }
+
 
       /* Presentation Styling */
       #wo-presentation-cont{
-          display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          grid-template-rows: 1fr 1fr 125px;
-          margin-bottom: 5px;
-          background-color: var(--back-color);
-          border-radius: 10px;
-          border: 2px solid black;
-          height:calc(100vh - 2px - 285px);
+          position: relative;
+          height: 100%;
       }
       #wo-presentation-cont input {
           padding: 0px;
@@ -189,6 +199,7 @@
           border: 0px;
           border-bottom: 1px solid var(--contract-color);
           color: var(--contract-color);
+          background-color: transparent;
       }
       #wo-present-membership{
           grid-column:3;
@@ -215,17 +226,17 @@
       }
       .present-contract-opt {
           display: grid;
-          grid-template-columns: 1fr 50px 50px 50px;
-          column-gap: 5px;
+          grid-template-columns: 1fr 40px 40px;
+          column-gap: 10px;
           text-align: right;
-          padding-top: 5px;
-          padding-left: 15px;
+          padding: 2.5px 15px;
       }
       .present-contract-opt>:nth-child(2){
-          text-align:center;
+          text-align: center;
+          place-self: center stretch;
       }
-      .present-contract-opt :nth-child(4){
-          place-self: center center;
+      #wo-contract-appr{
+        place-self: center center;
       }
       #wo-present-headers{
           font-weight:bold;
@@ -274,8 +285,9 @@
 
 /* Video Stuff */
 #video-option-buttons{
-    grid-column: 1 / span all;
-    grid-row: -1;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     grid-template-rows: repeat(2, 50px);

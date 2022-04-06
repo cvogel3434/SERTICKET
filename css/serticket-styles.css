@@ -16,6 +16,9 @@
             margin: 10px;
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
+            height: calc(100vh - 20px);
+            display: flex;
+            flex-flow: column;
         }
         a{
             text-decoration: none;
@@ -34,6 +37,13 @@
           border: 2px solid black;
 
         }
+        #wo-header-cont{
+            flex: 0 1 auto;
+            margin-bottom: 5px;
+            background-color: var(--back-color);
+            border-radius: 10px;
+            border: 2px solid black;
+        }
         /* for Mobile Phones */
         .twelve-col-grid{
             display: grid;
@@ -41,10 +51,6 @@
             column-gap:5px;
             row-gap:5px;
             padding: 5px;
-            margin-bottom: 5px;
-            background-color: var(--back-color);
-            border-radius: 10px;
-            border: 2px solid black;
         }
         .wo-sys {
             width:calc(100% - 20px);
@@ -60,25 +66,26 @@
             grid-row: 5;
             padding:0px 0px 10px 10px;
             border: 2px solid var(--contract-color);
+            border-radius: 8px;
         }
         /* for Desktop */
         @media only screen and (min-width: 768px) {
             .twelve-col-grid{grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);}
             .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
             #wo-present-contract-cont{
-                grid-column: 6 / 13;
+                grid-column: 7 / 13;
                 grid-row:1 / 6;
             }
         }
         @media only screen and (min-width: 1024px) {
             #wo-present-contract-cont{
-                grid-column: 8 / 13;
+                grid-column: 9 / 13;
                 grid-row:1 / 6;
             }
         }
         @media only screen and (min-width: 1440px) {
             #wo-present-contract-cont{
-                grid-column: 10 / 13;
+                grid-column: 11 / 13;
                 grid-row:1 / 6;
             }
         }
@@ -103,16 +110,10 @@
             grid-column: 1 / span all;
             grid-row:1;
         }
-        #wo-setup-repair{
-            grid-column: 1 / span all;
-            grid-row:3;
-        }
+
         #wo-setup-repair input{
             margin-bottom:5px;
         }
-
-
-
         .vg-utilcont-top-info{
             background-color: white;
             border: 2px solid black;
@@ -120,7 +121,7 @@
             border-radius: 0px 0px 10px 10px;
             display: flex;
             justify-content: space-evenly;
-            filter: drop-shadow(3px 3px 5px rgb(150, 150, 150));
+            filter: drop-shadow(3px 3px 5px black);
         }
         .wo-nav-icon{
             height:40px;
@@ -141,16 +142,8 @@
             cursor: pointer;
             filter:drop-shadow(2px 2px 3px var(--vogel-blue));
         }
-        #vg-utilcont-bottom>.vg-utilcont-toggle{
-            grid-column: 1 / 6;
-            place-self: end end;
-            margin: 10px;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: var(--vogel-blue);
-          }
+       
           #wo-ticket-header{
-            display: none;
             grid-column: 1 / 5;
             grid-row: 5 / 6;
             font-size: 2.5em;
@@ -160,7 +153,7 @@
         }
 
 @media print{
-    *{ color-adjust: exact;  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    *{ color-adjust: exact;  -webkit-print-color-adjust: exact;}
     .twelve-col-grid{grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);}
     #wo-action-buttons{display: none;}
     #vg-top-toggle{display: none;}
@@ -169,8 +162,11 @@
     #wo-present-contract-cont{
         grid-column: 5 / 13;
         grid-row: 1 / 6;
-        font-size: 10pt;
     }
-    #wo-ticket-header{display: block;}
     .vg-utilcont-toggle{display: none;}
+    #video-option-buttons>div{visibility: hidden;}
+    #video-membership{
+        background-color: var(--contract-color);
+        color: white;
+    }
 }

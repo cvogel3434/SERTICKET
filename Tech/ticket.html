@@ -70,66 +70,7 @@
         <img src="../images/icons/menu-burger.png" alt="NAV" class="vg-utilcont-toggle" id="vg-top-toggle">
     </div>
 
-    <!--PRESENTATION SECTION--------------------------------------------------->
-    <div id="vg-utilcont-bottom" class="vg-utilcont">
-      <div id="button-open-presentation" class="vg-utilcont-toggle">
-        Two Paths to Home Comfort!
-      </div>
-      <div class="vg-utilcont-bottom-info vg-utilcont-info">
-        <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
-            <img src="../images/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
-            <div id="wo-present-repair-cont">
-                <div class="wo-present-repair"><!--Extra Headers-->
-                  <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
-                    Premium
-                  </div>
-                </div>
-                <div id="wo-present-headers"><!--Main Headers-->
-                    <div>Services & Repairs</div>
-                    <div>Regular</div>
-                    <div>Member</div>
-                    <div>Savings</div>
-                    <div>Approval</div>
-                </div>
-                <!--ALL OF THE REPAIRS BELOW-->
-
-              <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
-                  <!--DIAGNOSTIC FEE-->
-                  <div class="present-repair-desc">Diagnostic</div>
-                  <div class="present-repair-price"></div>
-                  <div></div>
-                  <div class="present-repair-savings"></div>
-                  <div>YES</div>
-              </div>
-
-              <div id="wo-present-systems">
-              </div>
-            <!--INVESTMENT SECTION-->
-            <div class="wo-present-repair"><!--SAVINGS ROW-->
-                <div>Savings Today</div><!--TITLE-->
-                <div>0</div>
-                <div id="wo-present-savings-today"></div>
-            </div>
-            <div class="wo-present-repair">
-              <div>Monthly Membership</div>
-              <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
-            </div>
-            <div class="wo-present-repair">
-              <div>Due Today</div>
-              <div id="wo-present-regprice-today"></div>
-              <div id="wo-present-memprice-today"></div>
-            </div>
-            </div>
-            <div id="video-option-buttons">
-                <a href="https://www.vogelheating.com/rewards-subscription.html" target="_blank" id="video-membership"><div>Sign Up for Your Membership!</div></a>
-                <div>Rewards Memberships</div>
-                <div>No Remorse Guarantee</div>
-                <div>My Repair Warranty</div>
-                <div>Repair or Replace?</div>
-            </div>
-        </div>
-      </div>
-    </div>
+    
     <!--Ticket Header & Client Info------------------------->
     <div id="wo-header-cont" class="twelve-col-grid">
         <img src="../images/Vogel Logo.png" id="header-logo" alt="VOGEL">
@@ -147,21 +88,19 @@
           <div id="present-contract-opts">
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
-                    <div>------</div>
-                    <div id="present-contract-monthly">24</div><input id="wo-contract-appr" type="checkbox" />
+                    <input id="wo-contract-appr" type="checkbox" />
+                    <div id="present-contract-monthly">24</div>
                 </div>
 
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Additional System(s)</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addsys">21</div><input class="present-contract-opt-appr"
-                        type="checkbox" />
+                    <div id="present-contract-addsys">21</div>
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Additional Component(s)</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addcomp">12</div><input class="present-contract-opt-appr"
-                        type="checkbox" />
+                    <div id="present-contract-addcomp">12</div>
                 </div>
 
                 <div id="enhance-tag">Enhancements</div>
@@ -169,33 +108,29 @@
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Standard Filters</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addstdflt">5</div><input class="present-contract-opt-appr"
-                        type="checkbox" />
+                    <div id="present-contract-addstdflt">5</div>
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addhumpad">5</div><input class="present-contract-opt-appr"
-                        type="checkbox" />
+                    <div id="present-contract-addhumpad">5</div>
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Specialty Filters</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addspcflt">12</div><input class="present-contract-opt-appr"
-                        type="checkbox" />
+                    <div id="present-contract-addspcflt">12</div>
                 </div>
                 <div class="present-contract-opt">
                     <div class="present-contract-opt-desc">Time Saver Disc.</div><input
                         class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addtimesave">-4</div><input class="present-contract-opt-appr"
-                        type="checkbox" />
+                    <div id="present-contract-addtimesave">-4</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--Repair Selection----------------------->
-    <div id="wo-setup-cont" class="twelve-col-grid">
+<!--PRESENTATION SECTION--------------------------------------------------->
+<div id="vg-utilcont-bottom" class="vg-utilcont">
+    <div id="wo-setup-cont">
         <!--Setup Systems--------------
                 Filter options on top of a
                 table with the systesms.
@@ -204,8 +139,9 @@
                 in the table
             -->
 
-            <label for="tagid">Add Tag ID: </label>
-            <input id="wo-setup-sys-tagid" name="tagid" />
+            <div class="twelve-col-grid">
+                <label for="tagid">Add Tag ID: </label>
+                <input id="wo-setup-sys-tagid" name="tagid" />
             <div id="flatrate-special-repairs">
                 <div id="flatrate-repair-cleancheck">Add Clean and Check</div>
                 <div style="display:flex;">
@@ -213,6 +149,7 @@
                     <div>Diagnostic Fee</div>
                 </div>
             </div>
+        </div>
             <!-- WO System Table-----------
                     Holds all of the customers
                     service items.
@@ -239,7 +176,8 @@
         <div id="wo-setup-repair">
 
 
-            <div>
+            <div style="height:100%; display:flex; flex-direction: column;">
+                <div>
                 <!--FLATBOOK------------>
                 <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
                     list="flatrate-book-list" />
@@ -252,7 +190,7 @@
                 <!--List of the first-->
                 <input id="wo-repair-search-value" placeholder="Search Repair" type="text" />
                 <!--Type to find-->
-
+                </div>
                 <div id="wo-flatrate-cont">
                     <div id="flatrate-search-table-cont">
                         <table id="flatrate-search-table">
@@ -264,6 +202,60 @@
         </div>
         <!---------------------------->
     </div>
+    <img id="button-open-presentation" class="vg-utilcont-toggle wo-nav-icon" src="../images/icons/document-signed.png" alt="Toggle">
+    <div class="vg-utilcont-bottom-info vg-utilcont-info">
+      <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
+          <img src="../images/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
+          <div id="wo-present-repair-cont">
+              <div class="wo-present-repair"><!--Extra Headers-->
+                <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
+                  Premium
+                </div>
+              </div>
+              <div id="wo-present-headers"><!--Main Headers-->
+                  <div>Services & Repairs</div>
+                  <div>Regular</div>
+                  <div>Member</div>
+                  <div>Savings</div>
+                  <div>Approval</div>
+              </div>
+              <!--ALL OF THE REPAIRS BELOW-->
+
+            <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
+                <!--DIAGNOSTIC FEE-->
+                <div class="present-repair-desc">Diagnostic</div>
+                <div class="present-repair-price"></div>
+                <div></div>
+                <div class="present-repair-savings"></div>
+                <div>YES</div>
+            </div>
+
+            <div id="wo-present-systems">
+            </div>
+          <!--INVESTMENT SECTION-->
+          <div class="wo-present-repair"><!--SAVINGS ROW-->
+              <div>Savings Today</div><!--TITLE-->
+              <div>0</div>
+              <div id="wo-present-savings-today"></div>
+          </div>
+          <div class="wo-present-repair">
+            <div>Monthly Membership</div>
+            <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
+          </div>
+          <div class="wo-present-repair">
+            <div>Due Today</div>
+            <div id="wo-present-regprice-today"></div>
+            <div id="wo-present-memprice-today"></div>
+          </div>
+          </div>
+          <div id="video-option-buttons">
+              <a href="https://www.vogelheating.com/rewards-subscription.html" target="_blank" id="video-membership"><div>Sign Up for Your Membership!</div></a>
+          </div>
+      </div>
+    </div>
+  </div>
+    <!--Repair Selection----------------------->
+    
 
     <!--BLOCK TO HOLD DATALIST-->
     <div>

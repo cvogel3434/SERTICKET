@@ -179,7 +179,7 @@ export class ServiceWO extends FlatRateBook{
               pl: document.getElementById(fbdom.search.pl).value
           },
           reg: this.GETregpl(document.getElementById(fbdom.search.pl).value),
-          cntrct: this.rewardform.GETcntrctpl(document.getElementById(prsdom.contract.form.name).value),
+          cntrct: this.rewardform.GETcntrctpl(document.getElementById(prsdom.contract.form.name).value) || 'PRE',
           hascntrct: this.rewardform.ISmember(document.getElementById(fbdom.search.pl).value), //NEED to account for contract upgrade
           memform: this.rewardform.form,
           build:{
@@ -301,7 +301,7 @@ export class ServiceWO extends FlatRateBook{
                   r.appendChild(document.createElement('div')).innerText = this.wo.systems[x].repairs[y].appr ? 'YES':'NO';
               }
           }
-          document.getElementById('wo-present-membership').innerText = this.rewardform.GETmemhead(document.getElementById(prsdom.contract.form.name).value);
+          document.getElementById(prsdom.memlevel).innerText = this.rewardform.GETmemhead(document.getElementById(prsdom.contract.form.name).value) || this.wo.cntrct;
           document.getElementById(prsdom.invest.regprice).innerText = this.wo.build.regprice;
           document.getElementById(prsdom.invest.memprice).innerText = this.wo.build.memprice;
           document.getElementById(prsdom.invest.savings).innerText = this.wo.build.savings;

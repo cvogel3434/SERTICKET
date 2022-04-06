@@ -63,6 +63,7 @@ export class RewardsMembership{
           case 'CLA':return 'CLASSIC'
           case 'PRE':return 'PREMIUM'
           case 'ULT':return 'ULTIMATE'
+          default: return 'PREMIUM'
         }
     }
   }

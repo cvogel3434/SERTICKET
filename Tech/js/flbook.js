@@ -95,7 +95,6 @@ export class FlatRateBook {
               if (this.book[x].num == tnum ){
                   while (this.book[x][pl + count] != undefined) {
                       if (this.book[x][pl + count] == tpl) {
-                          console.log(tnum,this.book[x]['sp'+count])
                           return this.book[x]['sp' + count];
                       }
                       count = '_' + cnum++;
@@ -104,7 +103,7 @@ export class FlatRateBook {
           }
       }
       for(let s in this.miscreps){
-        if(s ==tnum){return this.miscreps[tnum][tpl]}
+        if(s ==tnum){return this.miscreps[tnum][tpl] || 0}
       }
       return 0;
   }

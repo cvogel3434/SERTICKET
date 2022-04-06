@@ -16,6 +16,11 @@ export var dashdom = {
 
 export var wodom = {
     cont: '',
+    action:{
+      save:'wo-action-save',
+      close:'wo-action-close',
+      delete:'wo-action-delete'
+    },
     info: {
         num: 'wo-info-num',
         name: 'wo-info-customer',
@@ -52,6 +57,7 @@ export var prsdom = {
       open:'button-open-presentation'
     },
     contract: cntrctform, //from vg-membership.js
+    memlevel:'wo-present-membership',
     systems: 'wo-present-systems',
     system: {
         cont: 'wo-present-system',
