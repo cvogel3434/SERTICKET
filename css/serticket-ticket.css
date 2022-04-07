@@ -121,6 +121,10 @@
       .wo-sys-selected>.wo-sys-tagid{
           color: var(--vogel-red);
       }
+      .wo-sys-select-icon{
+        width:20px;
+        height:30px;
+      }
       .wo-sys-repairs {
           grid-column: 1 / span all;
       }
@@ -130,7 +134,7 @@
       #wo-flatrate-cont {
         flex: 1 1 auto;
         display:flex;
-        
+
         flex-direction: column;
         margin-left: 20px;
     }

@@ -111,7 +111,11 @@ export var sysdom = { //System DOM
                 desc: 'wo-sys-repair-desc',
             }
         },
-        selected: 'wo-sys-selected'
+        selected: 'wo-sys-selected',
+        buttonimg:{
+          selected:'../images/icons/angle-down.png',
+          nonselected:'../images/icons/angle-right.png'
+        }
     }
 };
 

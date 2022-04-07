@@ -77,8 +77,10 @@ export class ServiceWO extends FlatRateBook{
   CLEARSysSelect = () => {
       let replist = document.getElementsByClassName(sysdom.list.selected);
       for (let x = 0; x < replist.length; x++) {
+
           $(replist[x].getElementsByClassName(sysdom.list.system.repairs)[0]).hide();
           console.log(replist[x])
+          replist[x].children[0].src = sysdom.list.buttonimg.nonselected;
           replist[x].classList.remove(sysdom.list.selected);
       }
   }
@@ -94,9 +96,10 @@ export class ServiceWO extends FlatRateBook{
           sys.classList.add(sysdom.list.system.cont);
           sys.classList.add(sysdom.list.selected);
 
-          sys.appendChild(document.createElement('div')); //button to toggle repair list
-          sys.children[sys.children.length - 1].classList.add(sysdom.list.system.button);
-          sys.children[sys.children.length - 1].innerText = '>'
+          sys.appendChild(document.createElement('img')); //button to toggle repair list
+          sys.children[sys.children.length - 1].classList.add(sysdom.list.system.button,'wo-sys-select-icon');
+
+          sys.children[sys.children.length - 1].src = sysdom.list.buttonimg.selected;
 
 
           sys.appendChild(document.createElement('input')).value = system.id; //tag id input
@@ -121,6 +124,7 @@ export class ServiceWO extends FlatRateBook{
           sys.children[0].addEventListener('click', (ele) => {
 
               this.CLEARSysSelect();
+              ele.target.src = sysdom.list.buttonimg.selected;
               ele.target.parentNode.classList.add(sysdom.list.selected);
               let replist = ele.target.parentNode.getElementsByClassName(sysdom.list.system.repairs)[0];
 
