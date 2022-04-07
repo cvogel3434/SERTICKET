@@ -4,6 +4,7 @@ import {wolstore} from '../../js/lstore.js';
 import{dashdom,wodom} from './ticket-dom.js';
 import {ServiceWO} from './sticket-build.js';
 import {SETupdownside} from '../../js/vg-util-updownside.js';
+import {DropNote} from '../../js/vg-poppers.js';
 
 
 var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
@@ -21,6 +22,7 @@ var LOADwolist = ()=>{
         for(let y=0;y<wlist.length;y++){
           if(wlist[y].num == ele.target.parentNode.getElementsByClassName(dashdom.list.item.num)[0].innerText){
             curwo.LOADwo(wlist[y]);
+            DropNote('tr',`WO # - ${wlist[y].num} Loaded..`,'green');
           }
         }
       });
@@ -38,7 +40,19 @@ var LOADwolist = ()=>{
     }
   }
 }
-
+var DELETEwo = (wonum=null)=>{
+  if(wonum){
+    let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
+    let nwolist = [];
+    for(let x=0;x<wolist.length;x++){
+      if(wolist[x].num!=wonum){
+        nwolist.push(wolist[x]);
+      }
+    }
+    localStorage.setItem(wolstore.techwo,JSON.stringify(nwolist));
+    LOADwolist();
+  }
+}
 //WO Number CHANGE
 document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
     if (ele.target.value != '') {
@@ -61,6 +75,24 @@ document.getElementById(dashdom.buttons.editToggle).addEventListener('click',(el
   }else{$(dcont).show();}
 });
 
+
+document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
+  curwo.SAVEwo();
+  LOADwolist();
+  console.log('WO saved...',curwo.wo);
+  DropNote('tr','WO Saved!','green');
+});
+document.getElementById(wodom.action.close).addEventListener('click',(ele)=>{
+  curwo.SAVEwo();
+  curwo.LOADwo();
+  DropNote('tr','WO Saved!','green');
+  DropNote('tr','WO Closed..','yellow');
+});
+document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
+  DELETEwo(curwo.wo.num);
+  curwo.LOADwo();
+  DropNote('tr','WO Deleted..','red');
+});
 SETupdownside(true,true,false,false);
 //SETUPbuild(curwo);
 //SETUPfbblock();

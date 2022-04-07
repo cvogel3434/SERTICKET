@@ -5,43 +5,33 @@ import {RewardsMembership} from './vg-membership.js';
 import {FlatRateBook} from './flbook.js';
 import {sysdom,prsdom,wodom,fbdom,dashdom} from './ticket-dom.js';
 
-export var srvwo = (wo)=>{
-  if(!wo){
-    wo = {
-      num:'',
-      name:'',
-      address:'',
-      book:{
-        name:''
-      }
-    }
+export var srvwo = (wo=null)=>{
+  if(!wo){wo = {};}
+  return {
+    num:wo.num || '',
+    name:wo.name||'',
+    address:wo.address||'',
+    book:{
+      name:wo.name||'Res Book',
+      pl:wo.pl||'STA',
+    },
+    reg:wo.reg||'STA',
+    cntrct:wo.cntrct||'PREMIUM',
+    hascntrct:wo.hascntrct||false,
+    build:{
+      regprice:wo.regprice||0,
+      memprice:wo.memprice||0,
+      savings:wo.savings||0,
+      memonth:wo.memonth||0,
+    },
+    systems:wo.systems||[]
   }
 }
 export class ServiceWO extends FlatRateBook{
-  constructor(wo){
-    if(!wo){
-      wo = {
-        num:'',
-        name:'',
-        address:'',
-        book:{
-          name:'Res Book',
-          pl:'STA',
-        },
-        reg:'STA',
-        cntrct:'PREMIUM',
-        hascntrct:false,
-        build:{
-          regprice:0,
-          memprice:0,
-          savings:0,
-          memonth:0,
-        },
-        systems:[]
-      }
-    }
-    super(wo.book.name,wo.book.pl);
-    this.wo = wo;
+  constructor(wo=null){
+    let cleanwo=srvwo(wo);
+    super(cleanwo.book.name,cleanwo.book.pl);
+    this.wo = cleanwo;
     this.rewardform = new RewardsMembership(this.wo.memform);
     this.wo.memform = this.rewardform.form;
 
@@ -219,27 +209,27 @@ export class ServiceWO extends FlatRateBook{
     }else{return false}
   }
 
-  LOADwo = (wo)=>{
-    if(wo){
-      this.wo = wo;
-      document.getElementById(wodom.info.num).value = this.wo.num;
-      document.getElementById(wodom.info.name).value = this.wo.name;
-      document.getElementById(wodom.info.address).value = this.wo.address;
-      document.getElementById(sysdom.list.cont).innerHTML = '';
-      for(let x=0;x<this.wo.systems.length;x++){
-        this.ADDsystem({id:this.wo.systems[x].id});
-        for(let y=0;y<this.wo.systems[x].repairs.length;y++){
-          this.ADDrepair(this.wo.systems[x].repairs[y]);
-        }
-      }
-      //$(document.getElementById(vudom.top.cont)).hide();
-      $(document.getElementsByClassName(vudom.top.info)[0]).hide();
-      $(document.getElementById(dashdom.cont)).hide();
+  LOADwo = (wo = null )=>{
+    this.wo = srvwo(wo);
 
-      this.rewardform.SETformob(this.wo.memform);
-      this.rewardform.LOADform();
-      this.wo.memform = this.rewardform.SETformob(this.wo.memform);
+    document.getElementById(wodom.info.num).value = this.wo.num;
+    document.getElementById(wodom.info.name).value = this.wo.name;
+    document.getElementById(wodom.info.address).value = this.wo.address;
+    document.getElementById(sysdom.list.cont).innerHTML = '';
+    for(let x=0;x<this.wo.systems.length;x++){
+      this.ADDsystem({id:this.wo.systems[x].id});
+      for(let y=0;y<this.wo.systems[x].repairs.length;y++){
+        this.ADDrepair(this.wo.systems[x].repairs[y]);
+      }
     }
+    //$(document.getElementById(vudom.top.cont)).hide();
+    $(document.getElementsByClassName(vudom.top.info)[0]).hide();
+    $(document.getElementById(dashdom.cont)).hide();
+
+    this.rewardform.SETformob(this.wo.memform);
+    this.rewardform.LOADform();
+    this.wo.memform = this.rewardform.SETformob(this.wo.memform);
+
   }
 
   /*  Set the presentation with a current wo
