@@ -55,7 +55,7 @@
         .wo-sys {
             width:calc(100% - 20px);
             display: inline-grid;
-            grid-template-columns: 20px repeat(3, 1fr);
+            grid-template-columns: 25px repeat(3, 1fr);
             padding: 5px;
             margin: 5px;
             background-color: var(--back-color);
@@ -71,7 +71,7 @@
         /* for Desktop */
         @media only screen and (min-width: 768px) {
             .twelve-col-grid{grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);}
-            .wo-sys {grid-template-columns: 20px repeat(5, 1fr);}
+            .wo-sys {grid-template-columns: 25px repeat(5, 1fr);}
             #wo-present-contract-cont{
                 grid-column: 7 / 13;
                 grid-row:1 / 6;
