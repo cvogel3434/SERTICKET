@@ -32,8 +32,16 @@ export class FlatRateBook {
   constructor(book,pl){
     this.book = fltbook.res;
     this.miscreps = {//Misc Repairs
-      'CLNCHK':{
-        'desc':'Clean and Check',
+      'CLNCHK-AC':{
+        'desc':'AC Clean and Check',
+        'STA':149,
+        'AHR':149,
+        'CLA':0,
+        'PRE':0,
+        'ULT':0
+      },
+      'CLNCHK-FURN':{
+        'desc':'Furnace Clean and Check',
         'STA':149,
         'AHR':149,
         'CLA':0,
@@ -51,6 +59,7 @@ export class FlatRateBook {
 
     }
 
+    
     this.pl = ((pl) => { //get STD or AHR price level depending on time and/of day
 
         var wodate = new Date();
@@ -62,6 +71,7 @@ export class FlatRateBook {
                 ? 'AHR' : 'STA'
         );
     })();
+
     document.getElementById(fbdom.search.pl).value = this.pl;
 
     document.getElementById(fbdom.search.book).value = 'Res Book';
@@ -70,13 +80,24 @@ export class FlatRateBook {
     document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
     document.getElementById(fbdom.search.value).addEventListener('change', this.REFRESHbook);
 
-    document.getElementById(fbdom.special.cleancheck).addEventListener('click',(ele)=>{ //add a clean and check
+    document.getElementById(fbdom.special.accleancheck).addEventListener('click',(ele)=>{ //add a clean and check
       this.ADDrepair({
-        task:'CLNCHK',
-        desc:'Clean and Check'
+        task:'CLNCHK-AC',
+        desc:'AC Clean and Check'
       });
     });
-
+    document.getElementById(fbdom.special.furncleancheck).addEventListener('click',(ele)=>{ //add a clean and check
+      this.ADDrepair({
+        task:'CLNCHK-FURN',
+        desc:'Furnace Clean and Check'
+      });
+    });
+    document.getElementById(fbdom.special.diagnostic).addEventListener('click',(ele)=>{ //add a clean and check
+      this.ADDrepair({
+        task:'DIAG',
+        desc:'Diagnostic Fee'
+      });
+    });
   }
 
   GETregpl = (pname)=>{//Gets the appropriate price level

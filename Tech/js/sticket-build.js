@@ -27,6 +27,7 @@ export var srvwo = (wo=null)=>{
     systems:wo.systems||[]
   }
 }
+
 export class ServiceWO extends FlatRateBook{
   constructor(wo=null){
     let cleanwo=srvwo(wo);
@@ -247,9 +248,11 @@ export class ServiceWO extends FlatRateBook{
           slist.innerHTML = '';
 
           //handle the DIAGNOSTIC
+          /*
           if(document.getElementById(fbdom.special.diagnostic).checked){
             let diagrow = document.getElementById(prsdom.system.specials.diagnostic);
             $(diagrow).show();
+
 
             rprice = this.GETbookprice('DIAG',this.wo.reg);
             diagrow.children[1].innerText = rprice;
@@ -258,6 +261,8 @@ export class ServiceWO extends FlatRateBook{
             diagrow.children[3].innerText = rprice - mprice;
 
           }else{$(document.getElementById(prsdom.system.specials.diagnostic)).hide();}
+          */
+
 
           for (let x = 0; x < this.wo.systems.length; x++) {
               let s = slist.appendChild(document.createElement('div'));
@@ -283,7 +288,12 @@ export class ServiceWO extends FlatRateBook{
                   r.appendChild(document.createElement('div')).innerText =  rprice;
                   this.wo.build.regprice += (this.wo.systems[x].repairs[y].appr ? rprice : 0);
 
-                  mprice = this.GETbookprice(this.wo.systems[x].repairs[y].task,this.wo.cntrct);
+                  if(this.wo.systems[x].repairs[y].task=='DIAG'){ //special case for diagnostic fee
+                    if(this.wo.hascntrct){
+                      mprice = this.GETbookprice(this.wo.systems[x].repairs[y].task,this.wo.cntrct);
+                    }else{mprice = this.GETbookprice(this.wo.systems[x].repairs[y].task,this.wo.reg);}
+                  }else{mprice = this.GETbookprice(this.wo.systems[x].repairs[y].task,this.wo.cntrct);}
+
                   r.appendChild(document.createElement('div')).innerText = mprice;
                   this.wo.build.memprice += (this.wo.systems[x].repairs[y].appr ? mprice : 0);
                   r.appendChild(document.createElement('div')).innerText = rprice - mprice;

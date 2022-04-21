@@ -123,7 +123,8 @@ export var fbdom = { //Flate Rate DOM
     cont: 'wo-setup-repair',
     special:{
       diagnostic:'flatrate-repair-diagnostic',
-      cleancheck:'flatrate-repair-cleancheck'
+      furncleancheck:'flatrate-repair-furn-cleancheck',
+      accleancheck:'flatrate-repair-ac-cleancheck'
     },
     search: {
         book: 'wo-repair-search-book',

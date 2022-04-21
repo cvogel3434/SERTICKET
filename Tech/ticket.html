@@ -149,11 +149,15 @@
                 <label for="tagid">Add Tag ID: </label>
                 <input id="wo-setup-sys-tagid" name="tagid" />
             <div id="flatrate-special-repairs">
-                <div id="flatrate-repair-cleancheck">Add Clean and Check</div>
+                <div id="flatrate-repair-furn-cleancheck" class="flatrate-special-repair-buttons">Furn Clean and Check</div>
+                <div id="flatrate-repair-ac-cleancheck" class="flatrate-special-repair-buttons">AC Clean and Check</div>
+                <div id="flatrate-repair-diagnostic" class="flatrate-special-repair-buttons">Diagnostic Fee</div>
+                <!--
                 <div style="display:flex;">
                     <input id="flatrate-repair-diagnostic" type="checkbox" />
                     <div>Diagnostic Fee</div>
                 </div>
+              -->
             </div>
         </div>
             <!-- WO System Table-----------
@@ -274,6 +278,11 @@
             <option>Comm Book</option>
         </datalist>
         <datalist id="flatrate-book-pl-list">
+          <option>STA</option>
+          <option>AHR</option>
+          <option>CLA</option>
+          <option>PRE</option>
+          <option>ULT</option>
         </datalist>
 
         <datalist id="contract-name-list">
