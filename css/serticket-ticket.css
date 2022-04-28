@@ -258,7 +258,7 @@
       .wo-present-repair>:nth-child(-n+4)::before{
           content:"$";
       }
-      .wo-present-repair>:nth-child(1)::before{
+      .wo-present-repair>:nth-child(-n+2)::before{
           content:"";
       }
       .wo-present-repair-unapproved div{
@@ -288,6 +288,17 @@
 
 
 /* Video Stuff */
+#membership-link{
+    grid-column: 4 / 7;
+    background-color: var(--vogel-red);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+#membership-link:hover{
+    opacity: .5;
+    cursor: pointer;
+}
 #video-option-buttons{
     position: absolute;
     width: 100%;
