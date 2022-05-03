@@ -13,20 +13,20 @@ var viddom = {
 }
 
 var vidgroup = {
-  'Pre Comfort Consultation':{
-    src:'https://service-test2.s3.us-east-2.amazonaws.com/Pre+Comfort+Consultation.mp4'
-  },
-  'Pre Service Call':{
+  'What to Expect':{
     src:'https://service-test2.s3.us-east-2.amazonaws.com/Pre+Service+Call.mp4'
-  },
-  'Repair or Replace, No Remorse Program':{
-    src:'https://service-test2.s3.us-east-2.amazonaws.com/Repair+or+Replace%2C+No+Remporse+Program.mp4'
   },
   'Rewards Membership':{
     src:'https://service-test2.s3.us-east-2.amazonaws.com/Rewards+Membership.mp4'
   },
   'Service Warranty':{
     src:'https://service-test2.s3.us-east-2.amazonaws.com/Service+Warranty.mp4'
+  },
+  'Repair or Replace? No Remorse.':{
+    src:'https://service-test2.s3.us-east-2.amazonaws.com/Repair+or+Replace%2C+No+Remporse+Program.mp4'
+  },
+  'Upgrading Your Air':{
+    src:'https://service-test2.s3.us-east-2.amazonaws.com/Pre+Comfort+Consultation.mp4'
   }
 }
 
