@@ -93,6 +93,7 @@ document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
   curwo.LOADwo();
   DropNote('tr','WO Deleted..','red');
 });
+
 SETupdownside(true,true,false,false);
 //SETUPbuild(curwo);
 //SETUPfbblock();
